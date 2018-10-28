@@ -1,1 +1,17 @@
-your code here...
+John Pasquesi
+
+CSCI5030 StripStopWords Function Assignment
+
+The code is contained in two files: stripStopWords.js and testStripStopWords.js
+
+The function can be used by importing the stripStopWords.js file as follows:
+
+var stripFunction = require('./stripStopWords');
+
+Then, the function itself may be called as:
+
+stripFunction.strip_stopwords(languageCode,inputText);
+
+To run the tests for this function, simply run:
+
+node testStripStopWords.js
