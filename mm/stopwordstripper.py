@@ -14,7 +14,7 @@ def main():
             strippedline = stopwords(row[0],row[1])     
             tsvout.writerow([row[0],row[1],strippedline])
             #Use assert to check results.
-            #assert strippedline == row[2]
+            assert strippedline == row[2]
 
 #Function to test for non-english characters.
 def isenglish(stringin):
@@ -68,27 +68,27 @@ def stopwords(langcode,checkline):
                 line = line.strip()
                 stopdict.append(line) 
     #Add upper and lower case versions of each line in stopdict to largestopdict.
-    if any(isenglish(item) for item in stopdict) == True:
-        for item in stopdict:
+    for item in stopdict:
+        if isenglish(item):
             for letter in range(len(item)):
                 convertcase = item[:letter] + item[letter].swapcase() + item[(letter+1):]
                 largestopdict.append(convertcase)
     #Add all capital letter version of each line in stopdict to largestopdict.
-    if any(isenglish(item) for item in stopdict) == True:
-        for item in stopdict:
+    for item in stopdict:
+        if isenglish(item):
             largestopdict.append(item.upper())
     #Add the original items of stopdict to largestopdict.
     for item in stopdict:
         largestopdict.append(item) 
     #Check to see if any stop words exist in liststripped.
-    strippedlist = [item for item in checkline if item not in largestopdict]  
+    strippedlist = [item for item in checkline if item not in largestopdict] 
     #Transform strippedlist to lowercase if it contains only english characters.
-    if any(isenglish(item) for item in strippedlist) == False:
-        strippedstr = " ".join(strippedlist) 
+    if not any(isenglish(item) for item in strippedlist):
+        strippedstr = " ".join(strippedlist)
         return strippedstr
     else:
         englishlist = [item.lower() for item in strippedlist]
-        strippedstr = " ".join(englishlist)
+        strippedstr = " ".join(englishlist) 
         return strippedstr
 if __name__ == "__main__":
     main()
