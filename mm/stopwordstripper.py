@@ -83,12 +83,10 @@ def stopwords(langcode,checkline):
     #Check to see if any stop words exist in liststripped.
     strippedlist = [item for item in checkline if item not in largestopdict] 
     #Transform strippedlist to lowercase if it contains only english characters.
-    if not any(isenglish(item) for item in strippedlist):
-        strippedstr = " ".join(strippedlist)
-        return strippedstr
-    else:
-        englishlist = [item.lower() for item in strippedlist]
-        strippedstr = " ".join(englishlist) 
-        return strippedstr
+    for index,item in enumerate(strippedlist):
+        if isenglish(item):
+            strippedlist[index] = item.lower()
+    strippedstr = " ".join(strippedlist)
+    return strippedstr
 if __name__ == "__main__":
     main()
