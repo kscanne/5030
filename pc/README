@@ -1,1 +1,14 @@
-your code here...
+Installation
+- NodeJS: 
+-- Download and install from: https://nodejs.org/en/download/ on Windows
+-- or ``sudo yum install nodejs npm`` On RHEL, CentOS
+-- or ``sudo apt-get install nodejs npm`` on Unbuntu
+
+How to run in Terminal:
+``cd pc``
+
+``node string-stripper.spec.js``
+
+Details:
+- 'stripStopWords' function to pc/string-stripper.js 
+- a test runner 'runTests' function in pc/string-stripper.spec.js.
