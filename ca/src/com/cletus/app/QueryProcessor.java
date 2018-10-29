@@ -1,10 +1,7 @@
 package com.cletus.app;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Scanner;
+import java.io.*;
+import java.util.*;
 
 public class QueryProcessor {
 
@@ -35,8 +32,8 @@ public class QueryProcessor {
         assert list != null;
         return listToSentence(list);
     }
-    private static String listToSentence(ArrayList<String> list)
-    {
+
+    private static String listToSentence(ArrayList<String> list) {
         StringBuilder sentence = new StringBuilder();
         for (Object object : list) {
             sentence.append(object).append(" ");
@@ -45,9 +42,36 @@ public class QueryProcessor {
         return sentence.toString().trim();
     }
 
+    public static void test() {
+        StringTokenizer token;
+        try (BufferedReader file = new BufferedReader(new FileReader("../data/tests" + "cases.tsv"))) {
+            String line = file.readLine();
+
+            while (line != null){
+                token = new StringTokenizer(line,"\t"); //.tsv files are delimited by tabs, hence the "\t"
+                List<String> dataArray = new ArrayList<>() ;
+                while(token.hasMoreElements()){
+                    dataArray.add(token.nextElement().toString());
+                }
+                for (String item : dataArray) {
+                    System.out.print(item + "  ");
+                }
+                System.out.println();
+                line = file.readLine();
+            }
+            file.close();
+            System.out.println();
+
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
     public static void main(String[] args) {
         String query = "When the world is standing still";
         String lang = "en";
+
+        test();
         String processedQuery = stripStopWords(query, lang);
         System.out.println(processedQuery);
     }
