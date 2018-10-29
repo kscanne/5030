@@ -42,9 +42,9 @@ public class QueryProcessor {
         return sentence.toString().trim();
     }
 
-    public static void test() {
+    public static void test(String fileName) {
         StringTokenizer token;
-        try (BufferedReader file = new BufferedReader(new FileReader("../tests/" + "cases.tsv"))) {
+        try (BufferedReader file = new BufferedReader(new FileReader(fileName))) {
             String line = file.readLine();
 
             while (line != null) {
@@ -53,10 +53,6 @@ public class QueryProcessor {
                 while (token.hasMoreElements()) {
                     dataArray.add(token.nextElement().toString());
                 }
-                /*for (String item : dataArray) {
-                    System.out.print(item + "  ");
-                }
-                System.out.println();*/
 
                 String processedQuery = stripStopWords(dataArray.get(0), dataArray.get(1));
                 System.out.println(processedQuery);
@@ -72,6 +68,6 @@ public class QueryProcessor {
     }
 
     public static void main(String[] args) {
-        test();
+        test("../tests/" + "cases.tsv");
     }
 }
