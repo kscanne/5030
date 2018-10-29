@@ -1,4 +1,4 @@
-package com.cletus.app;
+package com.cletus.main;
 
 import java.io.*;
 import java.util.*;
@@ -6,27 +6,20 @@ import java.util.*;
 public class QueryProcessor {
 
     private static String stripStopWords(String lang, String query) {
-        Scanner sc = null;
-        File file;
-        ArrayList<String> list = null;
-        try {
-            file = new File("../data/" + lang + ".txt");
-            sc = new Scanner(file);
 
-            String[] queryArray = query.toLowerCase().split(" ");
+        ArrayList<String> list = null;
+        try (BufferedReader file = new BufferedReader(new FileReader("../data/" + lang + ".txt"))) {
+            String stopWord = file.readLine().toLowerCase();
+            String[] queryArray = query.toLowerCase().split("\\s+"); //using "\s+" regex for a white space character one or more times
             list = new ArrayList<>(Arrays.asList(queryArray));
 
-            while (sc.hasNextLine()) {
-                String stopWord = sc.nextLine().toLowerCase();
+            while (stopWord!=null) {
                 list.remove(stopWord);
+                stopWord = file.readLine();
             }
 
-        } catch (FileNotFoundException e) {
+        } catch (IOException e) {
             System.out.println(e.getMessage());
-        } finally {
-            if (sc != null) {
-                sc.close();
-            }
         }
 
         assert list != null;
@@ -42,20 +35,19 @@ public class QueryProcessor {
         return sentence.toString().trim();
     }
 
-    public static void test(String fileName) {
-        StringTokenizer token;
+    private static void test(String fileName) {
         try (BufferedReader file = new BufferedReader(new FileReader(fileName))) {
             String line = file.readLine();
 
+            int lineCount = 0;
             while (line != null) {
-                token = new StringTokenizer(line, "\t"); //.tsv files are delimited by tabs, hence the "\t"
-                List<String> dataArray = new ArrayList<>();
-                while (token.hasMoreElements()) {
-                    dataArray.add(token.nextElement().toString());
-                }
-
+                lineCount++;
+                String[] token = line.split("\t"); //.tsv files are delimited by tabs, hence the "\t" regex
+                List<String> dataArray = Arrays.asList(token);
                 String processedQuery = stripStopWords(dataArray.get(0), dataArray.get(1));
-                System.out.println(processedQuery);
+                if(!processedQuery.equals(dataArray.get(2)))
+                    System.out.println("Test on line "+lineCount+" failed; expected \""+dataArray.get(1)+"\""+" found "+" \""+processedQuery+"\"");
+                    System.out.println("Test on line "+lineCount+" failed; expected \""+dataArray.get(1)+"\""+" found "+" \""+processedQuery+"\"");
 
                 line = file.readLine();
             }
