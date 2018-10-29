@@ -5,7 +5,7 @@ exports.readTextFileToArray = function (path) {
         var buf = fs.readFileSync(path);
         return buf.toString().split("\n");
     }
-    console.error('Stop words file not found');
+    console.error('File not found');
     return [];
 }
 
