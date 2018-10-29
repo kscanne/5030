@@ -44,7 +44,7 @@ public class QueryProcessor {
 
     public static void test() {
         StringTokenizer token;
-        try (BufferedReader file = new BufferedReader(new FileReader("../data/tests" + "cases.tsv"))) {
+        try (BufferedReader file = new BufferedReader(new FileReader("../tests/" + "cases.tsv"))) {
             String line = file.readLine();
 
             while (line != null){
