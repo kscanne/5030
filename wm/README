@@ -1,1 +1,167 @@
-your code here...
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package assignment;
+
+import java.util.ArrayList;
+import java.io.*;
+import java.util.Arrays;
+
+/**
+ *
+ * @author waqar
+ */
+import java.util.Scanner;
+import java.util.StringJoiner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+public class Assignment {
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
+        try {
+            // TODO code application logic here
+            System.out.println(parse("/home/waqar/Git-Repo/5030/tests/cases.tsv"));
+        } catch (Exception ex) {
+            Logger.getLogger(Assignment.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+ 
+    public static ArrayList<String> read_file(String file_path) throws FileNotFoundException{
+        
+        File fi = new File(file_path);
+        
+        if(!fi.exists())
+            throw new FileNotFoundException();
+        
+        Scanner sc = new Scanner(fi);
+        ArrayList<String> data = new ArrayList<String>();
+        while(sc.hasNextLine()){
+            String data_line = sc.nextLine();
+            data.add(data_line);
+        }
+        
+        return data;
+    }
+    
+    public static ArrayList<String> parse(String file_path) throws FileNotFoundException, IOException, Exception{
+    
+        ArrayList<String> data_list = read_file(file_path);
+        ArrayList<String> filtered_data = new ArrayList<String>();
+        for(String dat: data_list){
+            
+            String[] entry = dat.split("\t");
+            
+            String lang_symbol = entry[0];
+            String[] data = entry[1].split(" ");
+            
+            String sb = filter_stop_words(data, lang_symbol);
+            filtered_data.add(lang_symbol+"\t"+entry[1]+"\t"+sb+"\t\n");
+        }
+        FileWriter writer = new FileWriter("output.tsv"); 
+        for(String str: filtered_data) {
+            writer.write(str);
+        }
+        writer.close();
+        return filtered_data;
+    
+    }
+    
+    public static String filter_stop_words(String[] data, String lang_symbol) throws Exception{
+        
+        ArrayList<String> stop_words = get_stop_words(lang_symbol);
+        StringJoiner sb = new StringJoiner(" ");
+        for(String word: data){
+            if(!stop_words.contains(word.toLowerCase()))
+                sb.add(word);
+        }
+        
+        return sb.toString();
+    }
+    
+    
+    
+    
+    
+    public static ArrayList<String> filter_stop_words(String data_file_path, String lang_symb){
+        
+        try {
+            ArrayList<String> stop_words = get_stop_words(lang_symb);
+            String data = get_data(data_file_path);
+            ArrayList<String> words = new ArrayList<String>(Arrays.asList(data.split(" ")));
+            
+            ArrayList filtered_data = new ArrayList();
+            
+            for(String word: words){
+                
+                if(!stop_words.contains(word)){
+                    filtered_data.add(word);
+                }
+            }
+            
+            return filtered_data;
+            
+        } catch (Exception ex) {
+            Logger.getLogger(Assignment.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+    
+    public static Object read_file(String file_path, boolean asString) throws FileNotFoundException{
+        
+        ArrayList<String> data = new ArrayList<String>();
+        StringBuilder data_string = new StringBuilder();
+        File fi = new File(file_path);
+        if (!fi.exists())
+            throw new FileNotFoundException();
+        Scanner sc = null;
+        try {
+            sc = new Scanner(fi);
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(Assignment.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        if (sc != null){
+            while(sc.hasNextLine()){
+                String data_line = sc.nextLine();
+                data.add(data_line);
+                data_string.append(data_line);
+            }
+            
+            if (asString == true)
+                return data_string;
+                
+            return data;
+        }
+        else{
+            return null;
+        }
+    }
+    
+    public static ArrayList<String> get_stop_words(String language_name) throws Exception{
+        
+        String stop_words_dir = "/home/waqar/Git-Repo/5030/data/"+language_name+".txt";
+        
+        File fi = new File(stop_words_dir);
+        
+        if(!fi.exists())
+            throw new Exception("Stop words list doesn't exists");
+        
+        ArrayList<String> stop_words = (ArrayList<String>)read_file(stop_words_dir, false);
+        
+        if (stop_words == null)
+            throw new Exception("Stop Words not found");
+        
+        return stop_words;
+    }
+    
+    public static String get_data(String file_path) throws FileNotFoundException{
+        
+        StringBuilder data = (StringBuilder)read_file(file_path, true);
+        return data.toString();
+    }
+    
+}
