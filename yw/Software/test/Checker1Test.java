@@ -1,6 +1,4 @@
 import static org.junit.Assert.*;
-
-
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -17,9 +15,9 @@ public class Checker1Test {
    public void testcheck() {
 	   StringTokenizer st ;
 	   BufferedReader TSVFile;
-	   
+	   //use BufferReader to read the tsv file
 	try {
-		TSVFile = new BufferedReader(new FileReader("C:\\Users\\wangyifei\\5030\\tests\\cases2.tsv"));
+		TSVFile = new BufferedReader(new FileReader("C:\\Users\\wangyifei\\5030\\tests\\cases3.tsv"));
 		String dataRow = TSVFile.readLine();
 		System.out.println("file read successful");
 		Checker1 c = new Checker1();
@@ -32,7 +30,7 @@ public class Checker1Test {
             String str = st.nextToken();
             String expected = st.nextToken();
             
-            
+            System.out.println(expected + "  " + c.check(languageCode, str));
             assertEquals(expected, c.check(languageCode, str));
             
             dataRow = TSVFile.readLine(); // Read next line of data.

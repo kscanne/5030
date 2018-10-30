@@ -9,7 +9,9 @@ public class Checker1 {
 		
 		if("en".equals(a)) {
 			b = b.replaceAll("the |The | the", "");
+			b = b.replaceAll(" to|to |To ", "");
 			b = b.replaceAll(" the ", " ");
+			b = b.replaceAll(" to ", " ");
 			
 		}else if("ga".equals(a)) {
 			b = b.replaceAll("Na | na|na ", "");
