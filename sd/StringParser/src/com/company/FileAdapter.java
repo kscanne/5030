@@ -10,7 +10,7 @@ public class FileAdapter {
         HashSet<String> ids = loadListOfIDs();
         if (ids.contains(languageID))
         {
-            File file = Paths.get("data\\"+languageID+".txt").toFile();
+            File file = Paths.get("src\\data\\"+languageID+".txt").toRealPath().toFile();
             Scanner scanner = new Scanner(file);
 
             // we just need to use \s as delimiter
@@ -32,7 +32,7 @@ public class FileAdapter {
 
     private static HashSet<String> loadListOfIDs() throws IOException
     {
-        File file = Paths.get("data\\list.txt").toFile();
+        File file = Paths.get("src\\data\\list.txt").toRealPath().toFile();
 
         Scanner scanner = new Scanner(file);
 

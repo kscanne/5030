@@ -29,14 +29,24 @@ public class MainTest {
     public void mainTest() throws Exception {
         File file = Paths.get("test\\tests\\cases.tsv").toFile();
         Scanner scanner = new Scanner(file);
-
+        int currentLine = 0;
 
         while(scanner.hasNextLine()) {
+            System.out.println(currentLine++);
             String test = scanner.nextLine();
             Scanner testScanner = new Scanner(test);
             testScanner.useDelimiter("\\t");
-            String result = Main.parseString(testScanner.next(),testScanner.next());
-            assertEquals(result,testScanner.next());
+            String lang_code = "";
+            String input_text = "";
+            String expected = "";
+            if (testScanner.hasNext())
+                lang_code = testScanner.next();
+            if (testScanner.hasNext())
+                input_text = testScanner.next();
+            if (testScanner.hasNext())
+                expected = testScanner.next();
+            String actual = Main.parseString(lang_code,input_text);
+            assertEquals(expected,actual);
         }
     }
 }

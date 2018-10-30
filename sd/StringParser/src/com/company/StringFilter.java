@@ -5,6 +5,7 @@ public class StringFilter {
 
     public static String filter(String inputText, HashSet<String> blackList)
     {
+        boolean firstPass = true;
         Scanner scanner = new Scanner(inputText);
         StringBuilder stringBuilder = new StringBuilder();
 
@@ -18,9 +19,12 @@ public class StringFilter {
             {
                 //Do nothing, word is a stopword
             } else {
-                stringBuilder.append(currentWord);
-                if (scanner.hasNext())
-                    stringBuilder.append(" ");
+                if (!firstPass)
+                    stringBuilder.append(" " + currentWord);
+                else {
+                    stringBuilder.append(currentWord);
+                    firstPass = false;
+                }
             }
         }
 
