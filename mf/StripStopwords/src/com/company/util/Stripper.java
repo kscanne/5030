@@ -1,5 +1,6 @@
 package com.company.util;
 
+import java.text.Normalizer;
 import java.util.*;
 import java.io.*;
 import java.util.stream.Collectors;
@@ -33,12 +34,14 @@ public class Stripper {
      */
     public String stripStopwords(String languageCode, String str) throws IOException, StripperException {
 
-        Set<String> StopwordsSet = this.getStopwords(languageCode);
+        //String normalized_string = Normalizer.normalize(str, Normalizer.Form.NFC);
+
+        Set<String> stopwordsSet = this.getStopwords(languageCode);
 
         return Collections.list(new StringTokenizer(str, " ")).stream()
                     .map(Object::toString)
                     .filter( (w) -> {
-                        return !StopwordsSet.contains(w.toLowerCase());
+                        return !stopwordsSet.contains(Normalizer.normalize(w.toLowerCase(), Normalizer.Form.NFC));
                     })
                     .collect( Collectors.joining( " " ) );
 
@@ -55,7 +58,7 @@ public class Stripper {
     private Set<String> getStopwords(String languageCode) throws IOException, StripperException {
 
         if(!providedLanguages.contains(languageCode)) {
-            throw new StripperException("language code is incorrect!");
+            return new HashSet<>();
         }
 
         if(loadedLanguages.containsKey(languageCode)) {

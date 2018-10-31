@@ -36,11 +36,29 @@ public class StripperTest extends TestCase {
         String line;
         while ((line = br.readLine()) != null){
 
+
             StringTokenizer st = new StringTokenizer(line, "\t");
 
-            languageCodes.add(st.nextToken());
-            strings.add(st.nextToken());
-            expecteds.add(st.nextToken());
+            if(st.hasMoreTokens()) {
+                languageCodes.add(st.nextToken());
+                if(st.hasMoreTokens()) {
+                    strings.add(st.nextToken());
+                    if(st.hasMoreTokens()) {
+                        expecteds.add(st.nextToken());
+                    } else {
+                        expecteds.add("");
+                    }
+                } else {
+                    strings.add("");
+                    expecteds.add("");
+                }
+            } else {
+                languageCodes.add("");
+                strings.add("");
+                expecteds.add("");
+            }
+
+
 
         }
 
@@ -60,7 +78,7 @@ public class StripperTest extends TestCase {
 
                 String actual = stripper.stripStopwords(languageCode, string);
 
-                assertEquals(expected, actual);
+                assertEquals("Test " + (i+1) + " has failed", expected, actual);
 
             }
 
