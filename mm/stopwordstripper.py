@@ -62,11 +62,14 @@ def stopwords(langcode,checkline):
             for line in file:
                 line = line.strip()
                 stopdict.append(line)
-    else:
+    elif (langcode == "ru"):
         with open("ru.txt","r") as file:
             for line in file:
                 line = line.strip()
                 stopdict.append(line) 
+    else:
+        for item in checkline:
+            strippedlist.append(item)
     #Add upper and lower case versions of each line in stopdict to largestopdict.
     for item in stopdict:
         if isenglish(item):
@@ -79,24 +82,18 @@ def stopwords(langcode,checkline):
             largestopdict.append(item.upper())
     #Add the original items of stopdict to largestopdict.
     for item in stopdict:
-        largestopdict.append(item)
+        largestopdict.append(item) 
     #Check to see if any of the words are fully contained.
     for item in checkline:
-        if not any(item in string for string in largestopdict):
+        if not (item in string for string in largestopdict):
             strippedlist.append(item) 
+        elif not (string in item for string in largestopdict):
+            strippedlist.append(item)
         elif item not in largestopdict:
             strippedlist.append(item)
     if not strippedlist:
-        strippedlist.append("")
-    print strippedlist
-    #Check to see if any stop words exist in liststripped.
-    #strippedlist = [item for item in checkline if item not in largestopdict]
-    #Transform strippedlist to lowercase if it contains only english characters.
-    if strippedlist:
-        for index,item in enumerate(strippedlist):
-            if isenglish(item):
-                strippedlist[index] = item.lower()
-        strippedstr = " ".join(strippedlist)
-        return strippedstr
+        strippedlist.append("") 
+    strippedstr = " ".join(strippedlist)
+    return strippedstr
 if __name__ == "__main__":
     main()
