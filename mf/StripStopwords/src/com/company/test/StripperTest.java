@@ -24,12 +24,12 @@ public class StripperTest extends TestCase {
     public void setUp() throws Exception {
 
         super.setUp();
-        stripper = new Stripper("//home//matteo//SoftwareDev//5030//data");
+        stripper = new Stripper("/home/matteo/SoftwareDev/5030/data");
         languageCodes = new ArrayList<>();
         strings = new ArrayList<>();
         expecteds = new ArrayList<>();
 
-        File file = new File("//home//matteo//SoftwareDev//5030//tests//cases.tsv");
+        File file = new File("/home/matteo/SoftwareDev/5030/tests/cases.tsv");
 
         BufferedReader br = new BufferedReader(new FileReader(file));
 

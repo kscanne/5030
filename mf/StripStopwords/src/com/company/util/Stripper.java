@@ -34,8 +34,6 @@ public class Stripper {
      */
     public String stripStopwords(String languageCode, String str) throws IOException, StripperException {
 
-        //String normalized_string = Normalizer.normalize(str, Normalizer.Form.NFC);
-
         Set<String> stopwordsSet = this.getStopwords(languageCode);
 
         return Collections.list(new StringTokenizer(str, " ")).stream()
@@ -67,7 +65,7 @@ public class Stripper {
 
         HashSet<String> newLanguage = new HashSet<>();
 
-        File file = new File(this.dataDir + "//" + languageCode + ".txt");
+        File file = new File(this.dataDir + "/" + languageCode + ".txt");
 
         BufferedReader br = new BufferedReader(new FileReader(file));
 
@@ -92,7 +90,7 @@ public class Stripper {
 
         Set<String> languageCodes = new HashSet<>();
 
-        File file = new File(this.dataDir + "//list.txt");
+        File file = new File(this.dataDir + "/list.txt");
 
         BufferedReader br = new BufferedReader(new FileReader(file));
 
