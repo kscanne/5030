@@ -5,7 +5,7 @@ import sys
 #Main function.
 def main():
     #load the tsv with unit tests.
-    with open('cases.tsv','rb') as tsvin, open ('cases_tested.tsv','wb') as tsvout:
+    with open('cases_updated.tsv','rb') as tsvin, open ('cases_tested.tsv','wb') as tsvout:
         tsvin = csv.reader(tsvin,delimiter='\t')
         tsvout = csv.writer(tsvout,delimiter='\t')
 
@@ -34,7 +34,7 @@ def stopwords(langcode,checkline):
     largestopdict = []
     #Define stripped (checkline after going through selective stripping).
     strippedlist = []
-    #Define englishfinallist and nonenglish final list.
+    #Define englishlist final list.
     englishlist = []
     #Define dictionary (text file) to load based on langcode.
     if (langcode == "en"):
@@ -79,14 +79,24 @@ def stopwords(langcode,checkline):
             largestopdict.append(item.upper())
     #Add the original items of stopdict to largestopdict.
     for item in stopdict:
-        largestopdict.append(item) 
+        largestopdict.append(item)
+    #Check to see if any of the words are fully contained.
+    for item in checkline:
+        if not any(item in string for string in largestopdict):
+            strippedlist.append(item) 
+        elif item not in largestopdict:
+            strippedlist.append(item)
+    if not strippedlist:
+        strippedlist.append("")
+    print strippedlist
     #Check to see if any stop words exist in liststripped.
-    strippedlist = [item for item in checkline if item not in largestopdict] 
+    #strippedlist = [item for item in checkline if item not in largestopdict]
     #Transform strippedlist to lowercase if it contains only english characters.
-    for index,item in enumerate(strippedlist):
-        if isenglish(item):
-            strippedlist[index] = item.lower()
-    strippedstr = " ".join(strippedlist)
-    return strippedstr
+    if strippedlist:
+        for index,item in enumerate(strippedlist):
+            if isenglish(item):
+                strippedlist[index] = item.lower()
+        strippedstr = " ".join(strippedlist)
+        return strippedstr
 if __name__ == "__main__":
     main()
