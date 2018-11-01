@@ -11,7 +11,9 @@ exports.readTextFileToArray = function (path) {
 exports.assertEquals = function (actualOutput, expectedOutput, successMsg, errorMsg) {
     if (actualOutput === expectedOutput) {
         // console.log(successMsg);
+        return true;
     } else {
         console.error(errorMsg)
+        return false;
     }
 }

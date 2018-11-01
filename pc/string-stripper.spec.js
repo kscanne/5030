@@ -11,18 +11,26 @@ var extractTestCase = function (testCase) {
 
 var runTests = function (testFilePath) {
     var testCases = util.readTextFileToArray(testFilePath);
+    var passCount = 0;
+    var failCount = 0;
 
     testCases.forEach(function (testCase, index) {
         var [languageCode, input, expectedOutput] = extractTestCase(testCase);
         var actualOutput = stringStripper.stripStopWords(languageCode, input);
         
-        util.assertEquals(
+        result = util.assertEquals(
             actualOutput,
             expectedOutput,
             `Test ${index + 1} passed.`,
             `Test ${index+1} failed. Expected '${expectedOutput}' but got '${actualOutput}'.`
         );
+        if (result) {
+            passCount++;
+        } else {
+            failCount++;
+        }
     });
+    console.log(`\n[=====> Pass ${passCount} tests.\n[=====> Fail ${failCount} tests.`)
 }
 
 runTests('../tests/cases.tsv');
