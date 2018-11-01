@@ -3,7 +3,7 @@ var fs = require('fs');
 exports.readTextFileToArray = function (path) {
     if (fs.existsSync(path)) {
         var buf = fs.readFileSync(path);
-        return buf.toString().split("\n");
+        return buf.toString().normalize('NFC').split("\n");
     }
     throw new Error("Not a valid language code");
 }
