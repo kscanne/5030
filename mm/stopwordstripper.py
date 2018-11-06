@@ -2,6 +2,7 @@
 import csv
 import os
 import sys
+import unicodedata
 
 #Main function.
 def main():
@@ -20,7 +21,7 @@ def main():
 #Function to define path of cases.tsv.
 def relpath():
     scriptdir = os.path.dirname(__file__) 
-    relpath = "/relative/path/to/cases.tsv"
+    relpath = "/run/media/mmosior/Data/Data/Masters_program/Courses/Fall_2018/CSCI_5030/First_Unit_Test_Assignment/5030/tests/cases.tsv"
     absfilepath = os.path.join(scriptdir, relpath)
     return absfilepath
 
@@ -37,6 +38,10 @@ def isenglish(stringin):
 def stopwords(langcode,checkline): 
     #Load checkline into list.
     checkline = checkline.split()
+    #Use NFC normalization to ensure proper encoding.
+    for item in checkline:
+        item = item.decode('utf8')
+        item = unicodedata.normalize('NFC', unicode(item))
     #Define stopdict (for loading in stop word dictionaries).
     stopdict = []
     largestopdict = []
