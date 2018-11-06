@@ -1,11 +1,12 @@
 #Imports
 import csv
+import os
 import sys
 
 #Main function.
 def main():
     #load the tsv with unit tests.
-    with open('cases_updated.tsv','rb') as tsvin, open ('cases_tested.tsv','wb') as tsvout:
+    with open(relpath(),'rb') as tsvin, open ('cases_tested.tsv','wb') as tsvout:
         tsvin = csv.reader(tsvin,delimiter='\t')
         tsvout = csv.writer(tsvout,delimiter='\t')
 
@@ -15,6 +16,13 @@ def main():
             tsvout.writerow([row[0],row[1],strippedline])
             #Use assert to check results.
             assert strippedline == row[2]
+
+#Function to define path of cases.tsv.
+def relpath():
+    scriptdir = os.path.dirname(__file__) 
+    relpath = "/relative/path/to/cases.tsv"
+    absfilepath = os.path.join(scriptdir, relpath)
+    return absfilepath
 
 #Function to test for non-english characters.
 def isenglish(stringin):
