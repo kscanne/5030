@@ -13,9 +13,10 @@ import org.junit.Test;
 
 //import spellchecker.Checker1;
 import spellchecker.Checker2;
+import spellchecker.Checker3;
 //import spellchecker.Read;
  
-public class Checker1Test {
+public class Checker2Test {
  
    
    @Test
@@ -35,7 +36,7 @@ public class Checker1Test {
 		TSVFile = new BufferedReader(new FileReader("C:\\Users\\wangyifei\\software\\5030\\tests\\cases.tsv"));
 		String dataRow = "";
 		System.out.println("file read successful");
-		Checker2 c = new Checker2();
+		Checker3 c = new Checker3();
 		int i = 0;
 		String lan = null;
 		String arr = null;
@@ -59,7 +60,7 @@ public class Checker1Test {
             if (Arrays.binarySearch(language, lan) < 0){
             	result = expected;
             } else {
-                result = c.check(arr);
+                result = c.checker3(arr,lan + ".txt");
             }
             if(expected.equals(result)) {
             	System.out.printf("-%d %s %n", i, result);
