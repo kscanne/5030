@@ -1,5 +1,6 @@
 package com.company;
 import java.nio.file.Paths;
+import java.text.Normalizer;
 import java.util.*;
 import java.io.*;
 
@@ -20,13 +21,15 @@ public class FileAdapter {
 
             while(scanner.hasNext())
             {
-                wordSet.add(scanner.next().toUpperCase());
+                String temp = scanner.next().toUpperCase();
+                temp = Normalizer.normalize(temp, Normalizer.Form.NFC);
+                wordSet.add(temp);
             }
 
             return wordSet;
         } else {
             //Throw error or something to the console
-            return new HashSet<String>();
+            throw new IllegalArgumentException("Error: Not a valid language code");
         }
     }
 

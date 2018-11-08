@@ -1,12 +1,14 @@
 package com.company;
+import java.text.Normalizer;
 import java.util.*;
 
 public class StringFilter {
 
-    public static String filter(String inputText, HashSet<String> blackList)
+    public static String filter(String inputString, HashSet<String> blackList)
     {
+        inputString = Normalizer.normalize(inputString, Normalizer.Form.NFC);
         boolean firstPass = true;
-        Scanner scanner = new Scanner(inputText);
+        Scanner scanner = new Scanner(inputString);
         StringBuilder stringBuilder = new StringBuilder();
 
         // \s is a Java Pattern that represents all forms of white-space

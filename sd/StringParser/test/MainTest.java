@@ -8,6 +8,7 @@ import org.junit.Test;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Paths;
+import java.text.Normalizer;
 import java.util.HashSet;
 import java.util.Scanner;
 
@@ -45,6 +46,7 @@ public class MainTest {
                 input_text = testScanner.next();
             if (testScanner.hasNext())
                 expected = testScanner.next();
+            expected = Normalizer.normalize(expected, Normalizer.Form.NFC);
             String actual = Main.parseString(lang_code,input_text);
             assertEquals(expected,actual);
         }

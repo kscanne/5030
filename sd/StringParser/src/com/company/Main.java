@@ -24,11 +24,10 @@ public class Main {
             HashSet<String> blackList = FileAdapter.blackListFromLanguageID(languageID);
             return StringFilter.filter(inputText,blackList);
         }
-        catch(IOException e)
+        catch(Exception e)
         {
             e.printStackTrace();
+            return e.getMessage();
         }
-
-        return null;
     }
 }
