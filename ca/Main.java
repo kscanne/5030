@@ -37,7 +37,10 @@ public class Main {
         String fileName = "../tests/" + "cases.tsv";
         try (BufferedReader file = new BufferedReader(new FileReader(fileName))) {
             String line;
+            int lineCount = 0;
             while ((line = file.readLine()) != null) {
+                lineCount++;
+
                 String[] token = line.split("\t"); //.tsv files are delimited by tabs, hence the "\t" regex
                 List<String> dataArray = Arrays.asList(token);
 
@@ -47,7 +50,7 @@ public class Main {
 
                 String result = stripStopWords(lang, query);
 
-                assert expectedResult.equals(result): "Test failed; expected \""+expectedResult+"\", got \""+result+"\"";
+                assert expectedResult.equals(result): "Test failed at line "+lineCount+"; expected \""+expectedResult+"\", got \""+result+"\"";
             }
             file.close();
             System.out.println();
