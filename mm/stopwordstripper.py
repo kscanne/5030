@@ -21,7 +21,7 @@ def main():
 #Function to define path of cases.tsv.
 def relpath():
     scriptdir = os.path.dirname(__file__) 
-    relpath = "/run/media/mmosior/Data/Data/Masters_program/Courses/Fall_2018/CSCI_5030/First_Unit_Test_Assignment/5030/tests/cases.tsv"
+    relpath = "path/to/test/cases.tsv" 
     absfilepath = os.path.join(scriptdir, relpath)
     return absfilepath
 
@@ -35,7 +35,7 @@ def isenglish(stringin):
         return True
 
 #Function to test stop words in input string.
-def stopwords(langcode,checkline): 
+def stopwords(langcode,checkline):
     #Load checkline into list.
     checkline = checkline.split()
     #Use NFC normalization to ensure proper encoding.
@@ -49,7 +49,7 @@ def stopwords(langcode,checkline):
     strippedlist = []
     #Define englishlist final list.
     englishlist = []
-    #Define dictionary (text file) to load based on langcode.
+    #Open the stop dictionary file based on langcode.
     if (langcode == "en"):
         with open("en.txt","r") as file:
             for line in file:
@@ -108,5 +108,7 @@ def stopwords(langcode,checkline):
         strippedlist.append("") 
     strippedstr = " ".join(strippedlist)
     return strippedstr
+
+#Main call.
 if __name__ == "__main__":
     main()
