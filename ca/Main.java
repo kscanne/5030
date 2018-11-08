@@ -5,7 +5,7 @@ public class Main {
 
     private static String stripStopWords(String lang, String query) {
         ArrayList<String> list = null;
-        try (BufferedReader file = new BufferedReader(new FileReader("../../data/" + lang + ".txt"))) {
+        try (BufferedReader file = new BufferedReader(new FileReader("../data/" + lang + ".txt"))) {
             String stopWord = file.readLine().toLowerCase();
             String[] queryArray = query.trim().toLowerCase().split("\\s+"); //using "\s+" regex for a white space character one or more times
             list = new ArrayList<>(Arrays.asList(queryArray));
@@ -33,7 +33,8 @@ public class Main {
     }
 
     private static void testStripStopWord() {
-        String fileName = "../../tests/" + "cases_BKP.tsv";
+        //String fileName = "../tests/" + "cases_BKP.tsv";
+        String fileName = "../tests/" + "cases.tsv";
         try (BufferedReader file = new BufferedReader(new FileReader(fileName))) {
             String line;
             while ((line = file.readLine()) != null) {
