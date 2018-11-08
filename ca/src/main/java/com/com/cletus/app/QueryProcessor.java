@@ -6,11 +6,11 @@ import java.util.*;
 public class QueryProcessor {
 
     public static String stripStopWords(String lang, String query) {
-
+        //System.out.println(query);
         ArrayList<String> list = null;
         try (BufferedReader file = new BufferedReader(new FileReader("../data/" + lang + ".txt"))) {
             String stopWord = file.readLine().toLowerCase();
-            String[] queryArray = query.toLowerCase().split("\\s+"); //using "\s+" regex for a white space character one or more times
+            String[] queryArray = query.trim().toLowerCase().split("\\s+"); //using "\s+" regex for a white space character one or more times
             list = new ArrayList<>(Arrays.asList(queryArray));
 
             while (stopWord != null) {
