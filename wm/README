@@ -7,6 +7,7 @@ package assignment;
 
 import java.util.ArrayList;
 import java.io.*;
+import java.text.Normalizer;
 import java.util.Arrays;
 
 /**
@@ -25,7 +26,7 @@ public class Assignment {
     public static void main(String[] args) {
         try {
             // TODO code application logic here
-            System.out.println(parse("/home/waqar/Git-Repo/5030/tests/cases.tsv"));
+            System.out.println(parse("/home/waqar/Git-Repo/tests/cases.tsv"));
         } catch (Exception ex) {
             Logger.getLogger(Assignment.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -57,8 +58,15 @@ public class Assignment {
             String[] entry = dat.split("\t");
             
             String lang_symbol = entry[0];
-            String[] data = entry[1].split(" ");
+            if(entry.length < 2){
+                continue;
+            }
+            if(entry[1].length() <=0){
+                continue;
+            }
             
+            //String[] data = cleanPunctuations(entry[1]);
+            String[] data = entry[1].split(" ");
             String sb = filter_stop_words(data, lang_symbol);
             filtered_data.add(lang_symbol+"\t"+entry[1]+"\t"+sb+"\t\n");
         }
@@ -71,16 +79,82 @@ public class Assignment {
     
     }
     
-    public static String filter_stop_words(String[] data, String lang_symbol) throws Exception{
-        
-        ArrayList<String> stop_words = get_stop_words(lang_symbol);
-        StringJoiner sb = new StringJoiner(" ");
-        for(String word: data){
-            if(!stop_words.contains(word.toLowerCase()))
-                sb.add(word);
+    public static String parse_data(String data_){
+        String convertedString = 
+                                Normalizer
+                                    .normalize(data_, Normalizer.Form.NFD)
+                                    .replaceAll("[^\\p{ASCII}]", "");
+        String[] entry = convertedString.split("\t");
+        System.out.println(data_);
+        System.out.println(convertedString);
+        String lang_symbol = entry[0];
+        if(entry.length < 3){
+            return "\t|\t";
+        }
+        if(entry[1].length() <=0){
+            return "\t|\t";
+        }
+
+        //String[] data = cleanPunctuations(entry[1]);
+        String[] data = entry[1].split("\\s+");
+        try {
+            String actual_out = filter_stop_words(data, lang_symbol);
+            String expected_out = entry[2];
+            return expected_out+"|"+actual_out;
+        } catch (Exception ex) {
+            Logger.getLogger(Assignment.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-        return sb.toString();
+        return null;
+    }
+    
+    public static String[] filter_unwanted_chars(String data){
+        
+        String filtered_data = data.replaceAll("[~!#$%^&*()_+=-{}\"\'\\;:?/.><,0-9]", "");
+        String[] data_array = filtered_data.split(" ");
+        System.out.println(filtered_data);
+        return data_array;
+    }
+    
+    public static String[] cleanPunctuations(String data) {
+        String filtered_data = data.replaceAll("\\p{Punct}+", "").replaceAll("\\s+", " ");
+        
+        String[] data_array = filtered_data.split("\\s+");
+        
+        return data_array;
+    }
+
+    
+    public static String filter_stop_words(String[] data, String lang_symbol){
+        
+        ArrayList<String> stop_words;
+        try {
+            stop_words = get_stop_words(lang_symbol);
+            if(stop_words.get(0).equals("Stop words list doesn't exists") ||
+                stop_words.get(0).equals("Stop words not found")){
+
+                 StringJoiner sb = new StringJoiner(" ");
+                 for(String word: data){
+                     sb.add(word.trim());
+                 }
+
+                 return sb.toString();
+            }
+            else{
+
+                StringJoiner sb = new StringJoiner(" ");
+                for(String word: data){
+                    if(!stop_words.contains(word.toLowerCase()))
+                        sb.add(word.trim());
+                }
+
+                return sb.toString();
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(Assignment.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+        
     }
     
     
@@ -147,13 +221,20 @@ public class Assignment {
         
         File fi = new File(stop_words_dir);
         
-        if(!fi.exists())
-            throw new Exception("Stop words list doesn't exists");
+        if(!fi.exists()){
+           ArrayList<String> list =  new ArrayList<String>();
+           list.add("Stop words list doesn't exists");
+           return list;
+        }
         
         ArrayList<String> stop_words = (ArrayList<String>)read_file(stop_words_dir, false);
         
         if (stop_words == null)
-            throw new Exception("Stop Words not found");
+        {
+           ArrayList<String> list =  new ArrayList<String>();
+           list.add("Stop words not found");
+           return list;
+        }
         
         return stop_words;
     }
