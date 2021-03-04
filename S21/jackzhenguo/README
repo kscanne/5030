@@ -1,1 +1,39 @@
 Write your code for the code review exercise in this directory.
+
+### Assignment Introduction
+
+On Day 18 in class we will be doing code reviews in pairs. The work for this assignment will happen in this GitHub repo:
+
+https://github.com/kscanne/5030
+
+Since you'll be doing a pull request on this repo, you should start by creating your own fork, cloning that fork to your local computer, and setting my version of the repository as the “upstream” remote, as usual.
+
+I've emailed everyone the language I'd like them to use for this programming assignment, as well as the GitHub username of their partner for this lab. Please write the code asked for in the following (rough) specification, and when completed, create a pull request on repository linked above and ask for a review from your partner. They will be asking you for a review of their code in return, but please wait to perform any reviews until class on Day 18. In fact, you shouldn't discuss the code with your partner at all before class on Day 18; if you both write the code independently this will make the review process more realistic and more interesting.
+
+### Specification
+
+In short, I'd like you to write code that converts a word into lowercase. Sounds easy, right? Well things are often more complicated than they first appear.  For example, some languages use writing systems that don't have a notion of uppercase and lowercase at all.   Other languages use non-trivial rules for converting between the two.  
+
+It's up to you how to design your code.  It could be a function, a method of class, or whatever is most appropriate for your assigned programming language.  In any case, the code should allow two parameters; one specifies the word to be lowercased and the other specifies the language. You can assume that the string that is passed is always a valid Unicode string, encoded as UTF-8. The language parameter will be passed in as a string also, following the BCP-47 specification (https://tools.ietf.org/html/bcp47). This is a widely-used (but complicated) set of rules for language tags that allows for things like “en” (English), “en-US” (English as spoken in the United States), “mn-Cyrl” (Mongolian as written in Cyrillic script).
+
+The default behavior should be to convert each Unicode letter character to its lowercase version, if that exists, independent of the language parameter. Almost all modern programming languages have built-in functions or easy-to-use libraries that provide this default functionality. Here are the exceptions you should support:
+
+#### tr or az
+If the language is any variety of Turkish (tr) or Azerbaijani (az), then the standard ASCII uppercase “I” should lowercase to LATIN SMALL LETTER DOTLESS I (https://www.fileformat.info/info/unicode/char/0131/index.htm), e.g. “KASIM” lowercases to “kasım”.
+
+#### ga
+If the language is any variety of Irish (ga), then the following rule applies: if a word begins with a lowercase n or t immediately followed by an uppercase vowel (A,E,I,O,U,Á,É,Í,Ó,Ú), then a hyphen must be inserted as the second character when lowercasing.  So for example, “tAcht” lowercases to “t-acht” and “nÓg” becomes “n-óg”.
+
+#### el 
+If the language is any variety of (modern) Greek (el), then an uppercase Sigma (Σ) normally lowercases to σ. But if the Σ occurs at the end of a word, then it should lowercase to GREEK SMALL LETTER FINAL SIGMA (https://www.fileformat.info/info/unicode/char/03c2/index.htm). For example, “ΠΌΛΗΣ” lowercases to “πόλης”.
+
+Many scripts don't have a notion of upper and lowercase characters. Since this code will likely be applied to millions of words of text, it will be much more efficient to simply return the original string unchanged in such cases. Make sure your code implements this optimization if the specified language is any variety of Chinese (zh), Japanese (ja), or Thai (th). There are sure to be many other languages we'll want to add to this list in the future, so please write your code so that it will be easy to do so.
+
+### Submission
+
+As always, you should create a branch in your fork of the repository and work only on that branch. Inside the S21 folder there is a subfolder with your GitHub username.  Please only work inside that subfolder.  I have provided for you a .tsv file containing the examples above that you can use as test cases. In addition to the code that implements the specifications above, you must provide test code that verifies the desired behavior on these test cases. It should be easy for your code reviewer to run your tests even before they start their review — provide instructions on how to do so if it's not obvious. You should also add (many) more test cases to the .tsv file! We'll talk a lot more about testing, but your tests should cover a variety of possible possible inputs and any edge cases you can think of. Once everything is working, push your branch to GitHub, create a pull request, and ask for a review from your partner. Again, we'll do the reviews on Day 18 in class.
+
+
+### Get started
+
+
