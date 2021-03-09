@@ -24,7 +24,7 @@ public class WordToLowerCase {
         Scanner in = new Scanner(System.in);
         String wordForLowerCase = in.nextLine();
 
-        System.out.println("Enter the language (BCP-47 specification:");
+        System.out.println("Enter the language (BCP-47 specification):");
         String language = in.nextLine();
 
         changeWordToLowerCase(wordForLowerCase, language);
