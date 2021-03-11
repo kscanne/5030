@@ -1,0 +1,12 @@
+/Users/cihanozluk/Desktop/CS5030_S21/5030/S21/cihanozluk/ToLower/ToLower/bin/Debug/netcoreapp3.1/ToLower.deps.json
+/Users/cihanozluk/Desktop/CS5030_S21/5030/S21/cihanozluk/ToLower/ToLower/bin/Debug/netcoreapp3.1/ToLower.runtimeconfig.json
+/Users/cihanozluk/Desktop/CS5030_S21/5030/S21/cihanozluk/ToLower/ToLower/bin/Debug/netcoreapp3.1/ToLower.runtimeconfig.dev.json
+/Users/cihanozluk/Desktop/CS5030_S21/5030/S21/cihanozluk/ToLower/ToLower/bin/Debug/netcoreapp3.1/ToLower.dll
+/Users/cihanozluk/Desktop/CS5030_S21/5030/S21/cihanozluk/ToLower/ToLower/bin/Debug/netcoreapp3.1/ToLower.pdb
+/Users/cihanozluk/Desktop/CS5030_S21/5030/S21/cihanozluk/ToLower/ToLower/obj/Debug/netcoreapp3.1/ToLower.csprojAssemblyReference.cache
+/Users/cihanozluk/Desktop/CS5030_S21/5030/S21/cihanozluk/ToLower/ToLower/obj/Debug/netcoreapp3.1/ToLower.AssemblyInfoInputs.cache
+/Users/cihanozluk/Desktop/CS5030_S21/5030/S21/cihanozluk/ToLower/ToLower/obj/Debug/netcoreapp3.1/ToLower.AssemblyInfo.cs
+/Users/cihanozluk/Desktop/CS5030_S21/5030/S21/cihanozluk/ToLower/ToLower/obj/Debug/netcoreapp3.1/ToLower.csproj.CoreCompileInputs.cache
+/Users/cihanozluk/Desktop/CS5030_S21/5030/S21/cihanozluk/ToLower/ToLower/obj/Debug/netcoreapp3.1/ToLower.dll
+/Users/cihanozluk/Desktop/CS5030_S21/5030/S21/cihanozluk/ToLower/ToLower/obj/Debug/netcoreapp3.1/ToLower.pdb
+/Users/cihanozluk/Desktop/CS5030_S21/5030/S21/cihanozluk/ToLower/ToLower/obj/Debug/netcoreapp3.1/ToLower.genruntimeconfig.cache

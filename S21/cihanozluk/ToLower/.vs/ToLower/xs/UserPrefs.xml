@@ -1,0 +1,27 @@
+﻿<Properties StartupConfiguration="{E798A851-862F-4FA9-A193-110F67C9D5E1}|Default">
+  <MonoDevelop.Ide.Workbench ActiveDocument="ToLower/Program.cs">
+    <Files>
+      <File FileName="ToLower/Program.cs" Line="32" Column="56" />
+      <File FileName="ToLower/Alphabet.cs" Line="2" Column="18" />
+      <File FileName="ToLower/UpperToLower.cs" Line="31" Column="58" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="ToLower" expanded="True">
+            <Node name="ToLower" expanded="True">
+              <Node name="Program.cs" selected="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.ItemProperties.ToLower PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>
