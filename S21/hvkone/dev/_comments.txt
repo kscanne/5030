@@ -1,0 +1,8 @@
+## not working
+
+
+# pip install pycountry
+# import pycountry
+
+# lang_name = pycountry.languages.get(alpha_2 = usr_lang)
+# print('Language Name: ', lang_name.name)
