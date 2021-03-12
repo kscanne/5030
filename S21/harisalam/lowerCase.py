@@ -9,7 +9,6 @@ def lowerCasing(word: str, lan: str):
 
     if (re.search('^tr.*', lan) or re.search('^az.*', lan)):
         replace = word.replace('I', u"\u0131")
-        # print(line)
         return replace.lower()
 
     if (re.search('^ga.*', lan)):
@@ -25,22 +24,31 @@ def lowerCasing(word: str, lan: str):
             return(replace.lower())
         else:
             return(word.lower())
+    if (re.search('^zh.*', lan) or re.search('^ja.*', lan) or re.search("^th.*", lan)):
+        return (word)
+
+    else:
+        return False
 
 
 if __name__ == '__main__':
     test_passed = False
-    test_data = pd.read_csv('tests.tsv', sep='\t')
-    for row_data in test_data.index:
-        extracted_data = test_data.iloc[row_data]
-        word, lang, res = extracted_data
-        processed_result = lowerCasing(word, lang)
-        if res != processed_result:
-            print("""Test failed for word '{}' the result is '{}' where the expected result was '{}' """.format(
-                word, processed_result, res))
-            test_passed = False
-        else:
-            print("""Test Passed for word '{}' the result is '{}' where the expected result was '{}'""".format(
-                word, processed_result, res))
-            test_passed = True
-    if test_passed:
-        print('congratutlations all tests have')
+    try:
+        test_data = pd.read_csv('tests.tsv', sep='\t')
+        for row_data in test_data.index:
+            extracted_data = test_data.iloc[row_data]
+            word, lang, result = extracted_data
+            processed_result = lowerCasing(word, lang)
+            if result != processed_result:
+                print("""Test failed for word '{}' the result is '{}' where the expected result was '{}' """.format(
+                    word, processed_result, result))
+                test_passed = False
+            else:
+                print("""Test Passed for word '{}' the result is '{}' where the expected result was '{}'""".format(
+                    word, processed_result, result))
+                test_passed = True
+        if test_passed:
+            print('congratutlations all tests have')
+
+    except Exception as e:
+        print("File can not be opened because %s " % e)
