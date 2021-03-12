@@ -1,22 +1,22 @@
 import csv
 
-vowels = ["A","E","I","O","U","Á","É","Í","Ó","Ú"]
+irishVowels = ["A","E","I","O","U","Á","É","Í","Ó","Ú"]
 
 def LowerCase(word,language): 
-  if ('ga' in language) and (word.startswith('n') or word.startswith('t')) and word[1:2] in vowels:
-    return word[:1].lower()+"-"+word[1:].lower()
-  if 'en' in language:
-    return word.lower()
-  if ('tr' or "az" in language):
-    return word.replace('I',"ı").lower()
-  if ('el' in language):
-    if word.endswith('Σ'):
-      return word.replace('Σ',"ς").lower()
+    if ('ga' == language or 'ga-IE' == language) and (word.startswith('n') or word.startswith('t')) and word[1:2] in irishVowels:
+        return word[:1].lower()+"-"+word[1:].lower()
+    elif ('tr' == language):
+        return word.replace('I',"ı").lower()
+    elif ("az" == language):
+        return word.replace('I',"ı").lower()
+    elif ('el' == language):
+        if word.endswith('Σ'):
+            return word[:-1].lower() + "ς"
+        else:
+            return word[:-1].lower() + "σ"
     else:
-      return word.replace('Σ',"σ").lower()
-  else:
-    word.lower()
-read_tsv = csv.reader(open("tests.tsv"), delimiter="\t") 
+        return word.lower()
+read_tsv = csv.reader(open("tests.tsv",encoding = "utf8" ), delimiter="\t") 
 for row in read_tsv: 
   word, language, answer = row
   LowerCaseWord = LowerCase(word,language)
