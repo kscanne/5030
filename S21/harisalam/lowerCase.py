@@ -1,13 +1,14 @@
 """
+Code after making necessary changes marked by the partner
 Code Review Task
 Haris Alam Lodhi
+
 """
 import pandas as pd
 import re
 
 
 def lowerCasing(word: str, lan: str):
-
     if (re.search('^en.*', lan)):
         return word.lower()
 
@@ -31,12 +32,10 @@ def lowerCasing(word: str, lan: str):
     if (re.search('^zh.*', lan) or re.search('^ja.*', lan) or re.search("^th.*", lan)):
         return (word)
 
-    else:
-        return False
 
 
 if __name__ == '__main__':
-    test_passed = False
+    test_passed = True
     try:
         test_data = pd.read_csv('tests.tsv', sep='\t')
         for row_data in test_data.index:
@@ -50,9 +49,10 @@ if __name__ == '__main__':
             else:
                 print("""Test Passed for word '{}' the result is '{}' where the expected result was '{}'""".format(
                     word, processed_result, result))
-                test_passed = True
         if test_passed:
-            print('congratutlations all tests have')
+            print('Congratulations! All test cases have been passed')
+        else:
+            print("Failed! Not all test cases have been met")
 
     except Exception as e:
         print("File can not be opened because %s " % e)
