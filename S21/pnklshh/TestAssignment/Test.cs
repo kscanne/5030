@@ -11,8 +11,9 @@ namespace TestAssignment
         {
             Console.OutputEncoding = System.Text.Encoding.UTF8;
 
-            Console.WriteLine("Enter the path of tsv file: ");
-            var path = Console.ReadLine();
+            // Console.WriteLine("Enter the path of tsv file: ");
+            // var path = Console.ReadLine();
+            var path = ".\\..\\..\\..\\..\\tests.tsv";
             var testInput = File.ReadAllLines(path);
             Console.WriteLine("\n Output for each test case: \n");
 
