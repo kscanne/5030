@@ -10,25 +10,6 @@ import static org.junit.Assert.*;
 public class WordToLowerCaseTest {
 
     /**
-     * This is the test method for WordToLowerCase class,
-     * that tests the result of changeWordToLowerCase()
-     */
-    @Test
-    public void changeWordToLowerCase() throws IOException {
-        List<String[]> wordsToProcess = openTSV();
-        for(String[] wordData:wordsToProcess){
-            String wordForLowerCase = wordData[0];
-            String language = wordData[1];
-            String correctWordInLowerCase = wordData[2];
-
-            System.out.println("Word for lowercase: " + wordForLowerCase);
-
-            String wordInLowerCase = WordToLowerCase.changeWordToLowerCase(wordForLowerCase, language);
-            assertEquals("The word was processed correctly", correctWordInLowerCase, wordInLowerCase);
-        }
-    }
-
-    /**
      * This is the function for opening the tsv file with examples of words to convert
      *
      * @return all the data from file
@@ -45,12 +26,13 @@ public class WordToLowerCaseTest {
         String[] row = new String[3]; // used to get one line of data to the list
         while (dataRow != null){
             stringTokenizer = new StringTokenizer(dataRow,"\t");
-            List<String> dataArray = new ArrayList<>() ;
+            List<String> dataArray = new ArrayList<>();
+            // Adds each element in the file to array
             while(stringTokenizer.hasMoreElements()){
                 dataArray.add(stringTokenizer.nextElement().toString());
             }
 
-
+            // Divides the data in array by rows and adds the elements to that array
             for (String item:dataArray) {
                 row[iteration - 1] = item; // fill in the array with an item from file
                 // each line in file has 3 items, when the last item added
@@ -68,5 +50,24 @@ public class WordToLowerCaseTest {
         // Close the file once all data has been read
         tsvFile.close();
         return listOfDataFromFile;
+    }
+
+    /**
+     * This is the test method for WordToLowerCase class,
+     * that tests the result of changeWordToLowerCase()
+     */
+    @Test
+    public void changeWordToLowerCase() throws IOException {
+        List<String[]> wordsToProcess = openTSV();
+        for(String[] wordData:wordsToProcess){
+            String wordForLowerCase = wordData[0];
+            String language = wordData[1];
+            String correctWordInLowerCase = wordData[2];
+
+            System.out.println("Word for lowercase: " + wordForLowerCase);
+
+            String wordInLowerCase = WordToLowerCase.changeWordToLowerCase(wordForLowerCase, language);
+            assertEquals("The word was processed correctly", correctWordInLowerCase, wordInLowerCase);
+        }
     }
 }
