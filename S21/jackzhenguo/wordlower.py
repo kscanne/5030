@@ -63,12 +63,13 @@ class WordLower(object):
         self._special_strategies.append(new_strategy)
 
 
-if __name__ == "__main__":
-    # this is test code
+def test(filename):
+    """test code
+    """
     wl = WordLower()
     # read tsv file one line after line
     all_succeed = True
-    with open('tests.tsv', 'r') as f:
+    with open(filename, 'r') as f:
         for line in f:
             word, lan, word2 = line.split('\t')
             res = wl.process(word, lan)
@@ -77,3 +78,7 @@ if __name__ == "__main__":
                 all_succeed = False
         if all_succeed:
             print('All succeed!')
+
+
+if __name__ == "__main__":
+    test('tests.tsv')
