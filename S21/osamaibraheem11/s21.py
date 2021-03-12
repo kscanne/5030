@@ -1,13 +1,15 @@
 import csv
 
+vowels = ["A","E","I","O","U","Á","É","Í","Ó","Ú"]
+
 def LowerCase(word,language): 
-  if "en" in language:
-    return word.lower()
-  elif "tr" or "az" in language:
-    return word.replace('I',"ı").lower()
-  elif "ga" in language:
+  if ('ga' in language) and (word.startswith('n') or word.startswith('t')) and word[1:2] in vowels:
     return word[:1].lower()+"-"+word[1:].lower()
-  elif "el" in language:
+  if 'en' in language:
+    return word.lower()
+  if ('tr' or "az" in language):
+    return word.replace('I',"ı").lower()
+  if ('el' in language):
     if word.endswith('Σ'):
       return word.replace('Σ',"ς").lower()
     else:
@@ -17,7 +19,7 @@ def LowerCase(word,language):
 read_tsv = csv.reader(open("tests.tsv"), delimiter="\t") 
 for row in read_tsv: 
   word, language, answer = row
-  LowerCaseWord = LowerCase(word,language) 
+  LowerCaseWord = LowerCase(word,language)
   if LowerCaseWord == answer: 
     print("Passed")
   else:
