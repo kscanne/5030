@@ -1,34 +1,25 @@
 import csv
+import re
 
+irishVowels = ["A","E","I","O","U","Á","É","Í","Ó","Ú"]
 
 def wordlower(word,lan):
 
-    word=word
-
-    lan=lan
-
     if(lan=='en'):
-        for letter in word:
-            letter=word.lower()
-        print(letter)
-
+      print(word.lower())
 
     if(lan=='tr' or lan=='az'):
 
         for letter in word:
             if (letter=='i' or letter=='I'):
-                letter=word.replace('I',"ı").lower()
-                print(letter)
+                letter=re.sub(r'[Ii]','ı',word)
+                print(letter.lower(),end='')
             else:
                 print(letter.lower(),end='')
 
-
-    if(lan=='ga'):
-        leng=len(word)
-
+    if(lan=='ga' or 'ga-IE'):
         if(word[0]=='n' or word[0]=='t'):
-            if(word[1]==a or word[1]==E or word[1]==I or word[1]==O or word[1]==U or word[1]==Á or word[1]==Í or word[1]==Ó or word[1]==Ú):
-
+            if(word[1] in irishVowels):
                 for letter in word:
                     member = ['-']
                     word.insert(1,member)
@@ -38,23 +29,12 @@ def wordlower(word,lan):
 
     if(lan=='el'):
         leng=len(word)
-
         if((word[len(word)-1])=='∑'):
-
             for letter in word:
                 letter=word.replace('Σ',"ς").lower()
-                print(letter)        
-
+                print(letter)
         else:
             print(word.lower(), end='')
 
-    if(lan=='th' or lan=='zh'):
-        for letter in word:
-            letter=word.lower()
-        print(letter)
-
-
-
-
-
-
+    if(lan=='th' or 'zh' or 'ja'):
+        print=(word.lower())
