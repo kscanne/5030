@@ -37,7 +37,7 @@ def lowerCasing(word: str, lan: str):
 if __name__ == '__main__':
     test_passed = True
     try:
-        test_data = pd.read_csv('tests.tsv', sep='\t', header= None)
+        test_data = pd.read_csv('tests.tsv', sep='\t')
         for row_data in test_data.index:
             extracted_data = test_data.iloc[row_data]
             word, lang, result = extracted_data
