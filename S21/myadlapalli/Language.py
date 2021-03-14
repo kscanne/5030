@@ -62,11 +62,13 @@ def wordToLower(word, lang):
 
 
 if __name__ == "__main__":
-    print("Enter the language tag")
-    language = input()
-    print("Enter the sentence")
-    sentence = input()
-    print("Language tag: " + language + "\nSentence: " + sentence)
-    print("The converted sentence is:\n")
-    print(toLower(sentence, language))
-
+    r=open("tests.tsv",encoding="utf-8")
+    for line in r.readlines():
+        word,lang,exp=line.split('\t')
+        exp=exp.strip("\n")
+        actual=toLower(word,lang)
+        if exp==actual:
+            print("passed expected: {0} actual: {1}".format(exp,actual))
+        else:
+            print(repr("failed expected: {0} actual: {1}".format(exp,actual)))
+  
