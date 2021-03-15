@@ -67,15 +67,19 @@ print('Language Name: ', lang_name)
 if lang_code == 'ga' and (usr_word.startswith('t') or usr_word.startswith('n')) and usr_word[1] in ['A','E','I','O','U','Á','É','Í','Ó','Ú']:
     conv_word = '-'.join([usr_word[0],usr_word[1:]])
     print('Hyphenated Lowercase Conversion: ', conv_word.lower())
-else:
-    conv_word = usr_word_code.lower()
-    print('Lowercase Conversion: ', conv_word)
 
 # IF TURKISH INPUT
-if (lang_code == 'tr' or lang_code == 'az') and usr_word[:] in ['I']:
-    conv_rep = usr_word.replace('I',decode(u'\u0131')) # find letter I and replace
+elif (lang_code == 'tr' or lang_code == 'az') and usr_word[:] in ['I' or 'Ó']:
+    conv_rep = usr_word.replace('I','ı' or 'Ó', 'ó') # find uppercase letter and replace
     conv_word = conv_rep
     print('Lowercase Conversion: ', conv_word.lower())
+
+# IF GREEK INPUT
+elif lang_code == 'el' and usr_word[:] in ['Π','Ό','Λ','Η','Σ']: 
+    conv_rep = usr_word.replace('Π','π' or 'Ό','ό' or 'Λ','λ' or 'Η','η' or 'Σ','ς') # find letter I and replace
+    conv_word = conv_rep
+    print('Lowercase Conversion: ', conv_word.lower())
+
 else:
     conv_word = usr_word_code.lower()
     print('Lowercase Conversion: ', conv_word)
