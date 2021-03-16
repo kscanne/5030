@@ -1,8 +1,6 @@
 """
-Code after making necessary changes marked by the partner
-Code Review Task
-Haris Alam Lodhi
-
+All the requirements been met now.
+New test cases have been updated as well.
 """
 import pandas as pd
 import re
@@ -31,7 +29,6 @@ def lowerCasing(word: str, lan: str):
             return(word.lower())
     if (re.search('^zh.*', lan) or re.search('^ja.*', lan) or re.search("^th.*", lan)):
         return (word)
-
 
 
 if __name__ == '__main__':
