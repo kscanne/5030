@@ -71,7 +71,7 @@ if (lang_code[:] in ['ga','ga-IE']) and (usr_word.startswith('t') or usr_word.st
 # IF TURKISH INPUT
 elif (lang_code[:] in ['tr']) and usr_word[:] in ['I']:
     # still working on conversion to Latin dotless i...
-    conv_rep = usr_word.replace('I', ('c4b1'.decode('utf-8'))) # find uppercase letter and replace
+    conv_rep = usr_word.replace('I', ('\u0131'.decode('utf-8','ignore'))) # find uppercase letter and replace
     conv_word = conv_rep
     print('TURKISH Lowercase Conversion: ', conv_word.lower())
 
