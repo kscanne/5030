@@ -64,18 +64,33 @@ print('Language Name: ', lang_name)
 #---------------------------------
 
 # IF GAELIC INPUT
-if lang_code == 'ga' and (usr_word.startswith('t') or usr_word.startswith('n')) and usr_word[1] in ['A','E','I','O','U','Á','É','Í','Ó','Ú']:
+if (lang_code[:] in ['ga','ga-IE']) and (usr_word.startswith('t') or usr_word.startswith('n')) and (usr_word[1] in ['A','E','I','O','U','Á','É','Í','Ó','Ú']): 
     conv_word = '-'.join([usr_word[0],usr_word[1:]])
     print('Hyphenated Lowercase Conversion: ', conv_word.lower())
-else:
-    conv_word = usr_word_code.lower()
-    print('Lowercase Conversion: ', conv_word)
 
 # IF TURKISH INPUT
-if (lang_code == 'tr' or lang_code == 'az') and usr_word[:] in ['I']:
-    conv_rep = usr_word.replace('I',decode(u'\u0131')) # find letter I and replace
+elif (lang_code[:] in ['tr']) and usr_word[:] in ['I']:
+    # still working on conversion to Latin dotless i...
+    conv_rep = usr_word.replace('I', ('\u0131'.decode('utf-8','ignore'))) # find uppercase letter and replace
     conv_word = conv_rep
-    print('Lowercase Conversion: ', conv_word.lower())
+    print('TURKISH Lowercase Conversion: ', conv_word.lower())
+
+# IF GREEK INPUT
+elif lang_code == 'el' and usr_word[:] in ['Π','Ό','Λ','Η','Σ']: 
+    if usr_word[-1] in ['Σ']:
+        conv_sig = usr_word.replace('Σ','ς')
+    else:
+        conv_sig = usr_word.replace('Σ','σ')
+    conv_rep = usr_word.replace(['Π','π'] or ['Ό','ό'] or ['Λ','λ'] or ['Η','η']) # find uppercase letters and replace
+    conv_word = conv_rep
+    print('GREEK Lowercase Conversion: ', conv_word.lower())
+
+# IF CHINESE and OTHER INPUT
+elif lang_code[:] in ['zh','th']:
+    conv_word = usr_word # letters are the same in both cases
+    print('SYMBOL Lowercase Conversion: ', conv_word.lower())
+
+
 else:
-    conv_word = usr_word_code.lower()
-    print('Lowercase Conversion: ', conv_word)
+    conv_word = usr_word.lower()
+    print('STANDARD Lowercase Conversion: ', conv_word)
