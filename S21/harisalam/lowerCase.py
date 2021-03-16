@@ -23,11 +23,9 @@ def lowerCasing(word: str, lan: str):
             return(word.lower())
 
     if (re.search('^el.*', lan)):
-        if(re.search('Σ$', word)):
-            replace = word.replace('Σ', u"\u03C2")
-            return(replace.lower())
-        else:
-            return(word.lower())
+        if(re.search('Σ$.*', word)):
+            return word.lower()
+
     if (re.search('^zh.*', lan) or re.search('^ja.*', lan) or re.search("^th.*", lan)):
         return (word)
 
@@ -43,16 +41,24 @@ if __name__ == '__main__':
             extracted_data = test_data.iloc[row_data]
             word, lang, result = extracted_data
             processed_result = lowerCasing(word, lang)
-            if result != processed_result:
-                print("""Test failed for word '{}' the result is '{}' where the expected result was '{}' """.format(
-                    word, processed_result, result))
-                test_passed = False
+            if processed_result:
+                if result != processed_result:
+                    print("""Test failed for word '{}' the result is '{}' where the expected result was '{}' """.format(
+                        word, processed_result, result))
+                    test_passed = False
+                else:
+                    print("""Test Passed for word '{}' the result is '{}' where the expected result was '{}'""".format(
+                        word, processed_result, result))
+                    test_passed = True
+
             else:
-                print("""Test Passed for word '{}' the result is '{}' where the expected result was '{}'""".format(
-                    word, processed_result, result))
-                test_passed = True
+                print('Not a valid input')
+                test_passed = False
+
         if test_passed:
             print('congratutlations all tests have')
 
+        else:
+            print('You are failed to fullfill the requirements')
     except Exception as e:
-        print("File can not be opened because %s " % e)
+        print("File can not be opened because {} ".format(e))

@@ -2,6 +2,7 @@ HELLO	en	hello
 WORLD	en-US	world
 cAmEl	en-IE	camel
 ---OK	en-Latn	---ok
+KASIM	hh	kasım
 tAcht	ga	t-acht
 tACHT	ga	t-acht
 TACHT	ga	tacht
@@ -9,8 +10,14 @@ nAthair	ga	n-athair
 nATHAIR	ga	n-athair
 NATHAIR	ga	nathair
 nÓg	ga-IE	n-óg
+tÍg	ga-IE	t-íg
 KASIM	tr	kasım
 KASIM	en	kasim
 ΠΌΛΗΣ	el	πόλης
 官话	zh-Hans	官话
 ภาษาไทย	th	ภาษาไทย
+ΣΌΛΗΣ	el	σόλης
+ΣΌΣΛΗΣ	el	σόσλης
+hARIS	en	haris
+HELLO	haris	hello
+
