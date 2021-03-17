@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="None">
+        
+        
+        <link rel="shortcut icon" href="img/favicon.ico">
+        <title>Python中文网</title>
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <link href="css/font-awesome.min.css" rel="stylesheet">
+        <link href="css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/docco.min.css">
+
+        <script src="js/jquery-1.10.2.min.js" defer></script>
+        <script src="js/bootstrap.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script> 
+    </head>
+
+    <body class="homepage">
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href=".">Python中文网</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="navitem active">
+                                <a href="." class="nav-link">首页</a>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">关于我 <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="my-experience/" class="dropdown-item">我的经历</a>
+</li>
+                                    
+<li>
+    <a href="zhi-shi-xing-qiu/" class="dropdown-item">我的星球</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Python教程 <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="python-packages/" class="dropdown-item">Python包</a>
+</li>
+                                    
+<li>
+    <a href="python-intro/" class="dropdown-item">小白教程</a>
+</li>
+                                    
+<li>
+    <a href="python-level/" class="dropdown-item">进阶教程</a>
+</li>
+                                    
+<li>
+    <a href="python-small-examples/" class="dropdown-item">Python200例</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">数据分析 <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="numpy-intro.m" class="dropdown-item">NumPy教程</a>
+</li>
+                                    
+<li>
+    <a href="numpy-exercise/" class="dropdown-item">NumPy练习</a>
+</li>
+                                    
+<li>
+    <a href="pandas-intro/" class="dropdown-item">Pandas教程</a>
+</li>
+                                    
+<li>
+    <a href="pandas-exercise/" class="dropdown-item">Pandas练习</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">算法教程 <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="algorithm-basic/" class="dropdown-item">算法基础</a>
+</li>
+                                    
+<li>
+    <a href="algorithm-exercise/" class="dropdown-item">算法刷题</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">AI教程 <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="statistics/" class="dropdown-item">统计学习</a>
+</li>
+                                    
+<li>
+    <a href="machine-learning/" class="dropdown-item">机器学习</a>
+</li>
+                                    
+<li>
+    <a href="deep-learning/" class="dropdown-item">深度学习</a>
+</li>
+                                    
+<li>
+    <a href="nlp/" class="dropdown-item">自然语言处理</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="navitem">
+                                <a href="git/" class="nav-link">Git教程</a>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">下载 <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="python-20-topics/" class="dropdown-item">20个专题pdf</a>
+</li>
+                                    
+<li>
+    <a href="five-classes-pdf/" class="dropdown-item">5门教程pdf</a>
+</li>
+                                    
+<li>
+    <a href="thirty-three-classes-pdf/" class="dropdown-item">33个资料pdf</a>
+</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a rel="prev" class="nav-link disabled">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" href="my-experience/" class="nav-link">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
+        <ul class="nav flex-column">
+            
+            
+            
+            
+            
+            
+            
+            
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h4 id="1">1 关于我</h4>
+<ul>
+<li><a href="my-experience/">我的经历</a></li>
+<li><a href="zhi-shi-xing-qiu/">我的星球</a></li>
+<li>我的邮箱: guozhennianhua@163.com</li>
+</ul>
+<h4 id="2-python">2 Python</h4>
+<ul>
+<li><a href="python-packages/">Python包管理</a></li>
+<li><a href="python-intro/">Python入门</a></li>
+<li><a href="python-level/">Python进阶</a></li>
+<li><a href="python-small-examples/">Python 200例</a></li>
+</ul>
+<h4 id="3-numpy">3 NumPy</h4>
+<ul>
+<li><a href="numpy-intro/">Numpy教程</a></li>
+<li><a href="numpy-exercise/">Numpy练习</a></li>
+</ul>
+<h4 id="4-pandas">4 Pandas</h4>
+<ul>
+<li><a href="pandas-intro/">Pandas教程</a></li>
+<li><a href="pandas-exercise/">Pandas练习</a></li>
+</ul>
+<h4 id="5">5 算法</h4>
+<ul>
+<li><a href="algorithm-basic/">算法基础</a></li>
+<li><a href="algorithm-exercise/">算法刷题</a></li>
+</ul>
+<h4 id="6-ai">6 AI</h4>
+<ul>
+<li><a href="statistics/">统计学习</a></li>
+<li><a href="machine-learning/">机器学习</a></li>
+<li><a href="deep-learning/">深度学习</a></li>
+<li><a href="nlp/">自然语言处理</a></li>
+</ul>
+<h4 id="7-git">7 Git</h4>
+<ul>
+<li><a href="git/">Git实战教程</a></li>
+</ul>
+<h4 id="8-pdf">8   PDF下载</h4>
+<ul>
+<li><a href="twenty-topics-python/">20个专题pdf</a></li>
+<li><a href="five-classes-pdf/">5门教程pdf</a></li>
+<li><a href="thirty-three-classes-pdf/">33个资料pdf</a> </li>
+</ul>
+<p>长按或扫码关注下方二维码，关注后私信回复<code>专题</code>，下载我原创的20个Python专题</p>
+<p><center><img alt="" src="assets/alg-channel.jpg" /></center></p>
+<p><center>Python与算法社区</center></p></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script>
+            var base_url = ".",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="js/base.js" defer></script>
+        <script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" defer></script>
+        <script src="search/main.js" defer></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>
+
+<!--
+MkDocs version : 1.1.2
+Build Date UTC : 2021-03-09 04:57:48.547700+00:00
+-->
