@@ -2,3 +2,14 @@
 {"a" : 3, "b" : 3, "c" : 1}	isosceles
 {"a" : 3, "b" : 4, "c" : 100}	error
 {"a" : -4, "b" : 5, "c" : 5}   error
+{"a" : 36, "b" : 613, "c" : 618}	scalene
+{"a" : 9, "b" : 11, "c" : 18}	scalene
+{"a" : 0, "b" : 4, "c" : 0}	error
+{"a" : 573.1, "b" : 132.1, "c" : 1030.6}	error
+{"a" : 0, "b" : 1, "c" : 0}	error
+{"a" : 999, "b" : 999, "c" : 999}	equilateral
+{"a" : 53, "b" : 53, "c" : 53}	equilateral
+{"a" : 1, "b" : 66.8, "c" : 67.6}	scalene
+{"a" : 304219, "b" : 623212, "c" : 445060}	scalene
+{"a" : 16, "b" : 16, "c" : 16}	equilateral
+{"a" : 13, "b" : 19, "c" : 36}	error
