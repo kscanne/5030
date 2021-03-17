@@ -1,3 +1,13 @@
 {"a" : 3, "b" : 4, "c" : 5}	scalene
 {"a" : 3, "b" : 3, "c" : 1}	isosceles
 {"a" : 3, "b" : 4, "c" : 100}	error
+{"a" : 3, "b" : 3, "c" : 3}	equilateral
+{"a" : 3, "b" : 3, "c" : d}	error all inputs must be integers
+{"a" : 3, "b" : x, "c" : 3}	error all inputs must be integers
+{"a" : b, "b" : 3, "c" : 3}	error all inputs must be integers
+{"a" : b, "b" : #, "c" : 3}	error all inputs must be integers
+{"a" : 3.5, "b" : 3.8, "c" : 3.9}	error all inputs must be integers
+{"a" : -3, "b" : 4, "c" : 5}    error all inputs must be > 0
+{"a" : 4, "b" : 3}	3 integers must entered
+{"a" : 4}   3 integers must entered
+{}  3 integers must entered
