@@ -26,3 +26,5 @@
 {"a" : 500, "b" : 500, "c" : 500}    equilateral
 
 {"a" : -4, "b" : 5, "c" : 5}         error
+
+{"a" : 4, "b" : 5, "c" : 5}          isosceles
