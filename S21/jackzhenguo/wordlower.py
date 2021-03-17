@@ -18,6 +18,7 @@ class StrategyInterface(object):
 class BaseStrategy(StrategyInterface):
     """:Base strategy class for word lowering
     """
+
     def process(self, word: str, language: str) -> str:
         return word.lower()
 
@@ -28,11 +29,11 @@ class SpecialStrategy(StrategyInterface):
 
     def process(self, word: str, language: str) -> str:
         proc_word = word
-        if language in ('tr', 'az'):
+        if re.match(r'tr-?.*', language) or re.match(r'az-?.*', language):
             proc_word = re.sub(r'I', 'ı', word)
-        if language == 'ga' and re.match(r'[n,t][A,E,I,O,U,Á,É,Í,Ó,Ú]', word):
+        if re.match(r'ga-?.*', language) and re.match(r'[n,t][A,E,I,O,U,Á,É,Í,Ó,Ú]', word):
             proc_word = word[0] + '-' + word[1:]
-        if language == 'el':
+        if re.match(r'el-?.*', language):
             proc_word = re.sub(r'Σ', 'σ', re.sub(r'Σ$', 'ς', word))
         return proc_word
 
@@ -62,9 +63,22 @@ class WordLower(object):
         self._special_strategies.append(new_strategy)
 
 
-if __name__ == "__main__":
+def test(filename):
+    """test code
+    """
     wl = WordLower()
-    print(wl.process('tAcht', 'ga'))
-    print(wl.process('nÓg', 'ga'))
-    print(wl.process('ΠΣΛΗΣ', 'el'))
-    print(wl.process(None, 'el'))
+    # read tsv file one line after line
+    all_succeed = True
+    with open(filename, 'r') as f:
+        for line in f:
+            word, lan, word2 = line.split('\t')
+            res = wl.process(word, lan)
+            if res != word2.replace('\n', ''):
+                print('%s and language %s to lower fails, lower to %s, actually be %s' % (word, lan, res, word2))
+                all_succeed = False
+        if all_succeed:
+            print('All succeed!')
+
+
+if __name__ == "__main__":
+    test('tests.tsv')

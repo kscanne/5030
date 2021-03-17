@@ -36,4 +36,7 @@ As always, you should create a branch in your fork of the repository and work on
 
 ### Get started
 
+1. Most of the cases can be solved by lower function that Python self can provide, so we can select it as our base strategy.
+
+2. For those special cases that we should support, at current we just need to solve them according to the list that Kevin gave, such as tr and az language “I” should lowercase to LATIN SMALL LETTER DOTLESS I. Simple solution to this issue is to loop each letter of the word, replacement happens every time if I appear. Another solution is to use re module of Python, and what's more, the sub function from re module can do this thing. 
 
