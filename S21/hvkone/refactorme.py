@@ -14,14 +14,15 @@ class Word:
       return language
     if not len(language)==2:
       raise ValueError("Invalid BCP-47 code")
- 
+    return language
+    
   def change_to_lower(self):
     language=self.get_language()
     not_lower_list = ('zh','ja','th')
     Irish_vowels = ('AEIOU\u00c1\u00c9\u00cd\u00d3\u00da')
     if language in not_lower_list:
       return self.word
-    elif ('ga') in language:
+    elif 'ga' in language:
       if len(self.word)>1 and (self.word[0]=='t' or self.word[0]=='n') and unicodedata.normalize('NFC', self.word)[1] in Irish_vowels:
         self.word = self.word[0]+'-'+self.word[1:]
       return self.word.lower()
