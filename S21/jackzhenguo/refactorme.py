@@ -94,7 +94,7 @@ class WordProcess(object):
         if '-' in self.word.lang:
             i = self.word.lang.find('-')
             language = self.word.lang[0:i]
-        if len(language) < 2 or len(language) > 3:
+        if len(language) != 2:
             raise ValueError("Invalid BCP-47 code")
         return language
 
