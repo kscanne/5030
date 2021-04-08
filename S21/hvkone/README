@@ -1,12 +1,1 @@
 Write your code for the code review exercise in this directory.
-
-
-CODE STRUCTURE: Written in Python
-
-1. user inputs word
-2. user inputs language (or language code)
-.
-.
-.
-.
-3. convert the user input to lowercase
