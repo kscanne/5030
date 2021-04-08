@@ -19,26 +19,32 @@ class BaseClass:
 class CheckIrishWord(BaseClass):
 
     def process_word(self):
-        temp = self.word
+        _word = self.word
         if len(self.word)>1:
             if (self.word[0]=='t' or self.word[0]=='n') and unicodedata.normalize('NFC', self.word)[1] in self.STANDARD_VOWELS:
-                temp = self.word[0]+'-'+temp[1:]
-        return temp.lower()
+                _word = self.word[0]+'-'+_word[1:]
+        return _word.lower()
+
+    def isLenited(self):
+        if len(self.word) < 2:
+            return False
+        else:
+            return self.word[0].lower() in 'bcdfgmpst' and self.word[1].lower()=='h'
 
 class CheckTurkAndAzerWord(BaseClass):
 
     def process_word(self):
-        temp = self.word
-        temp = temp.replace(self.CAPITAL_I,self.DOTLESS_i)
-        return temp.lower()
+        _word = self.word
+        _word = _word.replace(self.CAPITAL_I,self.DOTLESS_i)
+        return _word.lower()
 
 class CheckGreekWord(BaseClass):
 
     def process_word(self):
-        temp = self.word
-        if temp[-1]== self.CAPITAL_SIGMA:
-            temp = temp[:-1]+ self.CAPITAL_SIGMA
-        return temp.lower()
+        _word = self.word
+        if _word[-1]== self.CAPITAL_SIGMA:
+            _word = _word[:-1]+ self.CAPITAL_SIGMA
+        return _word.lower()
 
 class Word:
 
