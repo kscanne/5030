@@ -10,7 +10,6 @@ def lowercase(lang, text):
             lower_case_text = lower_case_text.lower()
     elif base_lang == 'ga':
         irish_vowels = ['A', 'E', 'I', 'O', 'U', 'Á', 'É', 'Í', 'Ó', 'Ú']
-        lower_case_irish_vowels = ['a', 'e', 'i', 'o', 'u', 'á', 'é', 'í', 'ó', 'ú']
         words = text.split(' ')
 
         for word in words:
