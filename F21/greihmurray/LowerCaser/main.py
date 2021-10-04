@@ -16,7 +16,7 @@ def lowercase(lang, text):
         for word in words:
             if word[0:1] == 'n' or word[0:1] == 't':
                 if word[1:2] in irish_vowels:
-                    lower_case_text += word[0:1] + '-' + lower_case_irish_vowels[irish_vowels.index(word[1:2])] + word[2:].lower()
+                    lower_case_text += word[0:1] + '-' + word[1:].lower()
             else:
                 lower_case_text += word.lower()
     elif base_lang == 'el':
