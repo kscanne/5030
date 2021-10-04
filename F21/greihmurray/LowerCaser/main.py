@@ -1,3 +1,5 @@
+import diacritic_handler
+
 def lowercase(lang, text):
     lower_case_text = ''
     langs_to_ignore = ['zh', 'ja', 'th']
@@ -16,6 +18,10 @@ def lowercase(lang, text):
             if word[0:1] == 'n' or word[0:1] == 't':
                 if word[1:2] in irish_vowels:
                     lower_case_text += word[0:1] + '-' + word[1:].lower()
+                elif diacritic_handler.isUppercaseDiacritic(word[1:2]):
+                    lower_case_text += word[0:1] + '-' + diacritic_handler.convertToLowercaseDiacritic(word[1:2]) + word[2:]
+                else:
+                    lower_case_text += word.lower()
             else:
                 lower_case_text += word.lower()
     elif base_lang == 'el':
