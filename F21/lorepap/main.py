@@ -10,7 +10,7 @@ if __name__=='__main__':
     lowerWord = testWord.toLowercase()
     if lowerWord != testLine[2]:
       failed = True
-      print('Test case failed. Expected', testLine[2], 'when lowercasing', testLine[0],'in language',testLine[1],'but got',lowerWord)
+      print('Error: test case failed\n. Expected outcome', testLine[2], '\nInput', testLine[0],'\nLanguage',testLine[1],'\nActual outcome',lowerWord)
   if not failed:
        print('All tests succeed!')
   
