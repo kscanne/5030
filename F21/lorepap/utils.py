@@ -11,10 +11,13 @@ class Word:
     self.language = bcp
     # self._standardIrishSpelling = std
 
-  def setWord(self, w):
-    self.word = w
-
   def toLowercase(self):
+    """
+    Lowercase input word (self.word) according to language variable (self.language).
+    @param: Word object to access to the word variable (self.word)
+    @return: word string in its lowercase version
+    """
+
     language = self.getLanguageFromBcp()
     self.checkInvalidBcp(language)
     tmp = self.word
