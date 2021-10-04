@@ -1,10 +1,50 @@
 def lowercase(lang, text):
     lower_case_text = ''
+    langs_to_ignore = ['zh', 'ja', 'th']
 
-    if lang[0:2] == 'en':
+    base_lang = lang[0:2]
+
+    if base_lang == 'tr' or base_lang == 'az':
+        if 'I' in text:
+            lower_case_text = text.replace('I', 'ı')
+            lower_case_text = lower_case_text.lower()
+    elif base_lang == 'ga':
+        irish_vowels = ['A', 'E', 'I', 'O', 'U', 'Á', 'É', 'Í', 'Ó', 'Ú']
+        lower_case_irish_vowels = ['a', 'e', 'i', 'o', 'u', 'á', 'é', 'í', 'ó', 'ú']
+        words = text.split(' ')
+
+        for word in words:
+            if word[0:1] == 'n' or word[0:1] == 't':
+                if word[1:2] in irish_vowels:
+                    lower_case_text += word[0:1] + '-' + lower_case_irish_vowels[irish_vowels.index(word[1:2])] + word[2:].lower()
+            else:
+                lower_case_text += word.lower()
+    elif base_lang == 'el':
+        words = text.split(' ')
+
+        for word in words:
+            if word[-1] == 'Σ':
+                word = word.replace('Σ', 'ς')
+            lower_case_text += lowercase_greek(word)
+    elif base_lang in langs_to_ignore:
+        lower_case_text = text
+    else:
         lower_case_text = text.lower()
 
     return lower_case_text
+
+def lowercase_greek(word):
+    greek_letters_uppercase = ['Α', 'Β', 'Γ', 'Δ', 'Ε', 'Ζ', 'Η', 'Θ', 'Ι', 'Κ', 'Λ', 'Μ', 'Ν', 'Ξ', 'Ο', 'Π', 'Ρ', 'Σ', 'Τ', 'Υ', 'Φ', 'Χ', 'Ψ', 'Ω']
+    greek_letters_lowercase = ['α', 'β', 'γ', 'δ', 'ε', 'ζ', 'η', 'θ', 'ι', 'κ', 'λ', 'μ', 'ν', 'ξ', 'ο', 'π', 'ρ', 'σ', 'τ', 'υ', 'φ', 'χ', 'ψ', 'ω']
+    lowercase_word = ''
+
+    for char in word:
+        if char == 'ς':
+            lowercase_word += char
+        else:
+            lowercase_word += greek_letters_lowercase[greek_letters_uppercase.index(char)]
+
+    return lowercase_word
 
 if __name__ == '__main__':
     language = ''
