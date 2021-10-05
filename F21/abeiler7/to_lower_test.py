@@ -8,8 +8,7 @@ class TestToLower(unittest.TestCase):
 
     def test_something(self):
         for idx, row in test_cases.iterrows():
-            #print(row[0])
-            self.assertEqual(lc.to_lower(row[0], row[1]), row[2]) # add assertion here
+            self.assertEqual(lc.to_lower(row[0], row[1]), row[2])
 
 
 if __name__ == '__main__':
