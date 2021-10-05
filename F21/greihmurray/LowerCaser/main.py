@@ -15,6 +15,8 @@ def lowercase(lang, text):
         if 'I' in text:
             lower_case_text = text.replace('I', 'ı')
             lower_case_text = lower_case_text.lower()
+        else:
+            lower_case_text = text.lower()
     #Handles Irish
     elif base_lang == 'ga':
         irish_vowels = ['A', 'E', 'I', 'O', 'U', 'Á', 'É', 'Í', 'Ó', 'Ú'] #List of standard irish vowels
