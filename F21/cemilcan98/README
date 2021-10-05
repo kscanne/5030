@@ -1,1 +1,18 @@
 Your program for the code review lab goes in this directory
+
+To run the program:
+Type: python app.py in your terminal
+app.py file reads the contents from the tests.tsv and returns failed cases
+In order to try different test cases, simply add it to the file. 
+Be aware of the potential white spaces that might cause an error.
+
+The output should look something like this:
+
+Failed test:  ['PICTURE', 'en', 'Picture']
+Failed test:  ['nATHAIR', 'ga', 'nathair']
+Failed test:  ['NATHAIR', 'ga', 'n-athair']
+Failed test:  ['nÕg', 'ga-IE', 'nõg']
+Failed test:  ['nÕg', 'ga-IE', 'nõg']
+Failed test:  ['ΠΌΛΗΣ', 'el', 'πόληg']
+Failed test:  ['ÇAĞIL', 'tr', 'çagıl']
+Failed test:  ['ÇAĞIL', 'tr', 'çağil']

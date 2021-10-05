@@ -1,5 +1,8 @@
 HELLO	en	hello
+PICTURE	en	Picture
+PICTURE	en	picture
 WORLD	en-US	world
+WORM	en-US	worm
 cAmEl	en-IE	camel
 ---OK	en-Latn	---ok
 tAcht	ga	t-acht
@@ -7,6 +10,8 @@ tACHT	ga	t-acht
 TACHT	ga	tacht
 nAthair	ga	n-athair
 nATHAIR	ga	n-athair
+nATHAIR	ga	nathair
+NATHAIR	ga	n-athair
 NATHAIR	ga	nathair
 nÓg	ga-IE	n-óg
 nÕg	ga-IE	nõg
@@ -14,5 +19,13 @@ nÕg	ga-IE	nõg
 KASIM	tr	kasım
 KASIM	en	kasim
 ΠΌΛΗΣ	el	πόλης
+ΠΌΛΗΣ	el	πόληg
 官话	zh-Hans	官话
 ภาษาไทย	th	ภาษาไทย
+BULAŞIK	tr	bulaşık
+YOĞURT	tr	yoğurt
+IŞIK	tr	ışık
+ÇAĞIL	tr	çağıl
+ÇAĞIL	tr	çagıl
+ÇAĞIL	tr	çağil
+สวัสดี	th	สวัสดี
