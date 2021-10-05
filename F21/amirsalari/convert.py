@@ -1,3 +1,7 @@
+import os.path
+import sys
+
+
 def convert(test_word):
     if(test_word[1] in ["en", "en-US", "en-IE", "en-Latn"]):
         lowercase_word = test_word[0].lower()
@@ -54,6 +58,12 @@ def convert(test_word):
                     lowercase_word = lowercase_word[:2] + \
                         '\u00F3' + lowercase_word[3:]
         else:
+            lowercase_word = lowercase_word.replace('\u00C1', '\u00E1')  #
+            lowercase_word = lowercase_word.replace('\u00C9', '\u00E9')  #
+            lowercase_word = lowercase_word.replace('\u00CD', '\u00ED')  #
+            lowercase_word = lowercase_word.replace('\u00D3', '\u00F3')  #
+            lowercase_word = lowercase_word.replace('\u00D5', '\u00F5')  #
+            lowercase_word = lowercase_word.replace('\u00DA', '\u00FA')  #
             lowercase_word = lowercase_word.lower()
         return lowercase_word
 
@@ -87,15 +97,26 @@ def close_file(file_name):
     f.close()
 
 
-# print("Enter file path: ")  # tests.tsv
+def check_file():
+    print("Enter file path: ")  # tests.tsv
+    file_path = input()
+    #file_path = 'tests.tsv'
+    if(not(os.path.exists(file_path))):
+        print("File:", file_path, "doesn't exist.")
+        sys.exit()
+    else:
+        if os.stat(file_path).st_size == 0:
+            print('File is empty')
+            sys.exit()
+        else:
+            return file_path
 
-# file_path = input()
-file_path = 'tests.tsv'
-test_file = open_file(file_path)
 
-for iteration, item in enumerate(test_file):
-    if (item[2] != convert(item)):
-        print("In Line: ", iteration, ",test case failed for: ",
-              item, ". The correct lowercase word is: ", convert(item), "\n")
-
-close_file(file_path)
+if __name__ == "__main__":
+    test_file_path = check_file()
+    test_file = open_file(test_file_path)
+    for iteration, item in enumerate(test_file):
+        if (item[2] != convert(item)):
+            print("In Line: ", iteration, ",test case is failed for: ",
+                  item, ". The correct lowercase word is: ", convert(item), "\n")
+    close_file(test_file_path)
