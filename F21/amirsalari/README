@@ -1,1 +1,4 @@
-Your program for the code review lab goes in this directory
+Run convert.py, the program will ask about the file name you want to use as a test case.
+These languages are supported at present: tr - az - ga - en.
+If you want to add other test cases, add them in the tests.tsv file, just notice that
+you should pay attention to spaces in the tsv files to do not get an error.
