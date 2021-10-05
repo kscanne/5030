@@ -1,1 +1,13 @@
 Your program for the code review lab goes in this directory
+
+From the original version, tests.tsv has an additional 16 test cases to check functionality.'
+
+To run autodecap.py, go to your python IDE of choice and run from there. Output should be
+in the following form:
+Either "Success!" or "Error:" followed by the converted word.
+
+autodecap.py is of the following format:
+1. A function to identify language of the word
+2. Functions for handling specific languages and rules
+3. if __name__ == '__main__' run condition with reading the .tsv file and running the functions for
+    all the test cases
