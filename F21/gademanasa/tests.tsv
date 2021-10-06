@@ -1,4 +1,5 @@
 HELLO	en	hello
+Hello en  hello
 WORLD	en-US	world
 cAmEl	en-IE	camel
 ---OK	en-Latn	---ok
@@ -16,3 +17,15 @@ KASIM	en	kasim
 ΠΌΛΗΣ	el	πόλης
 官话	zh-Hans	官话
 ภาษาไทย	th	ภาษาไทย
+tAbhair ga      t-abhair
+tABHAIR ga      t-abhair
+TABHAIR  ga      tabhair
+tEoiric ga      t-eoiric
+TEOIRIC  ga     teoiric
+TEoiric  ga     teoiric
+Σχίζειν el      σχίζειν
+χίζεινΣ el      χίζεινς
+δήΣος   el      δήσος
+Σαύρα   el      σαύρα 
+Ca--p   en      ca--p
+
