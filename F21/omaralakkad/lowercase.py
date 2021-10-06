@@ -3,6 +3,7 @@ import csv
 import unicodedata
 
 #CemilCan edition
+
 def check_language(lang):
     supported_languages = ["en", "en-US", "en-IE", "en-Latn", "ga", "ga-IE", "tr", "el", "zh-Hans", "th", "zh", "az", "ja"]
     if lang in supported_languages:
