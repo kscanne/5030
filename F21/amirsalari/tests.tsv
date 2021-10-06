@@ -2,6 +2,7 @@ HELLO	en	hello
 VeRY	en	very
 VeRY	en	verY
 WORLD	en-US	world
+WIerd	en-US	wierd
 cAmEl	en-IE	camel
 ---OK	en-Latn	---ok
 tAcht	ga	t-acht
@@ -22,6 +23,9 @@ KASIM	en	kasim
 ΠΌΛΗΣ	el	πόλης
 ΠΌΛΗΣ	el	πόλησ
 官话	zh-Hans	官话
+学校	zh-Hans	学校
+美丽的	zh-Hans	美丽的
+美丽的	zh-Hans	美丽校
 ภาษาไทย	th	ภาษาไทย
 ÇAY	tr	çay
 ÇAY	tr	cay
@@ -40,4 +44,7 @@ Fáilte	ga-IE	fáilte
 Fáilte	ga-IE	fáilTe
 DRAÍOCHT	ga-IE	draíocht
 DRAÍOCHT	ga-IE	draiocht
-AIMLIÚ 	ga-IE	aimliú
+AIMLÚI 	ga-IE	aimlúi
+マシーン 	ja	マシーン
+家 	ja	家
+箱 	ja	箱

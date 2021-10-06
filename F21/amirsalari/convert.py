@@ -7,6 +7,7 @@ def convert(test_word):
         lowercase_word = test_word[0].lower()
         return lowercase_word
 
+    # Specification 1
     if(test_word[1] in ["tr", "az"]):
         lowercase_word = test_word[0]
         lowercase_word = lowercase_word.replace('\u0049', '\u0131')  # I ı
@@ -17,7 +18,7 @@ def convert(test_word):
         lowercase_word = lowercase_word.replace('\u015E', '\u015F')  # Ş ş
         lowercase_word = lowercase_word.lower()
         return lowercase_word
-
+    # Specification 2
     if(test_word[1] in ["ga", "ga-IE"]):
         lowercase_word = test_word[0]
         first = test_word[0][0]
@@ -66,7 +67,7 @@ def convert(test_word):
             lowercase_word = lowercase_word.replace('\u00DA', '\u00FA')  #
             lowercase_word = lowercase_word.lower()
         return lowercase_word
-
+    # Specification 3
     if(test_word[1] in ["el"]):
         lowercase_word = test_word[0]
         if(lowercase_word[-1] == '\u03A3'):  # index -1 means last element in the array
@@ -75,7 +76,7 @@ def convert(test_word):
 
         lowercase_word = lowercase_word.lower()
         return lowercase_word
-
+    # Specification 4
     if(test_word[1] in ["zh", "ja", "th", "zh-Hans"]):
         return test_word[0]
 
