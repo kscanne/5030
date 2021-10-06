@@ -2,11 +2,11 @@
 def lowercaseconverter(word,language): #method to convert uppercase to lowercase
     irish_capvowel = ['A','E','I','O','U',u"\u00C1", u"\u00C9",u"\u00CD",u"\u00D3",u"\u00DA"]
     langcode = language[0:2] 
-    if language == 'tr' or language == 'az':
+    if langcode == 'tr' or langcode == 'az':
         lowerword = word.lower()
         output = lowerword.replace('i',u"\u0131")
         return output
-    elif language == 'ga':
+    elif langcode == 'ga':
         if word[0] == 'n' or word[0] == 't':
             if word[1] in irish_capvowel:
                 splitword = list(word.lower())
