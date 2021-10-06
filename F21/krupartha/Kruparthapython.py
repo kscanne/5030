@@ -1,83 +1,106 @@
+class convertLowerCase():
 
-lang=input()
-word=input()
-p=[]
-if lang=='tr' or lang=='az':
-    for i in word:
-        if i=='I':
-           p.append('\u0131')
-        elif i>='A' and i<='Z':
-            p.append(i.lower())
-elif lang=='ga' or lang=='ga-IE':
-    if((word[0]=='n' or word[0]=='t') and (word[1]=='U' or word[1]=='O' or word[1]=='I' or word[1]=='E' or word[1]=='A' or word[1]=='\u00CD' or word[1]=='\u00C1' or word[1]=='\u00D3' or word[1]=='\u00DA' or word[1]=='\u00C9')):
-        p.append(word[0])
-        p.append('-')
-        if(word[1]=='\u00CD'):
-            p.append('\u00ED')
-        elif(word[1]=='\u00C1' ):
-            p.append('\u00E1')
-        elif(word[1]=='\u00D3'):
-            p.append('\u00F3')
-        elif(word[1]=='\u00DA'):
-            p.append('\u00FA')
-        elif(word[1]=='\u00C9'):
-            p.append('\u00E9')
-        elif(word[1]>='A' or word[1]=='E' or word[1]=='I' or word[1]=='O' or word[1]=='U' ):
-            p.append(word[1].lower())
-        c=word[2:]
-        for i in c:
-            if i>='A' and i<='Z':
-                p.append(i.lower())
-            elif(i=='\u00CD'):
-                p.append('\u00ED')
-            elif(i=='\u00C1'):
-                p.append('\u00E1')
-            elif(i=='\u00D3'):
-                p.append('\u00F3')
-            elif(i=='\u00DA'):
-                p.append('\u00FA')
-            elif(i=='\u00C9'):
-                p.append('\u00E9')
+    def lc(self, text):   # methid that converts languages without any special cases 
+        return text.lower()       
+    
+    def tr(self, text):   # for turkish
+        lowercase = ""
+        turkish_dict = {'I':'ı', 'İ':'i'}
+        for word in text:
+            if word == 'I' or word == 'İ':
+                lowercase += turkish_dict[word]
             else:
-                p.append(i)
-    else:
-        for i in word:
-            if i>='A' and i<='Z':
-                p.append(i.lower())
-            elif(i=='\u00D3'):
-                p.append('\u00F3')
-            elif(i=='\u00C1'):
-                p.append('\u00E1')
-            elif(i=='\u00D5'):
-                p.append('\u00F5')
-            elif(i=='\u00DA'):
-                p.append('\u00FA')
-            elif(i=='\u00C9'):
-                p.append('\u00E9')
-            else:
-                p.append(i)
-elif lang=='el':
-    if word[-1]=='\u03A3':
-        c=word[:-1]
-        x='\u03C2'
-    else:
-        c=word
-        x=''
-    for i in c:
-        if(i=='\u03A0'):
-            p.append('\u03C0')
-        elif(i=='\u03A3'):
-            p.append('\u03C3')
-    p.append(x)
-elif lang=='en' or lang=='en-US' or lang=='en-IE' or lang=='en-Latn':
-    for i in word:
-        if i>='A' or i<='Z':
-            p.append(i.lower())
+                lowercase += word.lower()
+        return lowercase            
+    
+    
+    def el(self, text):   # for greek
+        lowercase = ""
+        if text[-1] == 'Σ':
+            lowercase += text[0:-1].lower()+'ς'
         else:
-            p.append(i)
-else:
-    for i in word:
-        p.append(i)
+            lowercase += text.lower()
+        return lowercase     
+    
+    
+    def ga(self, text):   # for irish 
+        lowercase = "" 
+        checks = 'AEIOU'
+        for w in range(0, len(text)-1):
+            if text[w] == 't' or text[w] == 'n':
+                if text[w+1] in checks:
+                    lowercase += text[w] + '-'
+                else:
+                    lowercase += text[w].lower()
+            else:
+                lowercase += text[w].lower()
+            
+        return lowercase + text[-1].lower()    
+    
+    
+    
+    def ga_ie(self, text):   # for a dialect of irish
+        lowercase = "" 
+        checks = 'AEIOUÁÉÍÓÚ'
+        for w in range(0, len(text)-2):
+            if text[w] == 't' or text[w] == 'n':
+                if (text[w+1] + text[w+2]) in 'ÃB̃C̃D̃ẼẼF̃G̃H̃ĨJ̃K̃L̃M̃ÕP̃Q̃R̃S̃T̃ŨṼW̃X̃ỸZ̃':   
+                    lowercase += text[w]
+                else:
+                    if text[w+1] in checks:
+                        lowercase += text[w] + '-'
+                    else:
+                        lowercase += text[w].lower()
+            else:
+                lowercase += text[w].lower()
+            
+        if text[-2] == 't' or text[-2] == 'n':
+            if text[-1] in checks:
+                lowercase += text[-2] + '-'
+            else:
+                lowercase += text[-2].lower()
+        else:       
+            lowercase += text[-2].lower()        
+         
+        
+        return lowercase + text[-1].lower()
 
-for i in p:
-    print(i,end='')
+    
+    
+    
+    
+
+def language(txt, lang_code):
+    
+    lang_code = lang_code
+    text = txt 
+     
+    lang_direct = ['en', 'th', 'en-us', 'zh-hans', 'en-latn', 'en-ie']
+    
+    if [lang for lang in lang_direct if lang_code in lang]:        
+        return obj.lc(text)
+    elif lang_code == 'tr':
+        return obj.tr(text)
+    elif lang_code == 'el':
+        return obj.el(text)
+    elif lang_code == 'ga':
+        return obj.ga(text)
+    elif lang_code=='ga-ie': 
+        return obj.ga_ie(text)
+    else:
+        return 'nothing selected in the list'
+
+    
+    
+    
+text_input = input("Enter text: ").strip()
+lang_code = input("Enter language code: ").lower().strip()
+
+obj = convertLowerCase()    
+
+
+lowercase_text = language(text_input, lang_code)
+
+
+print("Text in lowercase: {}".format(lowercase_text))    
+
