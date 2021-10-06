@@ -1,1 +1,13 @@
 Your program for the code review lab goes in this directory
+class CodesCracker:
+    def UpToLow(self, u):
+        return u.lower()
+
+print("Enter the String: ", end="")
+text = input()
+
+ob = CodesCracker()
+text = ob.UpToLow(text)
+print("\nIts Lowercase:", text)
+
+from dheeraj
