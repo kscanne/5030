@@ -1,1 +1,12 @@
-Your program for the code review lab goes in this directory
+## Cap2Low
+This program converts the upper-case characters to lower-case while considering each the specific rules for each language.
+
+### How to Run?
+Go to the *mahdirahbar* directory and run the following command on Windows OS: 
+```Python
+python main.py
+```
+or the below command on Linux or Mac OS:
+```Python 
+python3 main.py
+```
