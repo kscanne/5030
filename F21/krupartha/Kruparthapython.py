@@ -1,0 +1,83 @@
+
+lang=input()
+word=input()
+p=[]
+if lang=='tr' or lang=='az':
+    for i in word:
+        if i=='I':
+           p.append('\u0131')
+        elif i>='A' and i<='Z':
+            p.append(i.lower())
+elif lang=='ga' or lang=='ga-IE':
+    if((word[0]=='n' or word[0]=='t') and (word[1]=='U' or word[1]=='O' or word[1]=='I' or word[1]=='E' or word[1]=='A' or word[1]=='\u00CD' or word[1]=='\u00C1' or word[1]=='\u00D3' or word[1]=='\u00DA' or word[1]=='\u00C9')):
+        p.append(word[0])
+        p.append('-')
+        if(word[1]=='\u00CD'):
+            p.append('\u00ED')
+        elif(word[1]=='\u00C1' ):
+            p.append('\u00E1')
+        elif(word[1]=='\u00D3'):
+            p.append('\u00F3')
+        elif(word[1]=='\u00DA'):
+            p.append('\u00FA')
+        elif(word[1]=='\u00C9'):
+            p.append('\u00E9')
+        elif(word[1]>='A' or word[1]=='E' or word[1]=='I' or word[1]=='O' or word[1]=='U' ):
+            p.append(word[1].lower())
+        c=word[2:]
+        for i in c:
+            if i>='A' and i<='Z':
+                p.append(i.lower())
+            elif(i=='\u00CD'):
+                p.append('\u00ED')
+            elif(i=='\u00C1'):
+                p.append('\u00E1')
+            elif(i=='\u00D3'):
+                p.append('\u00F3')
+            elif(i=='\u00DA'):
+                p.append('\u00FA')
+            elif(i=='\u00C9'):
+                p.append('\u00E9')
+            else:
+                p.append(i)
+    else:
+        for i in word:
+            if i>='A' and i<='Z':
+                p.append(i.lower())
+            elif(i=='\u00D3'):
+                p.append('\u00F3')
+            elif(i=='\u00C1'):
+                p.append('\u00E1')
+            elif(i=='\u00D5'):
+                p.append('\u00F5')
+            elif(i=='\u00DA'):
+                p.append('\u00FA')
+            elif(i=='\u00C9'):
+                p.append('\u00E9')
+            else:
+                p.append(i)
+elif lang=='el':
+    if word[-1]=='\u03A3':
+        c=word[:-1]
+        x='\u03C2'
+    else:
+        c=word
+        x=''
+    for i in c:
+        if(i=='\u03A0'):
+            p.append('\u03C0')
+        elif(i=='\u03A3'):
+            p.append('\u03C3')
+    p.append(x)
+elif lang=='en' or lang=='en-US' or lang=='en-IE' or lang=='en-Latn':
+    for i in word:
+        if i>='A' or i<='Z':
+            p.append(i.lower())
+        else:
+            p.append(i)
+else:
+    for i in word:
+        p.append(i)
+
+for i in p:
+    print(i,end='')
