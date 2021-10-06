@@ -111,7 +111,15 @@ print("Text in lowercase: {}".format(lowercase_text))
 
 
 
+
+
+
+
 # test case code
+# first run the above code first so that the test-case code can access the methods mentioned. 
+# mention the file path of the tests.tsv to thats located in your computer in order to read the file.
+# an object has been created for the class, execute the testcase code.
+
 
 import pandas as pd
 
