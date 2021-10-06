@@ -12,27 +12,10 @@ def lowercase(lang, text):
 
     #Handles turkish and azerbeijan
     if base_lang == 'tr' or base_lang == 'az':
-        if 'I' in text:
-            lower_case_text = text.replace('I', 'ı')
-            lower_case_text = lower_case_text.lower()
-        else:
-            lower_case_text = text.lower()
+        lower_case_text = lowercase_turk_azer(text)
     #Handles Irish
     elif base_lang == 'ga':
-        irish_vowels = ['A', 'E', 'I', 'O', 'U', 'Á', 'É', 'Í', 'Ó', 'Ú'] #List of standard irish vowels
-        words = text.split(' ') #If multiple words, will allow for processing of each word properly
-
-        for word in words:
-            #If word starts with n or t then checks for vowels/diacritics and handles accordingly
-            if word[0:1] == 'n' or word[0:1] == 't':
-                if word[1:2] in irish_vowels:
-                    lower_case_text += word[0:1] + '-' + word[1:].lower()
-                elif diacritic_handler.isUppercaseDiacritic(word[1:2]):
-                    lower_case_text += word[0:1] + '-' + diacritic_handler.convertToLowercaseDiacritic(word[1:2]) + word[2:]
-                else:
-                    lower_case_text += word.lower()
-            else:
-                lower_case_text += word.lower()
+        lower_case_text = lowercase_irish(text)
     #Handles greek, uses lowercase_greek method
     elif base_lang == 'el':
         words = text.split(' ')
@@ -47,6 +30,35 @@ def lowercase(lang, text):
     #Defaults to handling text by english rules
     else:
         lower_case_text = text.lower()
+
+    return lower_case_text
+
+def lowercase_turk_azer(text):
+    lower_case_text = ''
+    if 'I' in text:
+        lower_case_text = text.replace('I', 'ı')
+        lower_case_text = lower_case_text.lower()
+    else:
+        lower_case_text = text.lower()
+
+    return lower_case_text
+
+def lowercase_irish(text):
+    irish_vowels = ['A', 'E', 'I', 'O', 'U', 'Á', 'É', 'Í', 'Ó', 'Ú']  # List of standard irish vowels
+    words = text.split(' ')  # If multiple words, will allow for processing of each word properly
+    lower_case_text = ''
+
+    for word in words:
+        # If word starts with n or t then checks for vowels/diacritics and handles accordingly
+        if word[0:1] == 'n' or word[0:1] == 't':
+            if word[1:2] in irish_vowels:
+                lower_case_text += word[0:1] + '-' + word[1:].lower()
+            elif diacritic_handler.isUppercaseDiacritic(word[1:2]):
+                lower_case_text += word[0:1] + '-' + diacritic_handler.convertToLowercaseDiacritic(word[1:2]) + word[2:]
+            else:
+                lower_case_text += word.lower()
+        else:
+            lower_case_text += word.lower()
 
     return lower_case_text
 
