@@ -1,4 +1,6 @@
 
+#This Python code converts upper case words to lowercase
+
 # List of  languages with applicable lower case rules
 languagesRules = {
     "tr":  ["lowercase", "dotless_I"],
@@ -10,7 +12,7 @@ languagesRules = {
     "th":  ["no_upper_and_lower_cases"]
 }
 
-
+# Rules to carry out the conversion from upper case to lower case based on the dictionary defined above
 def applyWordRule(word, rule):
 
     if rule == "lowercase":
@@ -52,7 +54,7 @@ def applyWordRule(word, rule):
         # return the original string unchanged
         return word
 
-
+# Function that does the conversion
 def wordToLowercase(language, word):
     language = language.split("-")[0]
     # Check if language exists in available language rules
@@ -66,7 +68,7 @@ def wordToLowercase(language, word):
     else:
         return word.lower()
 
-
+# Function that reads the test file
 def testFile(filePath):
 
     file = open(filePath, encoding = "utf-8")
@@ -90,5 +92,5 @@ def testFile(filePath):
     file.close()
 
 
-# Test file
+# Load the Test file
 testFile("tests.tsv")
