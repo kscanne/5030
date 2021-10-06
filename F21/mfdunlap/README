@@ -1,1 +1,6 @@
 Your program for the code review lab goes in this directory
+
+This program can be run and tested by:
+    1) Running this script in python (or any IDE that can handle Python).
+    2) Typing python lowercaser.py in a terminal opened in a folder that
+       has both lowercaser.py and tests.tsv.
