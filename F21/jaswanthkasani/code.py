@@ -1,5 +1,5 @@
-class LowerCase:
-    def init(self, word, language):
+class LowerCase():
+    def __init__(self, word, language):
         self.word = word
         self.l = language
 
@@ -29,7 +29,7 @@ class LowerCase:
             return self.word.lower()
 
 
-if name == 'main':
+if __name__ == '__main__':
     f = open('tests.tsv')
     for line in f:
         line = line.rstrip('\n')
