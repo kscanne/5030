@@ -29,9 +29,13 @@ class Word:
             return self.word.lower()
 
 
-if __name__ == '__main__':
-    lancode=input()
-    word=input()
-    w=Word(word,lancode)
-    answer=w.low_er()
-    print(answer)
+if _name_ == '_main_':
+    f = open('tests.tsv')
+    for line in f:
+        line = line.rstrip('\n')
+        pieces = line.split('\t')
+        w = Word(pieces[0], pieces[1])
+        answer = w.low_er()
+        if answer != pieces[2]:
+            print('Test case failed. Expected' + pieces[2]+ 'when lowering'+ pieces[0]+ 'in language'+ pieces[1] + 'but got' + answer)
+    f.close()
