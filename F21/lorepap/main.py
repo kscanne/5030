@@ -1,7 +1,12 @@
+"""
+Author: Lorenzo Pappone
+This is the main file for running lowercase tests
+"""
+
 from utils import Word
 
 if __name__=='__main__':
-  f = open('tests.tsv')
+  f = open('tests2.tsv')
   failed = False
   for test in f:
     test = test.rstrip('\n')
