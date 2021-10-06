@@ -13,7 +13,6 @@ class convertLowerCase():
                 lowercase += word.lower()
         return lowercase            
     
-    
     def el(self, text):   # for greek
         lowercase = ""
         if text[-1] == 'Σ':
@@ -21,7 +20,6 @@ class convertLowerCase():
         else:
             lowercase += text.lower()
         return lowercase     
-    
     
     def ga(self, text):   # for irish 
         lowercase = "" 
@@ -36,8 +34,6 @@ class convertLowerCase():
                 lowercase += text[w].lower()
             
         return lowercase + text[-1].lower()    
-    
-    
     
     def ga_ie(self, text):   # for a dialect of irish
         lowercase = "" 
@@ -61,15 +57,9 @@ class convertLowerCase():
                 lowercase += text[-2].lower()
         else:       
             lowercase += text[-2].lower()        
-         
-        
+            
         return lowercase + text[-1].lower()
-
     
-    
-    
-    
-
 def language(txt, lang_code):
     
     lang_code = lang_code
@@ -90,17 +80,11 @@ def language(txt, lang_code):
     else:
         return 'nothing selected in the list'
 
-    
-    
-    
 text_input = input("Enter text: ").strip()
 lang_code = input("Enter language code: ").lower().strip()
 
 obj = convertLowerCase()    
 
-
 lowercase_text = language(text_input, lang_code)
 
-
 print("Text in lowercase: {}".format(lowercase_text))    
-
