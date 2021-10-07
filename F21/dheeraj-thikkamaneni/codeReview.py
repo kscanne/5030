@@ -21,53 +21,25 @@ class convertLowerCase():
         else:
             lowercase += text.lower()
         return lowercase     
-    
-    
+        
+        
     def ga(self, text):   # for irish 
         lowercase = "" 
-        checks = 'AEIOU'
-        for w in range(0, len(text)-1):
-            if text[w] == 't' or text[w] == 'n':
-                if text[w+1] in checks:
-                    lowercase += text[w] + '-'
-                else:
-                    lowercase += text[w].lower()
-            else:
-                lowercase += text[w].lower()
-            
-        return lowercase + text[-1].lower()    
-    
-    
-    
-    def ga_ie(self, text):   # for a dialect of irish
-        lowercase = "" 
         checks = 'AEIOUÁÉÍÓÚ'
-        for w in range(0, len(text)-2):
-            if text[w] == 't' or text[w] == 'n':
-                if (text[w+1] + text[w+2]) in 'ÃB̃C̃D̃ẼẼF̃G̃H̃ĨJ̃K̃L̃M̃ÕP̃Q̃R̃S̃T̃ŨṼW̃X̃ỸZ̃':   
-                    lowercase += text[w]
-                else:
-                    if text[w+1] in checks:
-                        lowercase += text[w] + '-'
-                    else:
-                        lowercase += text[w].lower()
-            else:
-                lowercase += text[w].lower()
-            
-        if text[-2] == 't' or text[-2] == 'n':
-            if text[-1] in checks:
-                lowercase += text[-2] + '-'
-            else:
-                lowercase += text[-2].lower()
-        else:       
-            lowercase += text[-2].lower()        
-         
+        checks2 = 'ÃẼĨÕŨ'
         
-        return lowercase + text[-1].lower()
-
-    
-    
-    
+        if text[0] == 't' or text[0] == 'n':
+            if text[1]+text[2] in checks2:
+                lowercase += text.lower()
+            elif text[1] in checks:
+                lowercase += text[0] + '-' + text[1:].lower()
+            else:
+                lowercase += text.lower()    
+        else:
+            lowercase += text.lower()
+            
+        return lowercase    
+ 
     
 
 def language(txt, lang_code):
@@ -75,32 +47,26 @@ def language(txt, lang_code):
     lang_code = lang_code
     text = txt 
      
-    lang_direct = ['en', 'th', 'en-us', 'zh-hans', 'en-latn', 'en-ie']
+    lang_direct = ['en', 'th', 'en-us', 'zh-hans', 'en-latn', 'en-ie', 'ja']
     
     if [lang for lang in lang_direct if lang_code in lang]:        
         return obj.lc(text)
-    elif lang_code == 'tr':
+    elif lang_code == 'tr' or lang_code == 'az:
         return obj.tr(text)
     elif lang_code == 'el':
         return obj.el(text)
-    elif lang_code == 'ga':
+    elif lang_code == 'ga' or lang_code == 'ga-ie':
         return obj.ga(text)
-    elif lang_code=='ga-ie': 
-        return obj.ga_ie(text)
     else:
         return 'nothing selected in the list'
 
-    
-    
-    
+     
 text_input = input("Enter text: ").strip()
 lang_code = input("Enter language code: ").lower().strip()
 
 obj = convertLowerCase()    
 
-
 lowercase_text = language(text_input, lang_code)
-
 
 print("Text in lowercase: {}".format(lowercase_text))    
 
@@ -128,20 +94,17 @@ class convertLowerCaseTest():
     data = pd.read_csv('tests.tsv', delimiter = '\t')   # mention the tsv file path to read the values
     test_data = [list(row) for row in data.values]
 
-
-
     for i in test_data:
         text = i[0]
         lang_code = i[1].lower()
-    
+        
         print('input: ' + text)
         print('lang: ' + i[1])
-    
+        
         lowercase_text = language(text, lang_code)
-    
+        
         print("Your scenario: " + lowercase_text)
         print("Actual scenario: " + i[2])
         print('\n')
-    
-    
+        
 objt = convertLowerCaseTest()   
