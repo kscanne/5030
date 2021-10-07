@@ -6,6 +6,7 @@
 
 from langdetect import detect, DetectorFactory
 
+
 class Lower: 
     def __init__(self, string, lang):
         self.string = string 
@@ -42,11 +43,10 @@ class Lower:
             input: - 
             output: returns the fianl string
         '''
-        irish_upper = ('A','E','I','O','U','Á','É','Í','Ó','Ú')
-        irish_exp = ('n','t')
+        
         for i in range(len(self.word_list)):
-            if (self.word_list[i][0] in irish_exp) and \
-                (self.word_list[i][1] in irish_upper):
+            if (self.word_list[i][0].encode('utf-8') in self.irish_lower_decoded) and \
+                (self.word_list[i][1].encode('utf-8') in self.irish_upper_decoded):
                 self.word_list[i] =  self.word_list[i][0].lower() + \
                                      '-' + self.word_list[i][1:].lower()
             else: 
@@ -62,7 +62,21 @@ class Lower:
             input: - 
             output:  string
         '''
-        pass
+        char_dict = {'I':'ı'}
+
+        for i in range(len(self.word_list)):            
+            for key, value in char_dict.items():
+                indexes = [i for i, ltr in enumerate(self.word_list[i]) if ltr == key]
+                for l in indexes:
+                    self.word_list[i] = self.word_list[i][:l].lower() + value + self.word_list[i][l+1:].lower()
+
+        ## An alternative way is the following two lines of code!
+
+        ## The following 2 lines of codes are a more general form of 
+        ##      converting Turkish characters to lower case.
+        # for i in range(len(self.word_list)):
+        #     self.word_list[i] = self.word_list[i].lower()
+        return self.word_to_str()
 
     def el_lower(self):
         '''
@@ -72,7 +86,17 @@ class Lower:
             input: - 
             output:  string
         '''
-        pass
+        exception_chars = {'Σ':'ς'}
+        for i in range(len(self.word_list)):
+            for key, value in exception_chars.items():
+                if key == self.word_list[i][-1]:
+                    self.word_list[i] = self.word_list[i][:-1].lower()+ value
+                else:
+                    self.word_list[i] = self.word_list[i].lower()
+
+        return self.word_to_str()
+
+
 
     def word_to_str(self):
         '''
@@ -83,6 +107,28 @@ class Lower:
         '''
         return " ".join(self.word_list)
 
+    def utf8_decoder(self, word):
+        '''
+            Returns the decoded word.
+            input: - 
+            output: string
+        '''
+        return word.decode('utf-8')
+
+    def ga_util(self):
+        '''
+            Build the required utility for ga.
+            input: - 
+            output: None
+        '''
+        irish_upper = (u'A',u'E',u'I',u'U',u'Á',u'É',u'Í',u'Ó',u'Ú') # ,u'O'
+        irish_exp = ('n','t')
+        self.irish_upper_decoded = []
+        for i in range(len(irish_upper)):
+            self.irish_upper_decoded.append(irish_upper[i].encode('utf-8'))
+        self.irish_lower_decoded = []
+        for i in range(len(irish_exp)):
+            self.irish_lower_decoded.append(irish_exp[i].encode('utf-8'))
 
     def call_lower(self):
         '''
@@ -96,13 +142,14 @@ class Lower:
         if 'en' in self.lang:
             # English 'en'
             return self.string.lower()
-        elif self.lang == 'ga':
+        elif 'ga' in self.lang :
             # Irish 'ga'
+            self.ga_util()
             return self.ga_lower()
-        elif self.lang == 'tr' or 'az':
+        elif self.lang in ['tr', 'az']:
             return self.tr_lower()
         elif self.lang == 'el':
             return self.el_lower()
             # Greek 'el'
-        elif self.lang == 'zh' or 'ja' or 'th' or 'fa' or 'ar':
+        elif any(lan in self.lang for lan in ['zh', 'ja', 'th', 'fa', 'ar']):
             return self.string
