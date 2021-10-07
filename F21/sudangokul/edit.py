@@ -6,11 +6,9 @@ print("code  laguage\nenglish (en)\nTurkish (tr)\nAzerbaijani (az)\nIrish (ga)\n
 lang= input("Enter the Correct language = ",)  
 p=[]
 if lang=='tr' or lang=='az':
-    for i in word:
-        if i=='I':
-           p.append('\u0131')
-        elif i>='A' and i<='Z':
-            p.append(i.lower())
+    output = word.lower()
+    answer = output.replace('i','\u0131' )
+    p.append(answer)
 elif lang=='ga' or lang=='ga-IE':
     if((word[0]=='n' or word[0]=='t') and (word[1]=='A' or word[1]=='E' or word[1]=='I' or word[1]=='O' or word[1]=='U' or word[1]=='\u00C1' or word[1]=='\u00C9' or word[1]=='\u00CD' or word[1]=='\u00D3' or word[1]=='\u00DA')):
         p.append(word[0])
