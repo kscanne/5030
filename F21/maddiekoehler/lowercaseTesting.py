@@ -15,3 +15,5 @@ for test in tests:
                 print("Pass", "  Expected:", expected, "  Actual:", actual)
         else:
                 print("Fail", "  Expected:", expected, "  Actual:", actual)
+#closing file
+file.close()
