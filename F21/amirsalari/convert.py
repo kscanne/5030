@@ -59,12 +59,12 @@ def convert(test_word):
                     lowercase_word = lowercase_word[:2] + \
                         '\u00F3' + lowercase_word[3:]
         else:
-            lowercase_word = lowercase_word.replace('\u00C1', '\u00E1')  #
-            lowercase_word = lowercase_word.replace('\u00C9', '\u00E9')  #
-            lowercase_word = lowercase_word.replace('\u00CD', '\u00ED')  #
-            lowercase_word = lowercase_word.replace('\u00D3', '\u00F3')  #
-            lowercase_word = lowercase_word.replace('\u00D5', '\u00F5')  #
-            lowercase_word = lowercase_word.replace('\u00DA', '\u00FA')  #
+            lowercase_word = lowercase_word.replace('\u00C1', '\u00E1')
+            lowercase_word = lowercase_word.replace('\u00C9', '\u00E9')
+            lowercase_word = lowercase_word.replace('\u00CD', '\u00ED')
+            lowercase_word = lowercase_word.replace('\u00D3', '\u00F3')
+            lowercase_word = lowercase_word.replace('\u00D5', '\u00F5')
+            lowercase_word = lowercase_word.replace('\u00DA', '\u00FA')
             lowercase_word = lowercase_word.lower()
         return lowercase_word
     # Specification 3
@@ -118,6 +118,6 @@ if __name__ == "__main__":
     test_file = open_file(test_file_path)
     for iteration, item in enumerate(test_file):
         if (item[2] != convert(item)):
-            print("In Line: ", iteration, ",test case is failed for: ",
+            print("In Line: ", iteration + 1, ",test case is failed for: ",
                   item, ". The correct lowercase word is: ", convert(item), "\n")
     close_file(test_file_path)
