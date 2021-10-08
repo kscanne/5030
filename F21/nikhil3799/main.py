@@ -1,9 +1,16 @@
+# Upper to Lower case converter program - Python
+# Supporting Languages - "ENGLISH", "TURKISH or AZERBAIJANI", "IRISH","GREEK"
+
+# CODING STANDARDS:
+# CamelCase Notation for variable names
+# Function name: Camelcase notation with _ between two words for better readability
+# Define general purpose of every variable or function in comments for reading purposes
 class Word:
     def __init__(self, word, code):
         self.word = word
         self.code = code
 
-    def low_er(self):
+    def low_er(self): #For Turkish and Azerbaizani
         if self.code == 'tr' or self.code == 'az':
             temp = self.word.replace('\u0049', '\u0131')
             return temp.lower()
@@ -17,7 +24,7 @@ class Word:
             else:
                 return self.word.lower()
 
-        elif self.code == 'el':
+        elif self.code == 'el':  #For English
             if self.word[-1] == '\u03A3':
                 temp = self.word[:-1] + '\u03c2'
                 return temp.lower()
