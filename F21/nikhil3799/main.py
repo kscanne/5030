@@ -10,7 +10,7 @@ class Word:
         self.word = word
         self.code = code
 
-    def low_er(self): #For Turkish and Azerbaizani
+    def low_er(self): #For Turkish, Greek and Azerbaizani
         if self.code == 'tr' or self.code == 'az':
             temp = self.word.replace('\u0049', '\u0131')
             return temp.lower()
