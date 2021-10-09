@@ -74,16 +74,7 @@ elif lang=='el':
         c=word
         x=''
     for i in c:
-        if(i=='\u03A0'):
-            p.append('\u03C0')
-        elif(i=='\u03A3'):
-            p.append('\u03C3')
-        elif(i=='\u0397'):
-            p.append('\u03B7')
-        elif(i=='\u039B'):
-            p.append('\u03BB')
-        elif(i=='\u038C'):
-            p.append('\u03CC')
+        p.append(i.lower())
     p.append(x)
 elif lang=='en' or lang=='en-US' or lang=='en-IE' or lang=='en-Latn':
     for i in word:
