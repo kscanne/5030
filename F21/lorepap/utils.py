@@ -1,3 +1,8 @@
+"""
+Author: Lorenzo Pappone
+This is the library for lowercase task
+"""
+
 import unicodedata
 
 
@@ -9,7 +14,6 @@ class Word:
   def __init__(self, word, bcp):
     self.word = word
     self.language = bcp
-    # self._standardIrishSpelling = std
 
   def toLowercase(self):
     """
@@ -41,6 +45,9 @@ class Word:
     return tmp.lower()
 
   def getLanguageFromBcp(self):
+      """
+      Get the code from BCP code
+      """
       language = self.language
       if '-' in self.language:
             i = self.language.find('-')
@@ -48,7 +55,8 @@ class Word:
       return language
 
   def checkInvalidBcp(self, language):
+      """
+      Check if the BCP code provided is invalid
+      """
       if len(language) < 2 or len(language) > 3:
         print("Invalid BCP-47 code: ", language)
-        raise ValueError('Invalid Bcp Code')
-
