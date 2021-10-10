@@ -35,3 +35,4 @@
 {"a" : 3, "b" : 3, "c" : 5}	isosceles
 {"a" : 5.36, "b" : 5.36, "c" : 5.36}	equilateral
 {"a" : 1, "b" : 2, "c" : 3}	error
+{"a" : 12, "b" : 12, "c" : 12}	equilateral
