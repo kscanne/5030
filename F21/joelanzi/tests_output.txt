@@ -1,0 +1,11 @@
+C:\Users\Joe Lanzi\Desktop\5030\F21\joelanzi>py -m unittest test_triangle.py -v
+test_return_equilateral (test_triangle.TestTriangle) ... ok
+test_return_isosceles (test_triangle.TestTriangle) ... ok
+test_return_scalene (test_triangle.TestTriangle) ... ok
+test_return_string (test_triangle.TestTriangle) ... ok
+test_triangle_valid (test_triangle.TestTriangle) ... ok
+
+----------------------------------------------------------------------
+Ran 5 tests in 0.002s
+
+OK
