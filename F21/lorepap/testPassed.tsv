@@ -1,0 +1,40 @@
+HELLO	en	hello passed
+WORLD	en-US	world passed
+cAmEl	en-IE	camel passed
+---OK	en-Latn	---ok passed
+KÖNNTEN	de-DE	könnten passed
+KUDA	id-ID	kuda passed
+tAcht	ga	t-acht passed
+tACHT	ga	t-acht passed
+TACHT	ga	tacht passed
+nAthair	ga	n-athair passed
+nATHAIR	ga	n-athair passed
+NATHAIR	ga	nathair passed
+NATHaiR	ga	nathair passed
+àDh	ga	àdh passed
+naTHAIR	ga	nathair passed
+cApall	ga	capall passed
+nÓg	ga-IE	n-óg passed
+nÕg	ga-IE	nõg passed
+nÕg	ga-IE	nõg passed
+KASIM	tr	kasım passed
+KASIM	en	kasim passed
+ΠΌΛΗΣ	el	πόλης passed
+官话	zh-Hans	官话 passed
+ภาษาไทย	th 	ภาษาไทย passed
+好的	zh-CN   	好的 passed
+ThiS Is A tExt	en-US	this is a text passed
+“Verify”	en	“verify” passed
+‘verify’	en	‘verify’ passed
+BuongioRnO!	it	buongiorno! passed
+Punc.tuAtion	en	punc.tuation passed
+меня зовут лоренцо	ru	меня зовут лоренцо passed
+собака лошадь и змея	ru	собака лошадь и змея passed
+!@#$%^&(*)	en	!@#$%^&(*) passed
+NoNe-None	en	none-none passed
+ça va bien	fr	ça va bien passed
+Á la une	fr	á la une passed
+QuestO è L’apostrofo	it	questo è l’apostrofo passed
+ììì^^^	ga	ììì^^^ passed
+iA^^^	ga	ia^^^ passed
+ΑΛΟΓΟ	el	αλογο passed

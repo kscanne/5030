@@ -39,8 +39,8 @@ class Word:
             tmp = self.word
             tmp = tmp.replace('\u0049','\u0131')
         elif language=='el':
+            # Sigma character
             if tmp[-1]=='\u03a3':
-                #self._finalSigma = True
                 tmp = tmp[:-1]+'\u03c2'
     return tmp.lower()
 
