@@ -1,25 +1,25 @@
 {"a" : 3, "b" : 4, "c" : 5}	scalene
 {"a" : 3, "b" : 3, "c" : 1}	isosceles
 {"a" : 3, "b" : 3, "c": 3} equilateral
-{"a" : 100, "b" : 3, "c" : 4} error
-{"a" : 3, "b" : 100, "c" : 4} error
-{"a" : 3, "b" : 4, "c" : 100}	error
+{"a" : 100, "b" : 3, "c" : 4}   error
+{"a" : 3, "b" : 100, "c" : 4}   error
+{"a" : 3, "b" : 4, "c" : 100}   error
 {"a" : 3, "b" : 4, "c" : 7} error
 {"a" : f, "b" : 4, "c" : 7} error
 {"a" : 3, "b" : f, "c" : 7} error
 {"a" : 3, "b" : 4, "c" : f} error
 {"a" : 3, "b" : 4, "c" : 7} error
-{"a" : 0.1, "b" : 0.3, "c" : 0.02} scalene
-{"a" : 0.1, "b" : 0.1, "c" : 0.3} equilateral
-{"a" : 0.1, "b" : 0.1, "c" : 0.1} isosceles
-{"a" : 0.1, "b" : 0.1, "c" : 10} error
-{"a" : 0.1, "b" : 0.1, "c" : 0.2} error
+{"a" : 0.1, "b" : 0.3, "c" : 0.02}  scalene
+{"a" : 0.1, "b" : 0.1, "c" : 0.3}   equilateral
+{"a" : 0.1, "b" : 0.1, "c" : 0.1}   isosceles
+{"a" : 0.1, "b" : 0.1, "c" : 10}    error
+{"a" : 0.1, "b" : 0.1, "c" : 0.2}   error
 {"a" : 99999, "b" : 99999, "c" : 99999} equilateral
 {"a" : 99999.1, "b" : 99999.1, "c" : 1} isosceles
-{"a" : ff, "b" : ff, "c" : ff} error
-{"a" : ff, "b" : ff, "c" : 1} error
-{"a" : 1, "b" : 1, "c" : ff} error
-{"a" : 1, "b" : ff, "c" : 1} error
+{"a" : ff, "b" : ff, "c" : ff}  error
+{"a" : ff, "b" : ff, "c" : 1}   error
+{"a" : 1, "b" : 1, "c" : ff}    error
+{"a" : 1, "b" : ff, "c" : 1}    error
 {"a" : f, "b" : g, "c" : c} error
 {"a" : ., "b" : 3, "c" : 5} error
 {"a" : 3, "b" : ., "c" : 5} error
@@ -27,10 +27,10 @@
 {"a" : ., "b" : ., "c" : 3} error
 {"a" : 3, "b" : ., "c" : .} error
 {"a" : ., "b" : 3, "c" : .} error
-{"a" : 0.99999, "b" : 0.99999, "c" : 0.99999} equilateral
+{"a" : 0.99999, "b" : 0.99999, "c" : 0.99999}   equilateral
 {"a" : 0.99999, "b" : 0.99999, "c" : 1} isosceles
-{"a" : 0.999, "b" : 0.99, "c" : 0.9} scalene
-{"a" : 0.9, "b" : 0.9, "c" : 1.799999999} error
+{"a" : 0.999, "b" : 0.99, "c" : 0.9}    scalene
+{"a" : 0.9, "b" : 0.9, "c" : 1.799999999}   error
 
 
 
