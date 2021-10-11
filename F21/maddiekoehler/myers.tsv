@@ -1,0 +1,13 @@
+{"a" : 3, "b" : 4, "c" : 5}	scalene
+{"a" : 3, "b" : 3, "c" : 1}	isosceles
+{"a" : 3, "b" : 4, "c" : 100}	error
+{"a" : 0, "b" : 0, "c" : 0}	error
+{"a" : 4, "b" : 3, "c" : 2}	scalene
+{"a" : 3, "b" : 3, "c" : 3}	equilateral
+{"a" : 3, "b" : 3, "c" : 0}	error
+{"a" : 3.0, "b" : 3.0, "c" : 1.0}	isosceles
+{"a" : 9999, "b" : 9999, "c" : 1}	isosceles
+{"a" : 0.5, "b" : 0.4, "c" : 0.3}	scalene
+{"a" : 1, "b" : 1, "c" : 100}	error
+{"a" : -3, "b" : 4, "c" : 5}	error
+
