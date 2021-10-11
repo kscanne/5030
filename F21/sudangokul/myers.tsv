@@ -4,7 +4,7 @@
 {"a" : 3, "b" : 3, "c" : 3}	Equilateral
 {"a" : 6, "b" : 6, "c" : 1}	isosceles
 {"a" : 5, "b" : 1, "c" : 100}	error
-{"a" : 1, "b" : 4, "c" : 3}	scalene
+{"a" : 1, "b" : 4, "c" : 3}	error
 {"a" : 4, "b" : 4, "c" : 4}	Equilateral
 {"a" : 3, "b" : 3, "c" : 00}	error
 {"a" : 6, "b" : 8, "c" : 5}	scalene
