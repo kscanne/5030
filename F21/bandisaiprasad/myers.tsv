@@ -12,3 +12,5 @@
 {"a" : 18, "b" : 18, "c" : 18}	equalateral
 {"a" : 12, "b" : 12, "c" : 4}	isosceles
 {"a" : 12, "b" : 16, "c" : 400}	error
+{"a" : 20, "b" : 20, "c" : 20}	equalateral
+{"a" : 12, "b" : 15, "c" : 18}	scalene
