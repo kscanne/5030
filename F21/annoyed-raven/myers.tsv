@@ -1,3 +1,46 @@
 {"a" : 3, "b" : 4, "c" : 5}	scalene
 {"a" : 3, "b" : 3, "c" : 1}	isosceles
-{"a" : 3, "b" : 4, "c" : 100}	error
+{"a" : 3, "b" : 4, "c" : 100} error
+{"a" : 6, "b" : 6, "c" : 6}	equilateral
+
+{"" : 6, "b" : 6, "c" : 6} error
+{"a" : 6, "" : 6, "c" : 6} error
+{"a" : 6, "b" : 6, "" : 6} error
+{"a" : , "b" : 6, "c" : 6} error
+{"a" : 6, "b" : , "c" : 6} error
+{"a" : 6, "b" : 6, "c" : } error
+
+{"b" : 6, "b" : 6, "c" : 6} error
+{"a" : 6, "a" : 6, "c" : 6} error
+{"a" : 6, "b" : 6, "a" : 6} error
+{"a" : , "b" : 6, "b" : 6} error
+{"c" : 6, "b" :6 , "c" : 6} error
+{"a" : 6, "c" : 6, "c" :6 } error
+
+{"" : 3, "b" : 4, "c" : 5}	error
+{"a" : 3, "" : 4, "c" : 5}	error
+{"a" : 3, "b" : 4, "" : 5}	error
+{"a" : , "b" : 4, "c" : 5}	error
+{"a" : 3, "b" : , "c" : 5}	error
+{"a" : 3, "b" : 4, "c" : }	error
+
+{"a" : 3, "a" : 4, "c" : 5}	error
+{"a" : 3, "b" : 4, "a" : 5}	error
+{""b : 3, "b" : 4, "c" : 5}	error
+{"a" : 3, "b" : 4, "b" : 5}	error
+{"x" : 3, "b" : 4, "c" : 5}	error
+{"a" : 3, "c" : 4, "c" : 5}	error
+
+{"" : 3, "b" : 3, "c" : 1}	error
+{"a" : 3, "" : 3, "c" : 1}	error
+{"a" : 3, "b" : 3, "" : 1}	error
+{"a" : , "b" : 3, "c" : 1}	error
+{"a" : 3, "b" : , "c" : 1}	error
+{"a" : 3, "b" : 3, "c" : }	error
+
+{"a" : 3, "a" : 3, "c" : 1}	error
+{"a" : 3, "b" : 3, "a" : 1}	error
+{"b" : 3, "b" : 3, "c" : 1}	error
+{"a" : 3, "b" : 3, "b" : 1}	error
+{"c" : 3, "b" : 3, "c" : 1}	error
+{"a" : 3, "c" : 3, "c" : 1}	error
