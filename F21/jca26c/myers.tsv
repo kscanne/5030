@@ -5,14 +5,14 @@
 {"base": 10, "height": 20, "area": 10*20/2} 100
 {"base": 20, "height": 40, "area": 20*40/2} 400
 
-{"a" : 3, "b" : 4, "c" : 5}	scalene
-{"a" : 4, "b" : 3, "c" : 5}	scalene
+{"a" : 3, "b" : 4, "c" : 5} scalene
+{"a" : 4, "b" : 3, "c" : 5} scalene
 
-{"a" : 3, "b" : 3, "c" : 1}	isosceles
-{"a" : 4, "b" : 4, "c" : 1}	isosceles
+{"a" : 3, "b" : 3, "c" : 1} isosceles
+{"a" : 4, "b" : 4, "c" : 1} isosceles
 
-{"a" : 3, "b" : 3, "c" : 1}	equilateral
-{"a" : 4, "b" : 4, "c" : 1}	equilateral
+{"a" : 3, "b" : 3, "c" : 1} equilateral
+{"a" : 4, "b" : 4, "c" : 1} equilateral
 
 {"a" : 3, "b" : 4, "c" : 100} degenerate
 {"a" : 3, "b" : 4, "c" : 7} degenerate
