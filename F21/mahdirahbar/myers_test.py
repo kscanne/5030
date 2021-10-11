@@ -15,9 +15,9 @@ def is_triangle(a, b, c):
     input_num = [a,b,c]
     sorted_input = sorted(input_num)  
 
-    if sorted_input[0]+sorted_input[1]< sorted_input[2]:
+    if (sorted_input[0]+sorted_input[1])<= sorted_input[2]:
         print("InputError: The input lengths, can not compromise a triangle! Please enter another set of inputs!")
-        return 'error'
+        return error
     if sorted_input[0] == sorted_input[1] :
         if sorted_input[1] != sorted_input[2]: 
             return isosceles
@@ -31,11 +31,11 @@ def is_triangle(a, b, c):
     else: 
         return scalene
 
-def test_is_triangle(a, b, c, actual_status):
-    output_status = is_triangle(a, b, c)
+def test_is_triangle(in1, in2, in3, actual_status):
+    output_status = is_triangle(in1, in2, in3)
     assert actual_status == output_status, \
             """The output status is not what expected. 
-            Expected {}, but got {}.""".format(output_status,actual_status)
+            Expected {} on {}, but got {}.""".format(actual_status, [in1,in2,in3] ,output_status)
         
     
 
@@ -50,5 +50,6 @@ if __name__ == "__main__":
             test_data[i][0] =  ast.literal_eval(test_data[i][0]) 
         for i in range(len(test_data)):
             test_is_triangle(*test_data[i][0].values(), test_data[i][1])
+            
 
 
