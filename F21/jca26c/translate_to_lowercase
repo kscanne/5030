@@ -4,16 +4,14 @@ Created on Wed Sep 29 17:46:05 2021
 
 @author: jca26
 """
-## Languages to test
-azerbajani= "az"
-chinese= "zh"
-irish= "ga"
-greek= "el"
-english= "en"
-thai= "th"
-turkish= "tr"
+## Import packages
+import sys
+import unicodedata
 
 
+## Lowercase function
+## takes word and language of choice
+## returns lowercased word
 def lower_case_word(word, language):
     ## Languages with no lowercase conditional
     if language == "th" or language == "zh" or language == "ja":
@@ -32,46 +30,81 @@ def lower_case_word(word, language):
     ## Irish conditional
     elif language == "ga":
         word = unicodedata.normalize("NFC", word)
-        irish_vowels = ["A","E","I","O","U","Á","É","Í","Ó","Õ","Ú"]
+        irish_vowels = ["A","E","I","O","U","Á","É","Í","Ó","Ú"]
         if (word[0] == "n" or word[0] == "t") and word[1] in irish_vowels:
             word = word[0] + '-' + word[1:]
         word = word.lower()
         return word
     else:
         word = word.lower()
-        return wordranslate(language)
-    return(final_output)
-		
-	
-## test cases
-## use the language given
-## english
-word_1= u"HELLO"
-word_2= u"WORLD"
-word_3= u"cAmEl"
-word_4= u"---OK"
-## irish
-word_5= u"tAcht"
-word_6= u"tACHT"
-word_7= u"TACHT"
-word_8= u"nAthair"
-word_9= u"nATHAIR"
-word_10= u"NATHAIR"
-word_11= u"nÓg"
-## irish_IE
-word_12= u"nÕg"
-word_13= u"nÕg"
-## turkish
-word_14= u"KASIM"
-## english
-word_15= u"KASIM"
-## greek
-word_16= u"ΠΌΛΗΣ"
-## chinese
-word_17= u"官话"
-## thai
-word_18= u"ภาษาไทย"
+        return word
+
+ 
+## Languages to test
+azerbajani= "az"
+chinese= "zh"
+irish= "ga"
+greek= "el"
+english= "en"
+thai= "th"
+turkish= "tr"
+
+## Use language tests provided
+english_words=["HELLO","WORLD","cAmEl","---OK","KASIM"]
+irish_words=['tAcht','tACHT','TACHT','nAthair','nATHAIR','NATHAIR','nÓg','nÕg','nÕg']
+turkish_words=['KASIM']
+greek_words=['ΠΌΛΗΣ']
+chinese_words=['官话']
+thai_words=['ภาษาไทย']
+
+## Use answer key provided
+english_answers=['hello','world','camel','---ok','kasim']
+irish_answers=['t-acht','t-acht','tacht','n-athair','n-athair','nathair','n-óg','nõg','nõg']
+turkish_answers=['kasım']
+greek_answers=['πόλης']
+chinese_answers=['官话']
+thai_answers=['ภาษาไทย']
+
+## Functions to test specific language
+## Move toward unified function in future versions
+
+def english_test(eng_list):
+    for i in range(len(eng_list)):
+        lowercase_word = lower_case_word(eng_list[i], english)
+        print(english_answers[i],lowercase_word, "Correct" if english_answers[i]==lowercase_word else "Incorrect")
+        
+def irish_test(irish_list):
+    for i in range(len(irish_list)):
+        lowercase_word = lower_case_word(irish_list[i], irish)
+        print(irish_answers[i],lowercase_word,"Correct" if irish_answers[i]==lowercase_word else "Incorrect")
+        
+def turkish_test(turkish_list):
+    for i in range(len(turkish_list)):
+        lowercase_word = lower_case_word(turkish_list[i], turkish)
+        print(turkish_answers[i],lowercase_word,"Correct" if turkish_answers[i]==lowercase_word else "Incorrect")
+        
+def greek_test(greek_list):
+    for i in range(len(greek_list)):
+        lowercase_word = lower_case_word(greek_list[i], greek)
+        print(greek_answers[i],lowercase_word,"Correct" if greek_answers[i]==lowercase_word else "Incorrect")
+
+def chinese_test(chinese_list):
+    for i in range(len(chinese_list)):
+        lowercase_word = lower_case_word(chinese_list[i], chinese)
+        print(chinese_answers[i],lowercase_word,"Correct" if chinese_answers[i]==lowercase_word else "Incorrect")
+
+def thai_test(thai_list):
+    for i in range(len(thai_list)):
+        lowercase_word = lower_case_word(thai_list[i], thai)
+        print(thai_answers[i],lowercase_word,"Correct" if thai_answers[i]==lowercase_word else "Incorrect")
+        
 
 
-test= lower_case_word(word_1,english)
-print(test)
+
+## Print results to console
+english_test=english_test(english_words)  
+irish_test=irish_test(irish_words)  
+turkish_test=turkish_test(turkish_words)  
+greek_test=greek_test(greek_words)  
+chinese_test=chinese_test(chinese_words)  
+thai_test=thai_test(thai_words)  
