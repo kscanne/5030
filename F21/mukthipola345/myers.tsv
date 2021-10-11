@@ -1,3 +1,6 @@
-{"a" : 3, "b" : 4, "c" : 5}	scalene
-{"a" : 3, "b" : 3, "c" : 1}	isosceles
-{"a" : 3, "b" : 4, "c" : 100}	error
+{'a':1,'b':1,'c':1}	equilateral
+{'a':1,'b':2,'c':6}	error
+{'a':3,'b':4,'c':4}	isosceles
+{'a':2,'b':6,'c':5}	error
+{'a':2,'b':5,'c':8}	scalene
+{'a':0,'b':0,'c':0} error
