@@ -1,41 +1,26 @@
-class LowerCase():
-    def __init__(self, word, language):
-        self.word = word
-        self.l = language
+class toLowerCase():
+    def __init__(self, input, lang):
+        self.input = input
+        self.lower = lang
 
-    def lower(self):
-        if self.l == 'tr' or self.l == 'az':
-            temp = self.word.replace('\u0049', '\u0131')
-            return temp.lower()
-        elif self.l == 'ga' or self.l == 'ga-IE':
-            if self.word[0] == 't' or self.word[0] == 'n':
-                if self.word[1] in ['A', 'E', 'I', 'O', 'U', 'Á', 'É', 'Í', 'Ó', 'Ú']:
-                    temp = self.word[0] + "-" + self.word[1:]
-                    return temp.lower()
-                else:
-                    return self.word.lower()
-            else:
-                return self.word.lower()
-
-        elif self.l == 'el':
-            if self.word[-1] == '\u03A3':
-                temp = self.word[:-1] + '\u03c2'
-                return temp.lower()
-            else:
-                self.word.lower()
-        elif self.l == 'zh' or self.l == 'th':
-            return self.word
-        else:
-            return self.word.lower()
-
-
+    def uppertolower(self):
+        if self.lower == 'az' || self.lang == 'tr':
+            result = self.input.replace('\u0049', '\u0131')
+            return result.uppertolower()
+        elif self.lower == 'ga' || self.lower == 'ga-IE'
+                if self.input[1] in ['A', 'E', 'I', 'O', 'U', 'Á', 'É', 'Í', 'Ó', 'Ú']:
+                    result = self.input[0] + "-" + self.input[1]
+                    return result.uppertolower()
+        else self.lower == 'zh' || self.lower == 'th':
+            return self.input.uppertolower()
+        elif self.lower == 'el'
+            if self.input[-1] == '\u03A3'
+                return result.uppertolower()
+       
 if __name__ == '__main__':
-    f = open('tests.tsv')
-    for line in f:
-        line = line.rstrip('\n')
-        pieces = line.split('\t')
-        w = LowerCase(pieces[0], pieces[1])
-        answer = w.lower()
-        if answer != pieces[2]:
-            print('Test case failed. Expected' + pieces[2]+ 'when lowering'+ pieces[0]+ 'in language'+ pieces[1] + 'but got' + answer)
-    f.close()
+    file = open('tests.tsv')
+    for line in file
+         match = re.search(line, "\u011f")
+        if(match)
+            print('Test case has been failed' + letters[2]+ 'while lowering'+ letters[0] + answer)
+    file.close()
