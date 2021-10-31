@@ -7,11 +7,6 @@ class Word:
     self._l = bcpCode
     self._finalSigma = False
     self._standardIrishSpelling = std
-    # OLD EXPERIMENTAL CODE for dealing with vowel harmony
-    # self._numVowels = 0
-    # for c in word:
-    #   if c in 'aeiouAEIOU':
-    #   self._numVowels += 1
 
   def setWord(self, w):
     self._w = w
