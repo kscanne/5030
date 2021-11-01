@@ -1,76 +1,55 @@
 import unicodedata
 
+class Lang:
+  def __init__(self):
+    self._langCode = ''
+
+  def getLang(self, givenLang):
+    language = givenLang.split('-')[0]
+    if len(language) < 2 or len(language) > 3:
+      print("Invalid BCP-47 code")
+    else:
+      self._langCode = language
+
 class Word:
-
-  def __init__(self, word, bcpCode, std=False):
-    self._w = word
-    self._l = bcpCode
-    self._finalSigma = False
-    self._standardIrishSpelling = std
-    # OLD EXPERIMENTAL CODE for dealing with vowel harmony
-    # self._numVowels = 0
-    # for c in word:
-    #   if c in 'aeiouAEIOU':
-    #   self._numVowels += 1
-
-  def setWord(self, w):
-    self._w = w
+  def __init__(self, word, bcpCode):
+    self._word = word
+    self._lang = bcpCode
 
   def toLower(self):
-    language = self._l
-    if '-' in self._l:
-      i = self._l.find('-')
-      language = self._l[0:i]
-    if len(language)<2 or len(language)>3:
-      print("Invalid BCP-47 code")
+    # \u00c1 = A with Acute
+    # \u00c9 = E with Acute
+    # \u00cd = I with Acute
+    # \u00d3 = O with Acute
+    # \u00da = U with Acute
+    # \u0131 = i with not dot
+    # \u0370 = sigma
+    # \u03a3 = lower ending sigma
+
+    language = Lang()
+    language.getLang(self._lang)
+    if not language._langCode:
       return ''
-    temp = self._w
-    if language=='zh':
-      return temp
-    elif language=='ja':
+    temp = self._word
+    noChange = ['zh', 'ja', 'th']
+    if language in noChange:
       return temp
     elif language=='ga':
-      if len(self._w)>1:
-        if (self._w[0]=='t' or self._w[0]=='n') and unicodedata.normalize('NFC', self._w)[1] in 'AEIOU\u00c1\u00c9\u00cd\u00d3\u00da':
-          temp = self._w[0]+'-'+temp[1:]
+      if len(self._word)>1:
+        if (self._word[0]=='t' or self._word[0]=='n') and unicodedata.normalize('NFC', self._word)[1] in 'AEIOU\u00c1\u00c9\u00cd\u00d3\u00da':
+          temp = self._word[0]+'-'+temp[1:]
       return temp.lower()
-    elif language=='tr':
-      temp = self._w
+    elif language=='tr' or language=='az':
+      temp = self._word
       temp = temp.replace('\u0049','\u0131')
       return temp.lower()
-    elif language=='az':
-      temp = self._w
-      temp = temp.replace('\u0049','\u0131')
-      return temp.lower()
-    elif language=='th':
-      return temp
     elif language=='el':
       if temp[-1]=='\u03a3':
-        self._finalSigma = True
         temp = temp[:-1]+'\u03c2'
-      return temp.lower()
-    elif False and language=='gd':
-      # specification doesn't ask for this language to be treated differently
-      # so this will never be called
-      if len(self._w)>1:
-        if (self._w[0]=='t' or self._w[0]=='n') and self._w[1] in 'AEIOU\u00c1\u00c9\u00cd\u00d3\u00da':
-          temp = self._w[0]+'-'+temp[1:]
       return temp.lower()
     else:
       return temp.lower()
 
-  def isLenited(self):
-    language = self._l
-    if '-' in self._l:
-      i = self._l.find('-')
-      language = self._l[0:i]
-    if language == 'ga' or language == 'gd':
-      if len(self._w) < 2:
-        return False
-      else:
-        return self._w[0].lower() in 'bcdfgmpst' and self._w[1].lower()=='h'
-    else:
-      raise NotImplementedError('Method only available for Irish and Scottish Gaelic')
 
 if __name__=='__main__':
   f = open('tests.tsv')
