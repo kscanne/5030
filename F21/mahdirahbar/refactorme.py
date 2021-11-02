@@ -13,9 +13,6 @@ class Word:
     #   if c in 'aeiouAEIOU':
     #   self._numVowels += 1
 
-  def setWord(self, w):
-    self._w = w
-
   def toLower(self):
     language = self._l
     if '-' in self._l:
@@ -25,37 +22,16 @@ class Word:
       print("Invalid BCP-47 code")
       return ''
     temp = self._w
-    if language=='zh':
-      return temp
-    elif language=='ja':
+    if language=='zh' or language=='ja' or language=='th':
       return temp
     elif language=='ga':
-      if len(self._w)>1:
-        if (self._w[0]=='t' or self._w[0]=='n') and unicodedata.normalize('NFC', self._w)[1] in 'AEIOU\u00c1\u00c9\u00cd\u00d3\u00da':
-          temp = self._w[0]+'-'+temp[1:]
-      return temp.lower()
+      return self.ga_lower()
     elif language=='tr':
-      temp = self._w
-      temp = temp.replace('\u0049','\u0131')
-      return temp.lower()
+      return self.tr_lower()
     elif language=='az':
-      temp = self._w
-      temp = temp.replace('\u0049','\u0131')
-      return temp.lower()
-    elif language=='th':
-      return temp
+      return self.az_lower()
     elif language=='el':
-      if temp[-1]=='\u03a3':
-        self._finalSigma = True
-        temp = temp[:-1]+'\u03c2'
-      return temp.lower()
-    elif False and language=='gd':
-      # specification doesn't ask for this language to be treated differently
-      # so this will never be called
-      if len(self._w)>1:
-        if (self._w[0]=='t' or self._w[0]=='n') and self._w[1] in 'AEIOU\u00c1\u00c9\u00cd\u00d3\u00da':
-          temp = self._w[0]+'-'+temp[1:]
-      return temp.lower()
+      return self.el_lower()
     else:
       return temp.lower()
 
@@ -72,8 +48,32 @@ class Word:
     else:
       raise NotImplementedError('Method only available for Irish and Scottish Gaelic')
 
+  def ga_lower(self):
+    temp = self._w
+    if len(self._w)>1:
+      if (self._w[0]=='t' or self._w[0]=='n') and unicodedata.normalize('NFC', self._w)[1] in 'AEIOU\u00c1\u00c9\u00cd\u00d3\u00da':
+        temp = self._w[0]+'-'+temp[1:]
+    return temp.lower()
+
+  def el_lower(self):
+    temp = self._w
+    if temp[-1]=='\u03a3':
+      self._finalSigma = True
+      temp = temp[:-1]+'\u03c2'
+    return temp.lower()
+
+  def tr_lower(self):
+    temp = self._w
+    temp = temp.replace('\u0049','\u0131')
+    return temp.lower()
+  def az_lower(self):
+    temp = self._w
+    temp = temp.replace('\u0049','\u0131')
+    return temp.lower()
+
+    
 if __name__=='__main__':
-  f = open('tests.tsv')
+  f = open('tests.tsv', encoding = 'utf8')
   for line in f:
     line = line.rstrip('\n')
     pieces = line.split('\t')
