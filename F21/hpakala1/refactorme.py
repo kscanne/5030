@@ -1,79 +1,81 @@
 import unicodedata
 
-class Word:
+class UniCodeCharacter:
+    CAPITAL_ACUTE_A = '\u00c1'
+    CAPITAL_ACUTE_E = '\u00c9'
+    CAPITAL_ACUTE_I = '\u00cd'
+    CAPITAL_ACUTE_O = '\u00d3'
+    CAPITAL_ACUTE_U = '\u00da'
+    CAPITAL_I = '\u0049'
+    DOTLESS_i = '\u0131'
+    CAPITAL_SIGMA = '\u03a3'
+    SMALL_SIGMA = '\u03c2'
+    STANDARD_VOWELS = 'AEIOU' + CAPITAL_ACUTE_A + CAPITAL_ACUTE_E + CAPITAL_ACUTE_I + CAPITAL_ACUTE_O + CAPITAL_ACUTE_U
 
-  def __init__(self, word, bcpCode, std=False):
-    self._w = word
-    self._l = bcpCode
-    self._finalSigma = False
-    self._standardIrishSpelling = std
+class BaseClass(UniCodeCharacter):
+    def __init__(self,word):
+        self.word = word
 
-  def setWord(self, w):
-    self._w = w
+class Word(BaseClass):
 
-  def toLower(self):
-    language = self._l
-    if '-' in self._l:
-      i = self._l.find('-')
-      language = self._l[0:i]
-    if len(language)<2 or len(language)>3:
-      print("Invalid BCP-47 code")
-      return ''
-    temp = self._w
-    if language=='zh':
-      return temp
-    elif language=='ja':
-      return temp
-    elif language=='ga':
-      if len(self._w)>1:
-        if (self._w[0]=='t' or self._w[0]=='n') and unicodedata.normalize('NFC', self._w)[1] in 'AEIOU\u00c1\u00c9\u00cd\u00d3\u00da':
-          temp = self._w[0]+'-'+temp[1:]
-      return temp.lower()
-    elif language=='tr':
-      temp = self._w
-      temp = temp.replace('\u0049','\u0131')
-      return temp.lower()
-    elif language=='az':
-      temp = self._w
-      temp = temp.replace('\u0049','\u0131')
-      return temp.lower()
-    elif language=='th':
-      return temp
-    elif language=='el':
-      if temp[-1]=='\u03a3':
-        self._finalSigma = True
-        temp = temp[:-1]+'\u03c2'
-      return temp.lower()
-    elif False and language=='gd':
-      # specification doesn't ask for this language to be treated differently
-      # so this will never be called
-      if len(self._w)>1:
-        if (self._w[0]=='t' or self._w[0]=='n') and self._w[1] in 'AEIOU\u00c1\u00c9\u00cd\u00d3\u00da':
-          temp = self._w[0]+'-'+temp[1:]
-      return temp.lower()
-    else:
-      return temp.lower()
+    def __init__(self, word, lang):
+        self._word = word
+        self._lang = lang
 
-  def isLenited(self):
-    language = self._l
-    if '-' in self._l:
-      i = self._l.find('-')
-      language = self._l[0:i]
-    if language == 'ga' or language == 'gd':
-      if len(self._w) < 2:
-        return False
-      else:
-        return self._w[0].lower() in 'bcdfgmpst' and self._w[1].lower()=='h'
-    else:
-      raise NotImplementedError('Method only available for Irish and Scottish Gaelic')
+    def checkForLangCode(self):
+        language = self._lang
+        if '-' in self._lang:
+            i = self._lang.find('-')
+            language = self._lang[0:i]
+        if language == "az" or language == "tr":
+                language = "at"
+        return language
 
+    def processForIrishWords(self):
+        irishWord = self._word
+        if len(self._word)>1:
+            if (self._word[0]=='t' or self._word[0]=='n') and unicodedata.normalize('NFC', self._word)[1] in self.STANDARD_VOWELS:
+                irishWord = self._word[0]+'-'+irishWord[1:]
+        return irishWord.lower()
+
+    def processForTurkishWord(self):
+        turkishWord = self._word
+        turkishWord = turkishWord.replace(self.CAPITAL_I,self.DOTLESS_i)
+        return turkishWord.lower()
+
+    def processForGreekWord(self):
+        greekWord = self._word
+        if greekWord[-1]== self.CAPITAL_SIGMA:
+            greekWord = greekWord[:-1]+ self.CAPITAL_SIGMA
+        return greekWord.lower()
+
+    def switcherProcess(self,language):
+        
+        switcher = {
+            "ga": self.processForIrishWords(),
+            "at": self.processForTurkishWord(),
+            "el": self.processForGreekWord(),
+        }
+
+        ## switch with default value, default value is converting to 
+        return switcher.get(language, self._word.lower())
+
+    def toLower(self):
+        
+        language = self.checkForLangCode()
+        assert(len(language)==2 or len(language)==3), "Invalid BCP-47 code"
+        return self.switcherProcess(language)
+
+    def checkThePieces(self, answer, pieces):
+        return answer != pieces[2]
+    
 if __name__=='__main__':
-  f = open('tests.tsv')
+  f = open("tests.tsv",encoding="utf8")
   for line in f:
     line = line.rstrip('\n')
     pieces = line.split('\t')
     w = Word(pieces[0], pieces[1])
     answer = w.toLower()
-    if answer != pieces[2]:
-      print('Test case failed. Expected', pieces[2], 'when lowercasing',pieces[0],'in language',pieces[1],'but got',answer)
+    if w.checkThePieces(answer, pieces):
+      raise Exception('Test case failed. Expected', pieces[2], 'when lowercasing',pieces[0],'in language',pieces[1],'but got',answer)
   f.close()
