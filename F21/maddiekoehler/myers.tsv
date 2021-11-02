@@ -1,6 +1,7 @@
 {"a" : 3, "b" : 4, "c" : 5}	scalene
 {"a" : 3, "b" : 3, "c" : 1}	isosceles
 {"a" : 3, "b" : 4, "c" : 100}	error
+<<<<<<< HEAD
 {"a" : 0, "b" : 0, "c" : 0}	error
 {"a" : 4, "b" : 3, "c" : 2}	scalene
 {"a" : 3, "b" : 3, "c" : 3}	equilateral
@@ -11,3 +12,5 @@
 {"a" : 1, "b" : 1, "c" : 100}	error
 {"a" : -3, "b" : 4, "c" : 5}	error
 
+=======
+>>>>>>> upstream/master

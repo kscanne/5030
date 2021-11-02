@@ -2,19 +2,32 @@ import unicodedata
 
 class Word:
 
-  def __init__(self, word, bcpCode, std=False):
-    self._w = word
-    self._l = bcpCode
-    self._finalSigma = False
-    self._standardIrishSpelling = std
-    # OLD EXPERIMENTAL CODE for dealing with vowel harmony
-    # self._numVowels = 0
-    # for c in word:
-    #   if c in 'aeiouAEIOU':
-    #   self._numVowels += 1
+  def __init__(self, w, l):
+    self._w = w
+    self._l = l
+  def toIrish(self):
+    w = self._w
+    if len(self._w)>1:
+      if (self._w[0]=='t' or self._w[0]=='n') and unicodedata.normalize('NFC', self._w)[1] in 'AEIOU\u00c1\u00c9\u00cd\u00d3\u00da':
+        w = self._w[0]+'-'+w[1:]
+    return w
+  def toTurkish(self):
+    w = self._w.replace('\u0049','\u0131')
+    return w
+  def toAzerbaijani(self):
+    w = self._w.replace('\u0049','\u0131')
+    return w
+  def toGreek(self):
+    w = self._w[:-1]+'\u03c2' if self._w[-1]=='\u03a3' else self._w
+    return w
 
   def setWord(self, w):
     self._w = w
+
+  def getLang(self):
+    if '-' in self._l:
+      return self._l[0:self._l.find('-')]
+    return self._l
 
   def toLower(self):
     language = self._l
