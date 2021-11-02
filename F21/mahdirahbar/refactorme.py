@@ -1,52 +1,57 @@
 import unicodedata
+import re
 
 class Word:
 
-  def __init__(self, word, bcpCode, std=False):
+  def __init__(self, word, language, std=False):
     self._w = word
-    self._l = bcpCode
+    self.language = language
+    self._lang = self.get_lang(language) 
     self._finalSigma = False
     self._standardIrishSpelling = std
+    self.dispatch_table ={'ga':self.ga_lower,
+                  'tr':self.tr_lower,
+                  'az':self.az_lower,
+                  'el':self.el_lower,
+                  "zh":self.just_return,
+                  'ja':self.just_return,
+                  'th':self.just_return}
     # OLD EXPERIMENTAL CODE for dealing with vowel harmony
     # self._numVowels = 0
     # for c in word:
     #   if c in 'aeiouAEIOU':
     #   self._numVowels += 1
+  def get_lang(self,lang): 
+      lang = re.findall(r"(^\w*)-*",lang)[0]
+      return lang
 
   def toLower(self):
-    language = self._l
-    if '-' in self._l:
-      i = self._l.find('-')
-      language = self._l[0:i]
-    if len(language)<2 or len(language)>3:
+    if len(self._lang)<2 or len(self._lang)>3:
       print("Invalid BCP-47 code")
       return ''
-    temp = self._w
-    if language=='zh' or language=='ja' or language=='th':
-      return temp
-    elif language=='ga':
-      return self.ga_lower()
-    elif language=='tr':
-      return self.tr_lower()
-    elif language=='az':
-      return self.az_lower()
-    elif language=='el':
-      return self.el_lower()
-    else:
-      return temp.lower()
+    return self.get_func()
 
   def isLenited(self):
-    language = self._l
+    self._lang = self._l
     if '-' in self._l:
       i = self._l.find('-')
-      language = self._l[0:i]
-    if language == 'ga' or language == 'gd':
+      self._lang = self._l[0:i]
+    if self._lang == 'ga' or self._lang == 'gd':
       if len(self._w) < 2:
         return False
       else:
         return self._w[0].lower() in 'bcdfgmpst' and self._w[1].lower()=='h'
     else:
       raise NotImplementedError('Method only available for Irish and Scottish Gaelic')
+  
+  def get_func(self):
+    if self._lang in self.dispatch_table.keys():
+      return self.dispatch_table[self._lang]()
+    else:
+      return self._w.lower()
+
+  def just_return(self):
+    return self._w
 
   def ga_lower(self):
     temp = self._w
@@ -66,6 +71,7 @@ class Word:
     temp = self._w
     temp = temp.replace('\u0049','\u0131')
     return temp.lower()
+
   def az_lower(self):
     temp = self._w
     temp = temp.replace('\u0049','\u0131')
