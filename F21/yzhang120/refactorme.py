@@ -2,78 +2,56 @@ import unicodedata
 
 class Word:
 
-  def __init__(self, word, bcpCode, std=False):
-    self._w = word
-    self._l = bcpCode
-    self._finalSigma = False
-    self._standardIrishSpelling = std
-    # OLD EXPERIMENTAL CODE for dealing with vowel harmony
-    # self._numVowels = 0
-    # for c in word:
-    #   if c in 'aeiouAEIOU':
-    #   self._numVowels += 1
+  def __init__(self, word, bcpCode):
+    self._word = word
+    self._language = bcpCode
 
-  def setWord(self, w):
-    self._w = w
+  def getLang(self):
+    return self._language[0:self._language.find('-')] if '-' in self._language else self._language
+
+  def ga_rule(self):
+    vowel = 'AEIOU\u00c1\u00c9\u00cd\u00d3\u00da'
+    ga_word = self._word
+    if len(ga_word)>1:
+        if (ga_word [0] in ['t','n']) and unicodedata.normalize('NFC', ga_word)[1] in vowel:
+          ga_word = ga_word[0]+'-'+ga_word[1:]
+    return ga_word.lower()
+
+  def tr_az_rule(self):
+    I_code = '\u0049'
+    latin_small_I_code = '\u0131'
+    tr_az_word = self._word
+    tr_az_word = tr_az_word.replace(I_code, latin_small_I_code)
+    return tr_az_word.lower()
+
+  def el_rule(self):
+    upp_sigma_code = '\u03a3'
+    greek_small_sigma_code = '\u03c2'
+    el_word = self._word
+    if el_word[-1] == upp_sigma_code:
+        #self._finalSigma = True
+        el_word = el_word[:-1] + greek_small_sigma_code
+    return el_word.lower()
+
+  def return_word(self):
+    return self._word
 
   def toLower(self):
-    language = self._l
-    if '-' in self._l:
-      i = self._l.find('-')
-      language = self._l[0:i]
-    if len(language)<2 or len(language)>3:
-      print("Invalid BCP-47 code")
-      return ''
-    temp = self._w
-    if language=='zh':
-      return temp
-    elif language=='ja':
-      return temp
-    elif language=='ga':
-      if len(self._w)>1:
-        if (self._w[0]=='t' or self._w[0]=='n') and unicodedata.normalize('NFC', self._w)[1] in 'AEIOU\u00c1\u00c9\u00cd\u00d3\u00da':
-          temp = self._w[0]+'-'+temp[1:]
-      return temp.lower()
-    elif language=='tr':
-      temp = self._w
-      temp = temp.replace('\u0049','\u0131')
-      return temp.lower()
-    elif language=='az':
-      temp = self._w
-      temp = temp.replace('\u0049','\u0131')
-      return temp.lower()
-    elif language=='th':
-      return temp
-    elif language=='el':
-      if temp[-1]=='\u03a3':
-        self._finalSigma = True
-        temp = temp[:-1]+'\u03c2'
-      return temp.lower()
-    elif False and language=='gd':
-      # specification doesn't ask for this language to be treated differently
-      # so this will never be called
-      if len(self._w)>1:
-        if (self._w[0]=='t' or self._w[0]=='n') and self._w[1] in 'AEIOU\u00c1\u00c9\u00cd\u00d3\u00da':
-          temp = self._w[0]+'-'+temp[1:]
-      return temp.lower()
-    else:
-      return temp.lower()
+    language = self.getLang()
 
-  def isLenited(self):
-    language = self._l
-    if '-' in self._l:
-      i = self._l.find('-')
-      language = self._l[0:i]
-    if language == 'ga' or language == 'gd':
-      if len(self._w) < 2:
-        return False
-      else:
-        return self._w[0].lower() in 'bcdfgmpst' and self._w[1].lower()=='h'
-    else:
-      raise NotImplementedError('Method only available for Irish and Scottish Gaelic')
+    rule = {"tr": self.tr_az_rule(),
+            "az": self.tr_az_rule(),
+            "ga": self.ga_rule(),
+            "el": self.el_rule(),
+            "th": self.return_word(),
+            "zh": self.return_word(),
+            "ja": self.return_word()
+            }
 
+    return rule.get(language,self._word.lower()) if len(language) == 2 else print("Invalid BCP-47 code")
+    
 if __name__=='__main__':
-  f = open('tests.tsv')
+  f = open('tests.tsv', encoding='utf-8')
   for line in f:
     line = line.rstrip('\n')
     pieces = line.split('\t')
