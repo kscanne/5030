@@ -1,84 +1,99 @@
 import unicodedata
+# Mysterious hard-coded Unicode escapes
+tr_upper_I = "\u0049"
+tr_lower_I = "\u0131"
+el_upper_sigma = "\u03a3"
+el_lower_sigma = "\u03c2"
+ga_upper_A = "\u00c1"
+ga_upper_E = "\u00c9"
+ga_upper_I = "\u00cd"
+ga_upper_O = "\u00d3"
+ga_upper_U = "\u00da"
+
 
 class Word:
 
-  def __init__(self, word, bcpCode, std=False):
-    self._w = word
-    self._l = bcpCode
-    self._finalSigma = False
-    self._standardIrishSpelling = std
-    # OLD EXPERIMENTAL CODE for dealing with vowel harmony
-    # self._numVowels = 0
-    # for c in word:
-    #   if c in 'aeiouAEIOU':
-    #   self._numVowels += 1
+    def __init__(self, word, bcpCode, std=False):
+        self._word = word
+        self._language = bcpCode
+        self._finalSigma = False
+        self._standardIrishSpelling = std
+        # Unnecessary code (Fowler: Remove Dead Code, Remove Setting Method)
 
-  def setWord(self, w):
-    self._w = w
+    def setWord(self, word):
+        self._word = word
 
-  def toLower(self):
-    language = self._l
-    if '-' in self._l:
-      i = self._l.find('-')
-      language = self._l[0:i]
-    if len(language)<2 or len(language)>3:
-      print("Invalid BCP-47 code")
-      return ''
-    temp = self._w
-    if language=='zh':
-      return temp
-    elif language=='ja':
-      return temp
-    elif language=='ga':
-      if len(self._w)>1:
-        if (self._w[0]=='t' or self._w[0]=='n') and unicodedata.normalize('NFC', self._w)[1] in 'AEIOU\u00c1\u00c9\u00cd\u00d3\u00da':
-          temp = self._w[0]+'-'+temp[1:]
-      return temp.lower()
-    elif language=='tr':
-      temp = self._w
-      temp = temp.replace('\u0049','\u0131')
-      return temp.lower()
-    elif language=='az':
-      temp = self._w
-      temp = temp.replace('\u0049','\u0131')
-      return temp.lower()
-    elif language=='th':
-      return temp
-    elif language=='el':
-      if temp[-1]=='\u03a3':
-        self._finalSigma = True
-        temp = temp[:-1]+'\u03c2'
-      return temp.lower()
-    elif False and language=='gd':
-      # specification doesn't ask for this language to be treated differently
-      # so this will never be called
-      if len(self._w)>1:
-        if (self._w[0]=='t' or self._w[0]=='n') and self._w[1] in 'AEIOU\u00c1\u00c9\u00cd\u00d3\u00da':
-          temp = self._w[0]+'-'+temp[1:]
-      return temp.lower()
-    else:
-      return temp.lower()
+    def getLanguage(self):
+        # Required “parsing” of the BPC-47 string is hard-coded
+        if '-' in self._language:
+            return self._language[0:self._language.find('-')]
+        return self._language
 
-  def isLenited(self):
-    language = self._l
-    if '-' in self._l:
-      i = self._l.find('-')
-      language = self._l[0:i]
-    if language == 'ga' or language == 'gd':
-      if len(self._w) < 2:
-        return False
-      else:
-        return self._w[0].lower() in 'bcdfgmpst' and self._w[1].lower()=='h'
-    else:
-      raise NotImplementedError('Method only available for Irish and Scottish Gaelic')
+    def toLower(self):
+        language = self.getLanguage()
+        # Long lines of code made up of Boolean expressions (Fowler: Decompose Conditional)
+        if len(language) != 2:
+            print("Invalid BCP-47 code")
+            # Awkward error handling in case of an invalid language code
+            raise ValueError("Invalid BCP-47 code")
+        # Removing nested if-elif and adding dictionary mapping (there is not switch case in python)
+        language_dictionary = {
+            'ga': self.irishLowering,
+            'tr': self.vowelChange,
+            'az': self.vowelChange,
+            'el': self.greekLowering,
+            'zh': self.noChange,
+            'ja': self.noChange,
+            'th': self.noChange
+        }
 
-if __name__=='__main__':
-  f = open('tests.tsv')
-  for line in f:
-    line = line.rstrip('\n')
-    pieces = line.split('\t')
-    w = Word(pieces[0], pieces[1])
-    answer = w.toLower()
-    if answer != pieces[2]:
-      print('Test case failed. Expected', pieces[2], 'when lowercasing',pieces[0],'in language',pieces[1],'but got',answer)
-  f.close()
+        if language not in language_dictionary.keys():
+            return self.regularLowering()
+        else:
+            return language_dictionary[language]()
+
+    def isLenited(self):
+        language = self.getLanguage()
+        if language == 'ga' or language == 'gd':
+            if len(self.temp) < 2:
+                raise ValueError("Length of parameters is less than 2")
+            else:
+                return self.temp[0].lower() in 'bcdfgmpst' and self.temp[1].lower() == 'h'
+        else:
+            raise NotImplementedError(
+                'Method only available for Irish and Scottish Gaelic')
+
+    def regularLowering(self):
+        return self._word.lower()
+
+    def noChange(self):
+        return self._word
+
+    def irishLowering(self):
+        if len(self._word) > 1:
+            if (self._word[0] == 't' or self._word[0] == 'n') and unicodedata.normalize('NFC', self._word)[1] in ['A', 'E', 'I', 'O', 'U', ga_upper_A, ga_upper_E, ga_upper_I, ga_upper_O, ga_upper_U]:
+                self._word = self._word[0]+'-'+ self._word[1:]
+        return self._word.lower()
+
+    def greekLowering(self):
+        if self._word[-1] == el_upper_sigma:
+            self._finalSigma = True
+            self._word = self._word[:-1] + el_lower_sigma
+        return self._word.lower()
+
+    def vowelChange(self):
+        self._word = self._word.replace(tr_upper_I, tr_lower_I)
+        return self._word.lower()
+
+
+if __name__ == '__main__':
+    file = open('tests.tsv', encoding='UTF-8')
+    for line in file:
+        line = line.rstrip('\n')
+        pieces = line.split('\t')
+        word = Word(pieces[0], pieces[1])
+        answer = word.toLower()
+        if answer != pieces[2]:
+            print('Test case failed. Expected',
+                  pieces[2], 'when lowercasing', pieces[0], 'in language', pieces[1], 'but got', answer)
+    file.close()
