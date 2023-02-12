@@ -1,7 +1,3 @@
-with open("F18/data/list.txt", "r") as f:
-    languages = f.read().splitlines()
-print(languages)
-
 
 def to_lowercase(word: str, language: str):
     """
@@ -11,12 +7,13 @@ def to_lowercase(word: str, language: str):
     result = ""
 
     for idx, letter in enumerate(word):
+
         lower_letter = letter.lower()
         if language == 'tr' or language == 'az':
             if letter == 'I':
                 lower_letter = 'ı'
         elif language.startswith(('gd', 'gv', 'ga')):
-            if idx == 1 and letter in ['A', 'E', 'I', 'O', 'U', 'Á', 'É', 'Í', 'Ó', 'Ú'] and word[0] in ['n', 't']:
+            if idx == 1 and (letter in ['A', 'E', 'I', 'O', 'U', 'Á', 'É', 'Í', 'Ó', 'Ú', "Ó"] or ord(letter) in [211]) and word[0] in ['n', 't'] and (len(word)-idx >= 2 and ord(word[idx+1]) != 771):
                 lower_letter = "-"+letter.lower()
         elif language.startswith('el'):
             if letter == 'Σ' and idx == len(word)-1:
@@ -29,12 +26,18 @@ def to_lowercase(word: str, language: str):
     return result
 
 
-with open("S23/b-sai/tests.tsv", "r", encoding="utf-8") as f:
+with open("tests.tsv", "r", encoding="utf-8") as f:
     tests = f.read().splitlines()
+
+num_correct = 0
 for test in tests:
     word, language, expected = test.split("\t")
     predicted = to_lowercase(word, language)
     if predicted != expected:
         print(f"Failed to convert {word} to lowercase in {language}!")
-        print(f"Expected: {expected}")
-        print(f"Actual: {predicted}")
+        print(f"Actual: {expected}")
+        print(f"Predicted: {predicted}")
+    else:
+        num_correct += 1
+
+print(f"Passed {num_correct} out of {len(tests)} tests.")
