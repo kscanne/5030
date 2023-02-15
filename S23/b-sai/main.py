@@ -31,13 +31,13 @@ with open("tests.tsv", "r", encoding="utf-8") as f:
 
 num_correct = 0
 for test in tests:
-    word, language, expected = test.split("\t")
+    word, language, actual = test.split("\t")
     predicted = to_lowercase(word, language)
-    if predicted != expected:
-        print(f"Failed to convert {word} to lowercase in {language}!")
-        print(f"Actual: {expected}")
+    if predicted != actual:
+        print(f"COuldn't convert {word} in {language}!")
+        print(f"Actual: {actual}")
         print(f"Predicted: {predicted}")
     else:
         num_correct += 1
 
-print(f"Passed {num_correct} out of {len(tests)} tests.")
+print(f"Successfully completed {num_correct}/{len(tests)} tests")
