@@ -24,9 +24,8 @@ public class AppTest {
         String line;
         while ((line = reader.readLine()) != null) {
             String[] values = line.split("\t");
-            byte[] utf8Bytes = values[0].getBytes(StandardCharsets.UTF_8);
 
-            String upper =  new String(utf8Bytes, StandardCharsets.UTF_8);
+            String upper =  values[0];
             String lang = values[1];
             String expected = values[2];
 
