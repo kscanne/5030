@@ -18,9 +18,9 @@ def lowercase_me(word, language):
 
     elif language == "ga-IE":
 
-        # this character won't lowercase. returns none
+        # this character won't lowercase. returns none. So I'm using a placeholder
         if "Õ" in word:
-            return word.replace("Õ", "!@#").lower().replace("!@#", "õ")
+            return word.replace("Õ", "!@#!@#!@#").lower().replace("!@#!@#!@#", "õ")
         
         if ("Ó" in word and not word.startswith("Ó")):
             return word.replace("Ó", "-ó").lower()
@@ -43,6 +43,7 @@ def lowercase_me(word, language):
 
 
 if __name__ == "__main__":
+
     file = open("tests.tsv")
 
     for count, value in enumerate(file):
