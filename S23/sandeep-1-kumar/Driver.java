@@ -1,3 +1,4 @@
+import java.io.PrintWriter;
 import java.util.Scanner;
 
 
@@ -12,7 +13,9 @@ public class Driver {
             System.out.println("Please Enter the word");
             String word = scannerObject.nextLine();
             LowerCasing lowerCasing = new LowerCasing();
-            System.out.println(lowerCasing.lowerCaseConversion(language, word));
+            PrintWriter out = new PrintWriter("outPut.txt"); 
+            out.println(lowerCasing.lowerCaseConversion(language, word));
+            out.close();
         }
         catch(Exception e)
         {
