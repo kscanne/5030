@@ -8,36 +8,26 @@
 
 def lowercase_me(word, language):
     
-    if language == "ga":
+    if language.startswith("ga"):
 
-        if word.isupper():
-            return word.lower()
-        
-        if ("A" in word and not word.startswith("A")):
-            return word.replace("A", "-a", 1).lower()
-
-    elif language == "ga-IE":
-
-        # this character returns none when passed to the lowercase method. So I'm using a placeholder
-        if "Õ" in word:
+        # this character returns none when passed to the lower() method.
+        # I'm using a placeholder and then swapping back
+        if "Õ" in word or chr(771) in word:
             return word.replace("Õ", "!@#!@#!@#").lower().replace("!@#!@#!@#", "õ")
-        
-        if ("Ó" in word and not word.startswith("Ó")):
-            return word.replace("Ó", "-ó").lower()
+
+        if (word.startswith("n") or word.startswith("t")) and (word[1] in ['A','E','I','O','U','Á','É','Í','Ó','Ú']) :
+            return (word[:1] + "-" + word[1:]).lower()         
+
+        return word.lower()
 
     elif language == "tr":
         
         if "I" in word:
-            return word.lower.replace("i", "ı")
+            return word.lower().replace("i", "ı")
 
-    elif language == "el":
+    elif language in ["el", "zh-hans", "th"]:
         return word.lower()
 
-    elif language == "zh-Hans":
-        return word.lower()
-
-    elif language == "th":
-        return word.lower()
     else:
         return word.lower()
 
