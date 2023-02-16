@@ -1,9 +1,9 @@
 
 
-# Create a function that takes an input string and a language as arguments
-# Use conditionals to create special logic based on language
-# Use string manipulation to implement special lowercasing rules
-# Default to standard python lowercasing function
+# 1. Create a function that takes an input string and a language as arguments
+# 2. Use conditionals to create special logic based on language
+# 3. Use string manipulation to implement special lowercasing rules
+# 4. Default to standard python lowercasing function
 
 
 def lowercase_me(word, language):
@@ -18,7 +18,7 @@ def lowercase_me(word, language):
 
     elif language == "ga-IE":
 
-        # this character won't lowercase. returns none. So I'm using a placeholder
+        # this character returns none when passed to the lowercase method. So I'm using a placeholder
         if "Õ" in word:
             return word.replace("Õ", "!@#!@#!@#").lower().replace("!@#!@#!@#", "õ")
         
