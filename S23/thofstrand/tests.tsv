@@ -1,4 +1,6 @@
 HELLO	en	hello
+HELLO	usa-en	Invalid Language
+HELLO	e	Invalid Language
 WORLD	en-US	world
 cAmEl	en-IE	camel
 ---OK	en-Latn	---ok
@@ -11,7 +13,10 @@ NATHAIR	ga	nathair
 NATHAIR	ga-en	nathair
 nATHAIR	ga-en	n-athair
 nÓg	ga-IE	n-óg
+nÓ	ga-IE	n-ó
 nÕg	ga-IE	nõg
+NOAH	ga-IE	noah
+nÕ	ga-IE	nõ
 nÕg	ga-IE	nõg
 KASIM	tr	kasım
 KASIM	en	kasim
@@ -23,4 +28,5 @@ IaisIm	tr	ıaisım
 IaisIm	tr-en	ıaisım
 Hello	zh-Hans	Hello
 ΣΠΌΣΛΗΣ	el	σπόσλης
+
 

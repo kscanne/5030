@@ -4,8 +4,12 @@ import pandas as pd
 
 def lowerCase(word, lang):
     word = word.strip()
-    langStart = lang[:2]
+    lang = lang.split('-')
+    langStart = lang[0]
 
+    if len(langStart) != 2:
+        return "Invalid Language"
+    
     if "en" == langStart:
         lower_word = word.lower()
         return lower_word
@@ -29,14 +33,25 @@ def lowerCase(word, lang):
         lowCase = word.lower()
         caps = ['A','E','I','O','U','Á','É','Í','Ó','Ú']
         if word[0] == 'n' or word[0] == 't':
-            if word[1] in caps and word[2].isalpha(): #must check isalpha as Õ parses as `O`,`~`
-                word_list2 = [*lowCase]
-                word_list2.insert(1,'-')
-                lower_word = combineToString(word_list2)
-                return lower_word
+            if len(word) > 2:
+                if word[1] in caps and word[2].isalpha(): #must check isalpha as Õ parses as `O`,`~`
+                    word_list2 = [*lowCase]
+                    word_list2.insert(1,'-')
+                    lower_word = combineToString(word_list2)
+                    return lower_word
+                else:
+                    word = word.lower()
+                    return word
             else:
-                word = word.lower()
-                return word
+                if word[1] in caps: #must check isalpha as Õ parses as `O`,`~`
+                    word_list2 = [*lowCase]
+                    word_list2.insert(1,'-')
+                    lower_word = combineToString(word_list2)
+                    return lower_word
+                else:
+                    word = word.lower()
+                    return word
+
             
         else:
                 word = word.lower()
@@ -60,9 +75,9 @@ def combineToString(char_list):
 
 def test_main():
 
-    test_cases = pd.read_csv('../5030/S23/thofstrand/tests.tsv',sep='\t',names=["word","lang","lower"])
+    test_cases = pd.read_csv('C:\\Users\\keerp\\Documents\\CSCI-5030\\5030\\S23\\thofstrand\\tests.tsv',sep='\t',names=["word","lang","lower"])
     for i in range(len(test_cases)):
-        #word_output = lowerCase(test_cases['word'][i],test_cases['lang'][i])
+       # word_output = lowerCase(test_cases['word'][i],test_cases['lang'][i])
         #print(word_output)
         result = lowerCase(test_cases['word'][i],test_cases['lang'][i]) == test_cases['lower'][i]
         print(result)
