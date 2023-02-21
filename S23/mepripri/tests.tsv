@@ -1,5 +1,6 @@
 HELLO	en	hello
 WORLD	en-US	world
+WORLD	eng-US	Invalid Language
 cAmEl	en-IE	camel
 ---OK	en-Latn	---ok
 tAcht	ga	t-acht
@@ -7,12 +8,22 @@ tACHT	ga	t-acht
 TACHT	ga	tacht
 nAthair	ga	n-athair
 nATHAIR	ga	n-athair
-NATHAIR	ga	nathair
+NATHAIR	ga-IE	nathair
+fÚG	ga	fúg
+tNÚG	ga	tnúg
+tÚG	ga	t-úg
 nÓg	ga-IE	n-óg
 nÕg	ga-IE	nõg
-nÕg	ga-IE	nõg
+nÕg	ga-IE	nõg
+ÜNİVERSITESİ	tr	üni̇versıtesi̇
+İSTANBUL	az	i̇stanbul
 KASIM	tr	kasım
 KASIM	en	kasim
 ΠΌΛΗΣ	el	πόλης
+ΠΌΣΛΗ	el	πόσλη
+ΠΌΗ	el	πόη
+ΣΣ	el	σς
 官话	zh-Hans	官话
 ภาษาไทย	th	ภาษาไทย
+資本主義	ja	資本主義
+丹麦的首都	zh	丹麦的首都
