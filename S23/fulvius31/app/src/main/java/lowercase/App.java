@@ -6,8 +6,6 @@ package lowercase;
 public class App {
 
     public static void main(String[] args) {
-        Lowercaser lowercaser = new Lowercaser("nÕg","ga-US");
-
-        System.out.println(lowercaser.getLowerCase());
+        System.out.println("To test it, import the project and run AppTest.java");
     }
 }
