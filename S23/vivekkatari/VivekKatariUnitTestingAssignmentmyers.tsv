@@ -1,0 +1,11 @@
+{"a": 0, "b": 0, "c": 0} error-triangle with zero length side
+{"a": -3, "b": 4, "c": 5} error-negative side length
+{"a": 1, "b": 1, "c": 3} error-sum of two sides is less than the third
+{"a": 2, "b": 2, "c": 2} equilateral
+{"a": 5, "b": 5, "c": 3} isosceles
+{"a": 7, "b": 8, "c": 10} scalene
+{"a" : 2, "b" : 4, "c" : 2} isosceles
+{"a" : 5, "b" : 12, "c" : 13} scalene
+{"a": 5.5, "b": 5.5, "c": 5.5} equilateral-floating point side lengths
+{"a": "3", "b": "4", "c": "5"} scalene-side lengths provided as string
+{"a": "3", "b": 4, "c": 5} error-combination of string and integer side lengths
