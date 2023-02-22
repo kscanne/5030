@@ -5,6 +5,9 @@ def to_lowercase(word: str, language: str):
     language: str, the language of the string, in BCP 47 format
     """
     result = ""
+    
+    if language.startswith(("zh", "th", "ja")):
+        return word.lower()
 
     for idx, letter in enumerate(word):
 
@@ -13,13 +16,17 @@ def to_lowercase(word: str, language: str):
             if letter == 'I':
                 lower_letter = 'ı'
         elif language.startswith(('gd', 'gv', 'ga')):
-            if idx == 1 and (letter in ['A', 'E', 'I', 'O', 'U', 'Á', 'É', 'Í', 'Ó', 'Ú', "Ó"] or ord(letter) in [211]) and word[0] in ['n', 't'] and (len(word)-idx >= 2 and ord(word[idx+1]) != 771):
+            is_2nd_letter = idx == 1
+            is_exception_letter = letter in [
+                'A', 'E', 'I', 'O', 'U', 'Á', 'É', 'Í', 'Ó', 'Ú', "Ó"]
+            is_letter_o_latin = ord(letter) in [211]
+            is_beginning_exception = word[0] in ['n', 't']
+            is_not_last = len(word)-idx > 1
+            if is_2nd_letter and (is_exception_letter or is_letter_o_latin) and is_beginning_exception and (is_not_last and ord(word[idx+1]) != 771):
                 lower_letter = "-"+letter.lower()
         elif language.startswith('el'):
             if letter == 'Σ' and idx == len(word)-1:
                 lower_letter = 'ς'
-        elif language.startswith(("zh", "th", "ja")):
-            lower_letter = letter
 
         result += lower_letter
 
