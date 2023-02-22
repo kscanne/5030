@@ -4,29 +4,31 @@ import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.util.*;
 
-public class ToLowerCase {
+public class AllTestCasesToLowerCase {
     
-    String turkish_lang = "tr";
-    String azerbaijani_lang = "az";
-    String irish_lang = "ga";
-    String latin_Dotless_I = "\u0131";
+    String turkishLang = "tr";
+    String azerbaijaniLang = "az";
+    String irishLang = "ga";
+    String latinDotlessI = "\u0131";
 
-    String upper_Case_I = "I";
-    char lowerCase_t = 't';
-    char lowerCase_n = 'n';
+    String upperCaseI = "I";
+    char lowerCaseT = 't';
+    char lowerCaseN = 'n';
 
     // Ascii values of vowels
-    int upperCase_A = 65;
-    int upperCase_E = 69;
-    int upperCase_I = 73;
-    int upperCase_O = 79;
-    int upperCase_U = 85;
+    int upperCaseA = 65;
+    int upperCaseE = 69;
+    int upperCaseIInt = 73;
+    int upperCaseO = 79;
+    int upperCaseU = 85;
    
-    int upperCase_Irish_A = 193;
-    int upperCase_Irish_E = 201;
-    int upperCase_Irish_I = 205;
-    int upperCase_Irish_O = 211;
-    int upperCase_Irish_U = 218;
+    int upperCaseIrishA = 193;
+    int upperCaseIrishE = 201;
+    int upperCaseIrishI = 205;
+    int upperCaseIrishO = 211;
+    int upperCaseIrishU = 218;
+
+    int vowels[]={upperCaseA,upperCaseE,upperCaseIInt,upperCaseO,upperCaseU,upperCaseIrishA,upperCaseIrishE,upperCaseIrishI,upperCaseIrishO,upperCaseIrishU};
     public static void main(String args[]) throws UnsupportedEncodingException
     {
         // words to be converted to lowerCase
@@ -38,7 +40,7 @@ public class ToLowerCase {
          "ga", "ga", "ga", "ga", "ga-IE", "ga-IE", "zh", "ja", "az", "en", "el", "zh-Hans", "th", "el-GR", "el-GR"};
 
         String langWithNoLowerCase[] = {"zh", "ja", "th"};
-        
+
         PrintWriter printWriter = null;
         try {
             printWriter = new PrintWriter("D:\\SLU\\Spring 23\\PSD\\result.txt", "UTF-8");
@@ -46,49 +48,50 @@ public class ToLowerCase {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
-        ToLowerCase object = new ToLowerCase();
+        AllTestCasesToLowerCase object = new AllTestCasesToLowerCase();
       for(int i=0;i<words.length;i++)
       {
         String result = object.wordToLowerCase(words[i],lang[i],langWithNoLowerCase);
         printWriter.println(words[i]+ " " + lang[i] +" "+result);
       }
-      
       printWriter.close();
-     
     }
     public String wordToLowerCase(String word,String language, String[] langWithNoLowerCase)
     {
-        if(isLanguage_with_no_lowerCase(langWithNoLowerCase, language))
+        if(isLanguageWithNoLowerCase(langWithNoLowerCase, language))
             return word;
         
         Locale locale1 = Locale.forLanguageTag(language);
         
         String lower1 = word.toLowerCase(locale1);
-        if(language.startsWith(turkish_lang) || language.startsWith(azerbaijani_lang))
+        if(language.startsWith(turkishLang) || language.startsWith(azerbaijaniLang))
         {
-            if(word.contains(upper_Case_I))
+            if(word.contains(upperCaseI))
             {
-                word.replaceAll(upper_Case_I,latin_Dotless_I );
+                word.replaceAll(upperCaseI,latinDotlessI );
                 lower1 = word.toLowerCase(locale1);
             }
         }
-        else if(language.startsWith(irish_lang))
+        else if(language.startsWith(irishLang))
         {
-            if((word.charAt(0) == lowerCase_n || word.charAt(0) == lowerCase_t) &&
-                (word.charAt(1) == upperCase_A || word.charAt(1) == upperCase_E ||
-                word.charAt(1) == upperCase_I || word.charAt(1) == upperCase_O||  
-                word.charAt(1) == upperCase_U || word.charAt(1) == upperCase_Irish_A ||
-                word.charAt(1) == upperCase_Irish_E || word.charAt(1) == upperCase_Irish_I ||
-                word.charAt(1) == upperCase_Irish_O || word.charAt(1) == upperCase_Irish_U))
+            if((word.charAt(0) == lowerCaseN || word.charAt(0) == lowerCaseT))
             {
+
+            for(Integer vowel:vowels)
+            {
+                if(word.charAt(1) == vowel)
+                {
                 lower1 = lower1.substring(0,1) +"-" + lower1.substring(1);
-            }
+                break;
+                }
+
+            } }
         }
       
             return lower1;
     }
 
-    boolean isLanguage_with_no_lowerCase(String []langWithNoLowerCase,String language)
+    boolean isLanguageWithNoLowerCase(String []langWithNoLowerCase,String language)
     {
         for(String noLowerCaselang:langWithNoLowerCase)
         {
