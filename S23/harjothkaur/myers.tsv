@@ -1,3 +1,13 @@
 {"a" : 3, "b" : 4, "c" : 5}	scalene
 {"a" : 3, "b" : 3, "c" : 1}	isosceles
 {"a" : 3, "b" : 4, "c" : 100}	error
+
+{"a" : 1, "b" : 2, "c" : 3} error # not a valid triangle
+{"a" : 3, "b" : 3, "c" : 3} equilateral # all sides are equal
+{"a" : 5, "b" : 5, "c" : 3} isosceles # two sides are equal
+{"a" : 6, "b" : 8, "c" : 10} scalene # no sides are equal
+{"a" : 0, "b" : 0, "c" : 0} error # not a valid triangle
+{"a" : 4, "b" : 4, "c" : -4} error # not a valid triangle
+{"a" : 7, "b" : 8, "c" : 20} error # not a valid triangle
+{"a" : "3", "b" : "4", "c" : "5"} error # invalid input type
+{"a" : "three", "b" : "four", "c" : "five"} error # invalid input type
