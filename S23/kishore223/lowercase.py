@@ -18,6 +18,15 @@ def lowercase_word(word, lang):
         return word.lower()
 
 word = input("Enter a word: ")
+
+print("1.Type 'tr' for Turkish Language")
+print("2.Type 'az' for Azerbaijani Language")
+print("3.Type 'ga' for Irish Language")
+print("4.Type 'zh' for Chinese Language(no changes)")
+print("5.Type 'ja' for Japanese Language(no changes)")
+print("6.Type 'th' for Thai Language(no changes)")
+print("****** Note: If you type any other word or character, it will be just converted to lowercase. ******")
+
 lang = input("Enter language code (BCP-47): ")
 
 lowercased_word = lowercase_word(word, lang)
