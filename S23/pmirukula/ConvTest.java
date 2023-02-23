@@ -76,5 +76,18 @@ public class ConvTest {
         }
         assertEquals(m4, true);
     }
-
+	    @Test
+    public void turkish1check() {
+        Conv ex5 = new Conversion();
+        String s5 = "KASM";
+        String l5 = "tr";
+        Boolean m5;
+        String out = ex5.trazConv(s5, l5);
+        if (out.equals("kasm")) {
+            m5 = true;
+        } else {
+            m5 = false;
+        }
+        assertEquals(m5, true);
+    }
 }

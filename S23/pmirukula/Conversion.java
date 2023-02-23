@@ -10,7 +10,7 @@ public class Conversion {
 			str = str.replaceAll("I", "\u0131");
 			return str.toLowerCase(new Locale(str_lang));
 		} else {
-			return null;
+			return str.toLowerCase(new Locale(str_lang));
 		}
 	}
 
@@ -25,7 +25,7 @@ public class Conversion {
 			String m = (k.substring(0, 1) + "-" + k.substring(1));
 			return m;
 		} else {
-			return null;
+			return str.toLowerCase(new Locale(str_lang));
 		}
 
 	}
@@ -40,7 +40,7 @@ public class Conversion {
 		String str = br.readLine();
 		System.out.println("Please enter the language you would like to translate the word");
 		String str_lang = br.readLine();
-		PrintWriter out = new PrintWriter("oceans.txt");
+		PrintWriter out = new PrintWriter("output.txt");
 		String output = str.toLowerCase(new Locale(str_lang));
 		if (str_lang.equals("tr") || str_lang.equals("az")) {
 			output = trazConv(str_lang, str);
