@@ -1,3 +1,123 @@
-{"a" : 3, "b" : 4, "c" : 5}	scalene
-{"a" : 3, "b" : 3, "c" : 1}	isosceles
-{"a" : 3, "b" : 4, "c" : 100}	error
+package com.Triangle;
+
+import static com.Triangle.TriangleType.EQUILATERAL;
+import static com.Triangle.TriangleType.INVALID;
+import static com.Triangle.TriangleType.ISOSCELES;
+import static com.Triangle.TriangleType.SCALENE;
+import static com.Triangle.TriangleType.DEGENERATE;
+import static org.junit.Assert.assertEquals;
+
+import org.junit.Test;
+
+public class TriangleTest {
+
+  @Test
+  public void testEquiliteral1() {
+    JSONObject required = new JSONObject();
+    required.put("a" : 1);
+    required.put("b" : 1);
+    required.put("c" : 1);
+    final TriangleType type = Triangle.classify(required);
+    assertEquals(EQUILATERAL, type);
+  }
+
+  @Test
+  public void testEquiliteral2() {
+    JSONObject required = new JSONObject();
+    required.put("a" : 3);
+    required.put("b" : 3);
+    required.put("c" : 3);
+    final TriangleType type = Triangle.classify(required);
+    assertEquals(EQUILATERAL, type);
+  }
+
+  @Test
+  public void testScalene1() {
+    JSONObject required = new JSONObject();
+    required.put("a" : 1);
+    required.put("b" : 2);
+    required.put("c" : 3);
+    final TriangleType type = Triangle.classify(required);
+    assertEquals(SCALENE, type);
+  }
+
+  @Test
+  public void testScalene2() {
+    JSONObject required = new JSONObject();
+    required.put("a" : 13);
+    required.put("b" : 9);
+    required.put("c" : 14);
+    final TriangleType type = Triangle.classify(required);
+    assertEquals(SCALENE, type);
+  }
+  
+  @Test
+  public void testInvalid1() {
+    JSONObject required = new JSONObject();
+    required.put("a" : 1);
+    required.put("b" : 2);
+    required.put("c" : 4);
+    final TriangleType type = Triangle.classify(required);
+    assertEquals(INVALID, type);
+  }
+
+  @Test
+  public void testInvalid2() {
+    JSONObject required = new JSONObject();
+    required.put("a" : 4);
+    required.put("b" : 1);
+    required.put("c" : 2);
+    final TriangleType type = Triangle.classify(required);
+    assertEquals(INVALID, type);
+  }
+
+  @Test
+  public void testInvalidNeg1() {
+    JSONObject required = new JSONObject();
+    required.put("a" : -1);
+    required.put("b" : 1);
+    required.put("c" : 1);
+    final TriangleType type = Triangle.classify(required);
+    assertEquals(INVALID, type);
+  }
+
+  @Test
+  public void testIsoceles1() {
+    JSONObject required = new JSONObject();
+    required.put("a" : 2);
+    required.put("b" : 2);
+    required.put("c" : 3);
+    final TriangleType type = Triangle.classify(required);
+    assertEquals(ISOSCELES, type);
+  }
+
+  @Test
+  public void testIsoceles2() {
+    JSONObject required = new JSONObject();
+    required.put("a" : 2);
+    required.put("b" : 3);
+    required.put("c" : 2);
+    final TriangleType type = Triangle.classify(required);
+    assertEquals(ISOSCELES, type);
+  }
+
+  @Test
+  public void testInvalid() {
+    JSONObject required = new JSONObject();
+    required.put("a" : 3);
+    required.put("b" : 1);
+    required.put("c" : 1);
+    final TriangleType type = Triangle.classify(required);
+    assertEquals(DEGENERATE, type);
+  }
+
+  @Test
+  public void testInvalid() {
+    JSONObject required = new JSONObject();
+    required.put("a" : 3);
+    required.put("b" : 4);
+    required.put("c" : 7);
+    final TriangleType type = Triangle.classify(required);
+    assertEquals(DEGENERATE, type);
+  }
+}
