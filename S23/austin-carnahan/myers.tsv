@@ -8,9 +8,9 @@
 {"a" : 3, "b" : 4, "c" : 0}	error
 {"a" : 3, "b" : 4, "c" : ""}	error
 {"a" : 3, "b" : 4, "c" : "5"}	error
-{"a" : "3", "b" : "4", "c" : "5"}	error
-{"a" : 3, "b" : 4, "c" : "five"}	error
-{"a" : -3, "b" : -4, "c" : -5}	error
+{"a" : "3", "b" : "3", "c" : "3"}	error
+{"a" : 3, "b" : 4, "five" : "five"}	error
+{"a" : -3, "b" : -3, "c" : -5}	error
 {"a" : 3, "b" : 4, "c" : -5}	error
 {"a" : 3, "b" : 4, "c" : "5", d: "6"}	error
 {"a" : 3, "b" : 4}	error
